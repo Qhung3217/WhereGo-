@@ -1,0 +1,46 @@
+<div class="modal">
+  <div class="modal__wrap search__wrap">
+    <form class="search-form">
+      <div class="form-group">
+        <app-search-icon class="icon"></app-search-icon>
+        <div class="form-control">
+          <input type="text" placeholder="Where to?" name="place" />
+        </div>
+      </div>
+    </form>
+    <div class="search-suggestion" *ngIf="searchType === 'place'">
+      <ul class="suggestion-list">
+        <li>
+          <a href="#" class="suggestion-item">
+            <div class="suggestion__icon">
+              <app-bed-icon></app-bed-icon>
+            </div>
+            <div class="suggestion__text">
+              <h1><strong>Can tho</strong> hotels</h1>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="suggestion-item">
+            <div class="suggestion__icon">
+              <app-utensil-icon></app-utensil-icon>
+            </div>
+            <div class="suggestion__text">
+              <h1><strong>Can tho</strong> restaurants</h1>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="suggestion-item">
+            <div class="suggestion__icon">
+              <app-map-location-dot-icon></app-map-location-dot-icon>
+            </div>
+            <div class="suggestion__text">
+              <h1><strong>Can tho</strong> where to go?</h1>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

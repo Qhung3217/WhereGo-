@@ -46,10 +46,10 @@
 .text--center {
   text-align: center;
 }
-.text-align--left {
+.text--left {
   text-align: left;
 }
-.text-align--right {
+.text--right {
   text-align: right;
 }
 /*******************/
@@ -70,24 +70,7 @@
     margin-bottom: 7.5rem;
   }
 }
-/*******************/
-// hgroup
-/*******************/
-.hgroup {
-  p {
-    color: $subtitle;
-    font-size: 3rem;
-  }
-}
-@include maxWidth(740px) {
-  .hgroup h1 {
-    line-height: 5.395rem;
-  }
-  .hgroup p {
-    font-size: 2.5rem;
-    line-height: 3.025rem;
-  }
-}
+
 /*******************/
 // Figure, image
 /*******************/

@@ -10,7 +10,10 @@
 
 // mixin
 @import "./settings/mixin";
+
 // component
+@import "./components/button";
+@import "./components/modal";
 
 // helper
 @import "./settings/helper";

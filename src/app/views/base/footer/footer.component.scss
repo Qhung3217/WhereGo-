@@ -1,0 +1,9 @@
+@import "settings/variables";
+.footer {
+  background-color: $footer-color;
+  padding: 3.2rem 0;
+  text-align: center;
+  &__logo img {
+    width: 20rem;
+  }
+}

@@ -1,0 +1,41 @@
+@import "settings/variables";
+#navigate {
+  padding: 3.2rem 0 2.4rem 0;
+}
+.nav-card {
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    color: $text-color;
+    gap: 0.8rem;
+    min-width: 15rem;
+    min-height: 7rem;
+    border: 1px solid $primary-color;
+    background-color: #fff;
+    border-radius: 1.2rem;
+    padding: 1.1rem 1.6rem;
+    &:hover {
+      color: white;
+      border-color: white;
+      background-color: $primary-color;
+    }
+  }
+  &__item,
+  &__icon ::ng-deep svg {
+    transition: all 200ms linear;
+  }
+  &__item:hover &__icon ::ng-deep svg {
+    fill: white;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 2rem;
+  }
+}
