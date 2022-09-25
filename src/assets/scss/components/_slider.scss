@@ -1,0 +1,101 @@
+.slider {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding-left: 1rem;
+   padding-right: 1rem;
+   &-btn {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      width: 5.2rem;
+      height: 5rem;
+      position: relative;
+      cursor: pointer;
+      img {
+         width: 100%;
+         height: 100%;
+      }
+   }
+   &-btn-left {
+      margin-right: 2.4rem;
+      &:hover {
+         animation: arrowRight 1s infinite ease-in-out;
+      }
+   }
+   &-btn-right {
+      margin-left: 2.4rem;
+      &:hover {
+         animation: arrowLeft 1s infinite ease-in-out;
+      }
+   }
+   &-box {
+      flex-direction: column;
+   }
+   &-content {
+      width: fit-content;
+   }
+   &-item {
+      width: 100%;
+   }
+   &-dot {
+      margin-top: 2.6rem;
+   }
+}
+@keyframes arrowLeft {
+   from {
+      left: 0;
+   }
+   to {
+      left: 5px;
+   }
+}
+@keyframes arrowRight {
+   from {
+      right: 0;
+   }
+   to {
+      right: 5px;
+   }
+}
+@include maxWidth(1024px) {
+   .slider {
+      width: 95%;
+      margin: 0 auto;
+
+      &-btn {
+         width: 7rem;
+         height: 7rem;
+      }
+      &-btn-left {
+         margin-right: 0.6rem;
+      }
+      &-btn-right {
+         margin-left: 0.6rem;
+      }
+      &-dot img {
+         width: 7rem;
+      }
+   }
+}
+@include maxWidth(740px) {
+   .slider {
+      &-btn {
+         img {
+            width: 4.4rem;
+         }
+      }
+      &-btn-left {
+         margin-right: 1rem;
+      }
+      &-btn-right {
+         margin-left: 1rem;
+      }
+      &-dot {
+         margin-top: 2.4rem;
+      }
+      &-dot img {
+         width: 9.7rem;
+      }
+   }
+}

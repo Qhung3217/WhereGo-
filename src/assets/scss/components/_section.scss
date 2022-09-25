@@ -1,0 +1,23 @@
+.section-title {
+   margin-left: 23.8rem;
+}
+@include maxWidth(1240px) {
+   .section-title {
+      margin-left: 17.8rem;
+   }
+}
+@include maxWidth(1024px) {
+   .section-title {
+      margin-left: 9.1rem;
+   }
+}
+@include maxWidth(740px) {
+   .section-title {
+      margin-left: 4.2rem;
+   }
+}
+@include maxWidth(430px) {
+   .section-title {
+      margin-left: 3.2rem;
+   }
+}
