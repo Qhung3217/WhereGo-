@@ -1,0 +1,30 @@
+.rating {
+  gap: 0.1rem;
+  height: 1.2rem;
+}
+.star {
+  position: relative;
+  display: inline-block;
+  color: #00aa6c;
+}
+.full {
+  color: #00aa6c;
+  background-color: #00aa6c;
+  border-radius: 20px;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  .circle {
+    background-color: #00aa6c;
+  }
+}
+
+.circle {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 20px;
+  border: 2px solid currentColor;
+  background-color: #fff;
+}

@@ -11,6 +11,7 @@
   &__item {
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
     color: $text-color;
     gap: 0.8rem;
     min-width: 15rem;

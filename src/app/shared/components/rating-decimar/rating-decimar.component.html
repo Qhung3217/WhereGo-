@@ -1,0 +1,16 @@
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">
+      <div class="circle"></div>
+    </span>
+    <div class="circle"></div>
+  </span>
+</ng-template>
+
+<ngb-rating
+  [(rate)]="currentRate"
+  [starTemplate]="t"
+  [readonly]="true"
+  [max]="5"
+  class="rating"
+></ngb-rating>
