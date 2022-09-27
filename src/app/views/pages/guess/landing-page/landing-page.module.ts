@@ -14,6 +14,8 @@ import { RatingDecimarModule } from 'src/app/shared/components/rating-decimar/ra
 import { CardModule } from 'src/app/shared/components/card/card.module';
 import { SectionTopDestinationComponent } from './section-top-destination/section-top-destination.component';
 import { DestinationComponent } from './section-top-destination/destination/destination.component';
+import { SectionArticleComponent } from './section-article/section-article.component';
+import { NewspaperIconModule } from 'src/app/shared/icons/newspaper-icon/newspaper-icon.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { DestinationComponent } from './section-top-destination/destination/dest
     SectionTopExperiencesComponent,
     SectionTopDestinationComponent,
     DestinationComponent,
+    SectionArticleComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +37,7 @@ import { DestinationComponent } from './section-top-destination/destination/dest
     SearchIconModule,
     RatingDecimarModule,
     CardModule,
+    NewspaperIconModule,
   ],
   exports: [LandingPageComponent, SectionNavCardComponent],
 })

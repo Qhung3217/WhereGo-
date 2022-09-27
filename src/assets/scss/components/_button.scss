@@ -11,16 +11,18 @@
   padding: 1rem 1.6rem;
   font-size: 1.6em;
   line-height: 2rem;
-  border-radius: 2rem;
+  border-radius: 200rem;
   font-weight: 700;
 }
 .btn--large {
 }
-.btn--primary {
+.btn.btn--primary {
   background-color: $primary-color;
   color: white;
   &:hover {
     opacity: 0.8;
+    background-color: $primary-color;
+    color: white;
   }
   &:active {
     opacity: 0.6;
