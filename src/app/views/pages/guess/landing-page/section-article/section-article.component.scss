@@ -1,6 +1,9 @@
 .section-article {
-  height: 50rem;
-  position: relative;
+  margin-bottom: 7.9rem;
+  .article {
+    height: 50rem;
+    position: relative;
+  }
   .article__image {
     height: 100%;
     img {

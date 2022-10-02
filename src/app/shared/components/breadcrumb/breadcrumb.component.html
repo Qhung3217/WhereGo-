@@ -1,0 +1,10 @@
+<div class="breadcrumb">
+  <ul class="breadcrumb__list">
+    <li class="breadcrumb__level">
+      <a [routerLink]="rootLevel.link">{{ rootLevel.root }}</a>
+    </li>
+    <li class="breadcrumb__level" *ngFor="let child of childLevels">
+      <a [routerLink]="child.link">{{ child.level }}</a>
+    </li>
+  </ul>
+</div>

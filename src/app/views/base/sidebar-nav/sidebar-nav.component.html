@@ -1,0 +1,10 @@
+<nav class="sidebar-nav">
+  <ul class="sidebar-nav__list">
+    <li class="sidebar-nav__item">
+      {{ findInTitle }}
+    </li>
+    <li class="sidebar-nav__item" *ngFor="let navItem of navItems">
+      {{ navItem }}
+    </li>
+  </ul>
+</nav>

@@ -16,7 +16,7 @@ import { SectionTopDestinationComponent } from './section-top-destination/sectio
 import { DestinationComponent } from './section-top-destination/destination/destination.component';
 import { SectionArticleComponent } from './section-article/section-article.component';
 import { NewspaperIconModule } from 'src/app/shared/icons/newspaper-icon/newspaper-icon.module';
-
+import { SwiperModule } from 'swiper/angular';
 @NgModule({
   declarations: [
     LandingPageComponent,
@@ -30,6 +30,7 @@ import { NewspaperIconModule } from 'src/app/shared/icons/newspaper-icon/newspap
   imports: [
     CommonModule,
     RouterModule,
+    SwiperModule,
     MapLocationDotIconModule,
     BedIconModule,
     UtensilIconModule,
@@ -39,6 +40,6 @@ import { NewspaperIconModule } from 'src/app/shared/icons/newspaper-icon/newspap
     CardModule,
     NewspaperIconModule,
   ],
-  exports: [LandingPageComponent, SectionNavCardComponent],
+  exports: [LandingPageComponent],
 })
 export class LandingPageModule {}

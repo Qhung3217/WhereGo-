@@ -1,0 +1,25 @@
+<app-sidebar-nav></app-sidebar-nav>
+<app-breadcrumb
+  [childLevels]="[{ level: 'hotel A', link: 'hotela' }]"
+></app-breadcrumb>
+<div class="filter">
+  <div class="filter__group">
+    <h1 class="filter__group-title">Hotel class</h1>
+    <div class="filter__critical">
+      <input type="checkbox" id="1" />
+      <label for="1">5 stars</label>
+    </div>
+    <div class="filter__critical">
+      <input type="checkbox" id="2" />
+      <label for="2">4 stars</label>
+    </div>
+    <div class="filter__critical">
+      <input type="checkbox" id="3" />
+      <label for="3">3 stars</label>
+    </div>
+    <div class="filter__critical">
+      <input type="checkbox" id="4" />
+      <label for="4">1 stars</label>
+    </div>
+  </div>
+</div>
