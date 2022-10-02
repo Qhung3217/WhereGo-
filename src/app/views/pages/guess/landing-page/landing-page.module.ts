@@ -9,7 +9,7 @@ import { UtensilIconModule } from 'src/app/shared/icons/utensil-icon/utensil-ico
 import { SectionNavCardComponent } from './section-nav-card/section-nav-card.component';
 import { SectionSearchComponent } from './section-search/section-search.component';
 import { SearchIconModule } from 'src/app/shared/icons/search-icon/search-icon.module';
-import { SectionTopExperiencesComponent } from './section-top-experiences/section-top-experiences.component';
+
 import { RatingDecimarModule } from 'src/app/shared/components/rating-decimar/rating-decimar.module';
 import { CardModule } from 'src/app/shared/components/card/card.module';
 import { SectionTopDestinationComponent } from './section-top-destination/section-top-destination.component';
@@ -17,15 +17,16 @@ import { DestinationComponent } from './section-top-destination/destination/dest
 import { SectionArticleComponent } from './section-article/section-article.component';
 import { NewspaperIconModule } from 'src/app/shared/icons/newspaper-icon/newspaper-icon.module';
 import { SwiperModule } from 'swiper/angular';
+import { SectionPromotionComponent } from './section-promotion/section-promotion.component';
 @NgModule({
   declarations: [
     LandingPageComponent,
     SectionNavCardComponent,
     SectionSearchComponent,
-    SectionTopExperiencesComponent,
     SectionTopDestinationComponent,
     DestinationComponent,
     SectionArticleComponent,
+    SectionPromotionComponent,
   ],
   imports: [
     CommonModule,

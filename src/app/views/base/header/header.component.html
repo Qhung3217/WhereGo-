@@ -1,5 +1,8 @@
 <header class="header">
-  <div class="header__wrap flex--between wide">
+  <div class="header__wrap flex--between container">
+    <div class="header__menu-mobile">
+      <app-menu-icon></app-menu-icon>
+    </div>
     <div class="header__left">
       <a routerLink="/" class="header__logo">
         <img srcset="assets/images/logo-full.png 2x" alt="WhereGo logo" />
@@ -12,11 +15,44 @@
       </div>
       <nav class="header__menu">
         <ul class="header__list">
-          <li><a href="" class="header__item">Travel articles</a></li>
-          <li><a href="" class="header__item">My saved</a></li>
+          <div class="header__list-btn-close">
+            <app-x-icon></app-x-icon>
+          </div>
+          <li>
+            <a href="" class="header__item cta">
+              <app-newspaper-icon class="header__icon"></app-newspaper-icon>
+              Travel articles
+            </a>
+          </li>
+          <li>
+            <a href="" class="header__item cta">
+              <app-heart-icon class="header__icon"></app-heart-icon>
+              My saved</a
+            >
+          </li>
+          <!-- only show when login -->
+          <!-- <li>
+            <a href="" class="header__item cta">
+              <app-heart-icon class="header__icon"></app-heart-icon>
+              Booking</a
+            >
+          </li> -->
+          <hr />
+          <li class="header__item header__item--small header__item-sign-out">
+            <span>Sign out</span>
+          </li>
+          <li class="header__item-btn">
+            <!-- show sign in or header user -->
+            <!-- <a href="#" class="btn btn--primary"> Sign in </a> -->
+            <div class="header__user">
+              <figure class="user__avatar">
+                <img src="https://picsum.photos/500" alt="" />
+              </figure>
+              <h2 class="user__name">Quang Hung</h2>
+            </div>
+          </li>
         </ul>
       </nav>
-      <a href="#" class="btn btn--primary"> Sign in </a>
     </div>
   </div>
 </header>

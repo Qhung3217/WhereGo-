@@ -5,9 +5,8 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './search-modal.component.html',
   styleUrls: ['./search-modal.component.scss'],
 })
-export class SearchModalComponent implements OnInit {
-  @Input() searchType: 'hotel' | 'restaurant' | 'destination' | 'place';
+export class SearchModalComponent {
+  @Input() searchType: 'hotel' | 'restaurant' | 'destination' | 'place' =
+    'hotel';
   constructor() {}
-
-  ngOnInit(): void {}
 }
