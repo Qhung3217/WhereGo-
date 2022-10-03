@@ -69,16 +69,21 @@
     align-items: center;
     gap: 0.4rem;
   }
+  &__item--mobile {
+    display: none;
+  }
   &__item-sign-out {
     display: none;
   }
   &__user {
     display: flex;
     align-items: center;
+    position: relative;
   }
   .user__avatar {
     width: 4rem;
     height: 4rem;
+    cursor: pointer;
     img {
       width: 100%;
       height: 100%;
@@ -94,9 +99,47 @@
     font-weight: 700;
     margin-left: 1.2rem;
   }
+  &__user.active .user__menu {
+    display: block;
+  }
+  .user__menu {
+    display: none;
+    background-color: white;
+    border-radius: 1.2rem;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 19.2rem;
+    margin-top: 1.2rem;
+    filter: drop-shadow(0 2px 5.4px rgba(0, 0, 0, 0.1));
+    &:after {
+      content: "";
+      border-color: white transparent;
+      border-style: solid;
+      position: absolute;
+      right: 1rem;
+      top: -0.8rem;
+      border-width: 0 1rem 0.8rem;
+    }
+  }
+  .user__list {
+    padding: 1.6rem;
+  }
+  .user__item {
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.9rem;
+    padding: 0.8rem;
+    color: $text-color;
+    text-decoration: none;
+    display: block;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.07);
+    }
+  }
 }
 
-@include maxWidth(767px) {
+@include maxWidth($screen-md) {
   .header {
     position: relative;
     &__wrap {
@@ -104,6 +147,7 @@
     }
     &__right {
       flex: unset;
+      padding-left: 0;
     }
     &__menu-mobile {
       display: block;
@@ -132,6 +176,21 @@
       bottom: 0;
       z-index: 999999;
       background-color: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      overflow: hidden;
+    }
+    .active &__menu {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+    }
+    .active &__list {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
     }
     &__list {
       position: absolute;
@@ -143,6 +202,12 @@
       padding: 0.8rem 1.6rem 2.4rem;
       max-width: calc(100vw - 64px);
       width: 384px;
+      overflow: auto;
+      transform: translateX(-100%);
+      transition: transform 200ms linear;
+      pointer-events: none;
+      visibility: hidden;
+      overflow: hidden;
     }
     &__list > * {
       order: 1;
@@ -181,6 +246,9 @@
       line-height: 2.6rem;
       padding: 1.2rem 0.8rem;
     }
+    .header__item--mobile {
+      display: block;
+    }
     &__item--small {
       font-size: 1.6rem;
       line-height: 1.8rem;
@@ -196,6 +264,9 @@
     .user__name {
       display: block;
       padding: 2rem 0.8rem 1.6rem;
+    }
+    .user__menu {
+      display: none !important;
     }
   }
 }

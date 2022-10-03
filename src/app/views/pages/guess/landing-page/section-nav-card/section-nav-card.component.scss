@@ -1,4 +1,6 @@
 @import "settings/variables/color";
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
 #navigate {
   padding: 3.2rem 0 2.4rem 0;
 }
@@ -9,17 +11,20 @@
     gap: 0.8rem;
   }
   &__item {
+    margin-right: 0.8rem;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
     color: $text-color;
     gap: 0.8rem;
     min-width: 15rem;
+    width: max-content;
     min-height: 7rem;
     border: 1px solid $primary-color;
     background-color: #fff;
     border-radius: 1.2rem;
     padding: 1.1rem 1.6rem;
+
     &:hover {
       color: white;
       border-color: white;
@@ -33,10 +38,48 @@
   &__item:hover &__icon ::ng-deep svg {
     fill: white;
   }
+  &__icon {
+    flex-shrink: 0;
+  }
 
   &__title {
+    flex: 1;
     font-size: 1.6rem;
     font-weight: 700;
     line-height: 2rem;
   }
+}
+@include maxWidth($screen-md) {
+  #navigate {
+    position: relative;
+  }
+  .nav-card {
+    &__list {
+      overflow-x: auto;
+      display: grid;
+      grid-auto-flow: column;
+      &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 2rem;
+        background: linear-gradient(to left, white, transparent);
+      }
+    }
+    &__item {
+      font-size: 1.6rem;
+      min-height: unset;
+    }
+    &__icon ::ng-deep svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+    &__title {
+      white-space: nowrap;
+    }
+  }
+}
+@include maxWidth($screen-sm) {
 }

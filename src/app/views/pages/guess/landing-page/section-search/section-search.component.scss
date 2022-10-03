@@ -1,3 +1,5 @@
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
 .search {
   text-align: center;
   position: relative;
@@ -6,6 +8,7 @@
     object-fit: cover;
     object-position: center;
     width: 100%;
+    min-height: 25rem;
   }
 
   .search-form {
@@ -14,7 +17,7 @@
     background-color: white;
     overflow: hidden;
     max-width: 800px;
-    width: 100%;
+    width: calc(100% - 6.4rem);
     margin: 0 auto;
     position: absolute;
     top: 50%;
@@ -44,4 +47,6 @@
       line-height: 3.6rem;
     }
   }
+}
+@include maxWidth($screen-md) {
 }

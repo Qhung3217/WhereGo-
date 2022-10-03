@@ -6,6 +6,7 @@ import { SearchIconModule } from '../../icons/search-icon/search-icon.module';
 import { BedIconModule } from '../../icons/bed-icon/bed-icon.module';
 import { UtensilIconModule } from '../../icons/utensil-icon/utensil-icon.module';
 import { MapLocationDotIconModule } from '../../icons/map-location-dot-icon/map-location-dot-icon.module';
+import { XIconModule } from '../../icons/x-icon/x-icon.module';
 
 @NgModule({
   declarations: [SearchModalComponent],
@@ -16,6 +17,7 @@ import { MapLocationDotIconModule } from '../../icons/map-location-dot-icon/map-
     BedIconModule,
     UtensilIconModule,
     MapLocationDotIconModule,
+    XIconModule,
   ],
   exports: [SearchModalComponent],
 })

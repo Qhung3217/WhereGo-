@@ -1,30 +1,31 @@
 <section id="navigate">
   <div class="nav-card__list">
-    <div class="nav-card__item">
+    <div class="nav-card__item" (click)="handleNavClick('place')">
       <h1 class="nav-card__title">Destinations</h1>
-      <div class="nav-card__icon">
-        <app-map-location-dot-icon></app-map-location-dot-icon>
-      </div>
+
+      <app-map-location-dot-icon
+        class="nav-card__icon"
+      ></app-map-location-dot-icon>
     </div>
-    <div class="nav-card__item">
+    <div class="nav-card__item" (click)="handleNavClick('hotel')">
       <h1 class="nav-card__title">Hotels</h1>
-      <div class="nav-card__icon">
-        <app-bed-icon></app-bed-icon>
-      </div>
+
+      <app-bed-icon class="nav-card__icon"></app-bed-icon>
     </div>
-    <div class="nav-card__item">
+    <div class="nav-card__item" (click)="handleNavClick('restaurant')">
       <h1 class="nav-card__title">Restaurants</h1>
-      <div class="nav-card__icon">
-        <app-utensil-icon></app-utensil-icon>
-      </div>
+
+      <app-utensil-icon class="nav-card__icon"></app-utensil-icon>
     </div>
-    <div class="nav-card__item">
+    <div class="nav-card__item" (click)="handleNavClick('article')">
       <h1 class="nav-card__title">Travel Articles</h1>
-      <div class="nav-card__icon">
-        <app-newspaper-icon></app-newspaper-icon>
-      </div>
+
+      <app-newspaper-icon class="nav-card__icon"></app-newspaper-icon>
     </div>
   </div>
+  <app-search-modal
+    [searchType]="searchModalConfig.type"
+    *ngIf="searchModalConfig.show"
+    (closeEmit)="searchModalConfig.show = false"
+  ></app-search-modal>
 </section>
-
-<!-- <app-search-modal searchType="place"></app-search-modal> -->

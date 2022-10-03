@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search-modal',
@@ -6,7 +6,15 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./search-modal.component.scss'],
 })
 export class SearchModalComponent {
-  @Input() searchType: 'hotel' | 'restaurant' | 'destination' | 'place' =
-    'hotel';
+  @Input() searchType:
+    | 'hotel'
+    | 'restaurant'
+    | 'destination'
+    | 'place'
+    | 'article' = 'hotel';
+  @Output() closeEmit = new EventEmitter();
   constructor() {}
+  handleClose() {
+    this.closeEmit.emit(true);
+  }
 }

@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header" appDropdown>
   <div class="header__wrap flex--between container">
     <div class="header__menu-mobile">
       <app-menu-icon></app-menu-icon>
@@ -9,15 +9,27 @@
       </a>
     </div>
     <div class="header__right">
-      <div class="search">
+      <div class="search" (click)="handleSearchClick($event)">
         <app-search-icon class="search__icon"></app-search-icon>
         <input type="text" class="search__input" placeholder="Where to ?" />
       </div>
-      <nav class="header__menu">
+      <nav class="header__menu" #headerMenu>
         <ul class="header__list">
           <div class="header__list-btn-close">
             <app-x-icon></app-x-icon>
           </div>
+          <!-- only show when login -->
+          <li>
+            <a href="" class="header__item cta header__item--mobile">
+              View profile</a
+            >
+          </li>
+          <li>
+            <a href="" class="header__item cta header__item--mobile">
+              Bookings</a
+            >
+          </li>
+          <hr />
           <li>
             <a href="" class="header__item cta">
               <app-newspaper-icon class="header__icon"></app-newspaper-icon>
@@ -30,13 +42,7 @@
               My saved</a
             >
           </li>
-          <!-- only show when login -->
-          <!-- <li>
-            <a href="" class="header__item cta">
-              <app-heart-icon class="header__icon"></app-heart-icon>
-              Booking</a
-            >
-          </li> -->
+
           <hr />
           <li class="header__item header__item--small header__item-sign-out">
             <span>Sign out</span>
@@ -44,11 +50,24 @@
           <li class="header__item-btn">
             <!-- show sign in or header user -->
             <!-- <a href="#" class="btn btn--primary"> Sign in </a> -->
-            <div class="header__user">
+            <div class="header__user" appDropdown [runInMobile]="false">
               <figure class="user__avatar">
                 <img src="https://picsum.photos/500" alt="" />
               </figure>
               <h2 class="user__name">Quang Hung</h2>
+              <div class="user__menu">
+                <ul class="user__list">
+                  <li>
+                    <a href="" class="user__item">View profile</a>
+                  </li>
+                  <li>
+                    <a href="" class="user__item">Bookings</a>
+                  </li>
+                  <li>
+                    <a href="" class="user__item">Sign out</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </li>
         </ul>
@@ -56,3 +75,8 @@
     </div>
   </div>
 </header>
+<app-search-modal
+  searchType="place"
+  *ngIf="showSearchModal"
+  (closeEmit)="showSearchModal = false"
+></app-search-modal>

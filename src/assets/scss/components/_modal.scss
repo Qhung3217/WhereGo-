@@ -9,7 +9,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  &__close {
+    width: 4.8rem;
+    height: 4.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
   &__wrap {
     box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
     padding: 0 1.2rem;
