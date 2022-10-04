@@ -5,11 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './section-search.component.html',
   styleUrls: ['./section-search.component.scss']
 })
-export class SectionSearchComponent implements OnInit {
-
+export class SectionSearchComponent   {
+  showSearch = false
   constructor() { }
 
-  ngOnInit(): void {
-  }
+
 
 }

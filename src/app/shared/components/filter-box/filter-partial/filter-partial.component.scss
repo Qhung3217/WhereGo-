@@ -1,0 +1,40 @@
+.filter-partial {
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+  &__title {
+    font-size: 1.6em;
+    font-weight: 700;
+    line-height: 1.9rem;
+    display: flex;
+    margin-bottom: 0.8rem;
+  }
+  &__title-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    transform: rotate(90deg);
+    transition: transform 200ms linear;
+    margin-left: 0.8rem;
+    cursor: pointer;
+    ::ng-deep svg {
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &__list {
+    max-height: unset;
+    transition: max-height 200ms ease-out;
+  }
+}
+
+.filter-partial--shortened {
+  .filter-partial__title-icon {
+    transform: rotate(270deg);
+  }
+  .filter-partial__list {
+    max-height: 0;
+    overflow: hidden;
+  }
+}

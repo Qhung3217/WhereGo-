@@ -5,10 +5,8 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './sidebar-nav.component.html',
   styleUrls: ['./sidebar-nav.component.scss'],
 })
-export class SidebarNavComponent implements OnInit {
-  @Input() findInTitle = 'Title';
-  navItems = ['Hotel', 'Restaurant', 'Destination'];
+export class SidebarNavComponent {
+  @Input() findInTitle = 'Can tho';
+  navItems = ['Hotels', 'Restaurants', 'Destinations'];
   constructor() {}
-
-  ngOnInit(): void {}
 }

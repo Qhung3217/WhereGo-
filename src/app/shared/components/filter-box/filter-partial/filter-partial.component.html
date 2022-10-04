@@ -1,0 +1,12 @@
+<div class="filter-partial" #filter>
+  <h2 class="filter-partial__title">
+    Popular
+    <app-chevron-right-icon
+      class="filter-partial__title-icon"
+      (click)="filter.classList.toggle('filter-partial--shortened')"
+    ></app-chevron-right-icon>
+  </h2>
+  <div class="filter-partial__list">
+    <app-form-group-checkbox></app-form-group-checkbox>
+  </div>
+</div>

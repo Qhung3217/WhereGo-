@@ -1,14 +1,19 @@
 <section class="search">
   <form class="search-form">
-    <div class="form__group">
+    <div class="form__group" (click)="showSearch = true">
       <app-search-icon class="icon"></app-search-icon>
       <div class="form__control">
         <input type="text" placeholder="Where to?" name="place" />
       </div>
     </div>
   </form>
+
   <img
     src="assets/images/pages/landing-page/background-section-search.webp"
     class="search-background"
   />
+  <app-search-modal
+    *ngIf="showSearch"
+    (closeEmit)="showSearch = false"
+  ></app-search-modal>
 </section>

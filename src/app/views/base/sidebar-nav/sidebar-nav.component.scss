@@ -1,6 +1,21 @@
+@import "settings/variables/color";
 .sidebar-nav {
+  border-bottom: 1px solid #e0e0e0;
+  background-color: white;
   &__list {
+    display: flex;
   }
   &__item {
+    font-size: 1.4rem;
+    padding: 0 1.2rem;
+    line-height: 4.2rem;
+    height: 4.2rem;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+  &__item--active {
+    border-bottom: 2px solid $primary-color;
+    font-weight: 700;
   }
 }

@@ -1,0 +1,16 @@
+<div class="checkbox">
+  <label class="checkbox" [ngClass]="{ 'checkbox--checked': checked }">
+    <input
+      type="checkbox"
+      class="checkbox__input"
+      [id]="htmlId"
+      (change)="onChange()"
+      [checked]="checked"
+    />
+    <span class="checkbox__input-style">
+      <app-check-icon class="checkbox__icon"></app-check-icon>
+    </span>
+  </label>
+
+  <label [for]="htmlId">{{ label }}</label>
+</div>
