@@ -2,11 +2,39 @@
 <app-breadcrumb
   [childLevels]="[{ level: 'hotel A', link: 'hotela' }]"
 ></app-breadcrumb>
-<div class="container">
+<div class="container mb-8">
   <div class="row g-0">
-    <div class="col col-xxl-3 filter">
-      <app-filter-box></app-filter-box>
+    <div class="col col-xxl-3">
+      <div class="filter">
+        <app-filter-box></app-filter-box>
+      </div>
     </div>
-    <div class="col col-xxl-9"></div>
+    <div class="col col-xxl-9">
+      <div class="property">
+        <div class="property-count">
+          <!-- if no filter show total properties instead
+            <span>527</span> in Can Tho.
+          -->
+          <span>8 of 527</span> properties are available and match your filters.
+          <span class="clear-filters">Clear all filters</span>
+        </div>
+        <div class="filter-selected">
+          <div class="filter" *ngFor="let filter of filterSelected">
+            {{ filter }}
+            <app-x-icon class="filter__icon"></app-x-icon>
+          </div>
+        </div>
+        <div class="property__list">
+          <app-hotel-card
+            class="property__item"
+            *ngFor="let hotel of hotels"
+            [hotel]="hotel"
+          ></app-hotel-card>
+        </div>
+        <div class="property__pagination">
+          <app-pagination></app-pagination>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

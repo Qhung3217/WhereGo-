@@ -1,5 +1,5 @@
 .rating {
-  gap: 0.1rem;
+  gap: 0.2rem;
   height: 1.2rem;
 }
 .star {
@@ -10,7 +10,7 @@
 .full {
   color: #00aa6c;
   background-color: #00aa6c;
-  border-radius: 20px;
+  border-radius: 10rem;
 }
 .half {
   position: absolute;
@@ -24,7 +24,7 @@
 .circle {
   width: 1.2rem;
   height: 1.2rem;
-  border-radius: 20px;
-  border: 2px solid currentColor;
+  border-radius: 10rem;
+  border: 3px solid currentColor;
   background-color: #fff;
 }

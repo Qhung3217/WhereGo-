@@ -5,9 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './rating-decimar.component.html',
   styleUrls: ['./rating-decimar.component.scss'],
 })
-export class RatingDecimarComponent implements OnInit {
-  @Input('rate') currentRate = 3.5;
+export class RatingDecimarComponent {
+  @Input() rate = 3.5;
   constructor() {}
-
-  ngOnInit(): void {}
 }

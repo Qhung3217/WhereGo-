@@ -1,0 +1,92 @@
+@import "settings/variables/color";
+.hotel {
+  display: flex;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  transition: all 150ms ease-in-out;
+  &:hover {
+    border-bottom: 1px solid #bababa;
+    box-shadow: 0 0 8px 0 rgb(0 0 0 / 25%);
+  }
+  &__thumb {
+    width: 35rem;
+    flex-shrink: 0;
+    img {
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+      aspect-ratio: 3/2.4;
+      min-height: 20rem;
+    }
+  }
+  &__content {
+    flex: 1;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  &__name {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.4rem;
+    color: $primary-color;
+    text-decoration: none;
+    margin-bottom: 1.6rem;
+    display: block;
+  }
+
+  &__infor {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    height: 100%;
+  }
+  &__cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px dotted #e0e0e0;
+    padding-right: 1.6rem;
+  }
+  &__btn {
+    background-color: #f2b203;
+    color: $primary-color;
+    display: block;
+    width: 100%;
+    &:hover {
+      background-color: #fdc735;
+    }
+  }
+  &__facilities {
+    padding-left: 3.6rem;
+    font-size: 1.4rem;
+    color: $text-color-secondary;
+  }
+  &__property-type {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  &__rating {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    ::ng-deep .circle {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+  }
+  &__review-count {
+    margin-left: 0.3rem;
+  }
+  &__amenities {
+  }
+  &__amenity {
+    display: inline-block;
+    text-decoration: underline;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+  }
+  &__amenity + &__amenity {
+    margin-left: 0.8rem;
+  }
+}

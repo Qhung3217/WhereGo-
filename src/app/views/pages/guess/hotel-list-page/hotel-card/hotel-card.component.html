@@ -1,0 +1,27 @@
+<div class="hotel">
+  <figure class="hotel__thumb">
+    <img [src]="hotel.img" alt="" />
+  </figure>
+  <div class="hotel__content">
+    <a href="" class="hotel__name">{{ hotel.name }}</a>
+    <div class="hotel__infor">
+      <div class="hotel__cta">
+        <a href="" class="btn hotel__btn">Go to details</a>
+      </div>
+      <div class="hotel__facilities">
+        <h3 class="hotel__property-type" *ngIf="hotel.property">
+          {{ hotel.property }}
+        </h3>
+        <div class="hotel__rating">
+          <app-rating-decimar [rate]="hotel.rating"></app-rating-decimar>
+          <span class="hotel__review-count">17 reviews</span>
+        </div>
+        <div class="hotel__amenities">
+          <div class="hotel__amenity" *ngFor="let amenity of hotel.amenities">
+            {{ amenity }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

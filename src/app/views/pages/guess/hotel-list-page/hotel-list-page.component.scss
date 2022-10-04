@@ -1,0 +1,56 @@
+@import "settings/variables/color";
+.property {
+  &-count {
+    padding-top: 0.8rem;
+    font-size: 1.6rem;
+    color: $primary-color;
+    margin-bottom: 2rem;
+    span {
+      font-weight: 700;
+    }
+  }
+  .clear-filters {
+    cursor: pointer;
+  }
+  .filter-selected {
+    display: flex;
+    margin-bottom: 1.6rem;
+    .filter {
+      margin-right: 0.8rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.4rem;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .filter__icon {
+      margin-left: 0.4rem;
+      width: 0.9rem;
+      height: 0.9rem;
+      display: block;
+      ::ng-deep svg {
+        width: 0.9rem;
+        height: 0.9rem;
+        display: block;
+        fill: #757575;
+      }
+    }
+  }
+  &__list {
+    margin-top: 0.8rem;
+  }
+  &__item + &__item {
+    margin-top: 0.8rem;
+    display: block;
+  }
+  &__pagination {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    padding: 1.6rem 2.4rem;
+    margin-top: 0.8rem;
+  }
+}

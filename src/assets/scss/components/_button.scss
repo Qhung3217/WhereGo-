@@ -13,6 +13,11 @@
   line-height: 2rem;
   border-radius: 200rem;
   font-weight: 700;
+  outline: none;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
 }
 .btn--large {
 }
