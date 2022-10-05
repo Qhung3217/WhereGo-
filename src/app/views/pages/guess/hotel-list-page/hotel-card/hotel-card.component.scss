@@ -1,4 +1,6 @@
 @import "settings/variables/color";
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
 .hotel {
   display: flex;
   background-color: white;
@@ -88,5 +90,19 @@
   }
   &__amenity + &__amenity {
     margin-left: 0.8rem;
+  }
+}
+
+@include maxWidth($screen-xl) {
+  .hotel {
+    &__thumb {
+      width: 25rem;
+    }
+    &__infor {
+      grid-template-columns: 150px 1fr;
+    }
+    &__facilities {
+      padding-left: 2.5rem;
+    }
   }
 }

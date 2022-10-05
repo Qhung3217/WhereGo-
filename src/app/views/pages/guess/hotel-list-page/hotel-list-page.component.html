@@ -3,13 +3,25 @@
   [childLevels]="[{ level: 'hotel A', link: 'hotela' }]"
 ></app-breadcrumb>
 <div class="container mb-8">
-  <div class="row g-0">
-    <div class="col col-xxl-3">
-      <div class="filter">
-        <app-filter-box></app-filter-box>
+  <div class="row">
+    <div class="col col-lg-3 filter-box">
+      <div class="filter-mobile__btn">
+        <app-sliders-icon class="filter-mobile__icon"></app-sliders-icon>
+        <span>Filter • 2</span>
+      </div>
+      <div class="filter__modal">
+        <div class="filter__overlay"></div>
+        <div class="filter__modal-box">
+          <div class="filter__modal-header">
+            <div>Reset</div>
+            <div class="filter__modal-title">Filters</div>
+            <app-x-icon class="filter__modal-icon"></app-x-icon>
+          </div>
+          <app-filter-box></app-filter-box>
+        </div>
       </div>
     </div>
-    <div class="col col-xxl-9">
+    <div class="col-12 col-lg-9">
       <div class="property">
         <div class="property-count">
           <!-- if no filter show total properties instead

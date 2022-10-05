@@ -10,6 +10,7 @@ import { RatingDecimarModule } from 'src/app/shared/components/rating-decimar/ra
 import { HeartIconModule } from 'src/app/shared/icons/heart-icon/heart-icon.module';
 import { HeartSolidIconModule } from 'src/app/shared/icons/heart-solid-icon/heart-solid-icon.module';
 import { PaginationModule } from 'src/app/shared/components/pagination/pagination.module';
+import { SlidersIconModule } from 'src/app/shared/icons/sliders-icon/sliders-icon.module';
 @NgModule({
   declarations: [HotelListPageComponent, HotelCardComponent],
   imports: [
@@ -24,6 +25,7 @@ import { PaginationModule } from 'src/app/shared/components/pagination/paginatio
     XIconModule,
     HeartIconModule,
     HeartSolidIconModule,
+    SlidersIconModule,
   ],
   exports: [HotelListPageComponent],
 })
