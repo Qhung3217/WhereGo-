@@ -7,7 +7,9 @@
   &__list {
     display: flex;
   }
-  &__item {
+  &__object,
+  &__item a {
+    display: block;
     font-size: 1.4rem;
     padding: 0 1.2rem;
     line-height: 4.2rem;
@@ -15,8 +17,10 @@
     border-top: 2px solid transparent;
     border-bottom: 2px solid transparent;
     cursor: pointer;
+    text-decoration: none;
+    color: $text-color;
   }
-  &__item--active {
+  &__item--active a {
     border-bottom: 2px solid $primary-color;
     font-weight: 700;
   }

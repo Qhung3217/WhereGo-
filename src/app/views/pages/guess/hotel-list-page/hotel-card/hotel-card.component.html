@@ -1,1 +1,7 @@
-<app-list-item [item]="hotel"></app-list-item>
+<app-list-item
+  [thumb]="hotel.img"
+  [name]="hotel.name"
+  [type]="hotel?.type ? hotel.type : null"
+  [rating]="hotel.rating"
+  [categories]="hotel.amenities"
+></app-list-item>

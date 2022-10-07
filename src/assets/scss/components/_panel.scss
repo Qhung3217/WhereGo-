@@ -1,55 +1,8 @@
 .panel {
-   background-color: #1e0c06;
-   padding: 7.5rem 5rem;
-   max-width: 1245px;
-   width: 100%;
-   box-shadow: 0px 4px 52px rgba(245, 245, 245, 0.17);
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  padding: 2.4rem;
 }
-
-.panel--big {
-   max-width: 1325px;
-}
-
-.panel-left {
-   border-radius: 0px 42px 42px 0px;
-   margin-right: auto;
-}
-.panel-right {
-   border-radius: 43px 0px 0px 43px;
-   margin-left: auto;
-}
-
-@include maxWidth(1340px) {
-   .panel {
-      max-width: 1200px;
-   }
-}
-@include maxWidth(1239px) {
-   .panel {
-      max-width: 1000px;
-   }
-}
-@include maxWidth(1024px) {
-   .panel {
-      width: 80%;
-   }
-}
-@include maxWidth(915px) {
-   .panel {
-      width: 90%;
-   }
-}
-@include maxWidth(740px) {
-   .panel {
-      padding: 3.4rem;
-   }
-}
-@include maxWidth(430px) {
-   .panel {
-      width: 95%;
-      max-width: 326px;
-   }
-   .panel--big {
-      max-width: 347px;
-   }
+.panel--no-padding {
+  padding: 0;
 }

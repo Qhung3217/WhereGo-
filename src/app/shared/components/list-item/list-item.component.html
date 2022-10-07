@@ -1,27 +1,48 @@
 <div class="item">
   <figure class="item__thumb">
-    <img [src]="item.img" alt="" />
+    <img [src]="thumb" alt="" />
+    <div class="item__heart cta item__heart--active">
+      <app-heart-icon class="item__icon"></app-heart-icon>
+      <app-heart-solid-icon
+        class="item__icon item__icon--active"
+      ></app-heart-solid-icon>
+    </div>
   </figure>
   <div class="item__content">
-    <a href="" class="item__name">{{ item.name }}</a>
-    <div class="item__infor item__infor--hotel" *ngIf="isItemHotel">
-      <div class="item__infor-cta">
+    <a href="" class="item__name">{{ name }}</a>
+    <div
+      class="item__infor item__infor--hotel"
+      [ngClass]="{
+        'item__infor--hotel': isItemHotel,
+        'item__infor--restaurant': !isItemHotel
+      }"
+    >
+      <div class="item__infor-cta" *ngIf="isItemHotel">
         <a href="" class="btn item__infor-btn">Go to details</a>
       </div>
       <div class="item__infor-group">
-        <h3 class="item__infor-group-type" *ngIf="item.property">
-          {{ item.property }}
+        <h3 class="item__infor-group-type" *ngIf="type">
+          {{ type }}
         </h3>
         <div class="item__infor-group-rating">
-          <app-rating-decimar [rate]="item.rating"></app-rating-decimar>
+          <app-rating-decimar [rate]="rating"></app-rating-decimar>
           <span class="item__infor-group-review-count">17 reviews</span>
         </div>
-        <div class="item__infor-group-categories">
+
+        <div class="item__infor-group-categories" *ngIf="isItemHotel">
           <div
             class="item__infor-group-category"
-            *ngFor="let amenity of item.amenities"
+            *ngFor="let category of categories"
           >
-            {{ amenity }}
+            {{ category }}
+          </div>
+        </div>
+        <div
+          class="item__infor-group-categories"
+          *ngIf="!isItemHotel && !!categories"
+        >
+          <div class="item__infor-group-category">
+            {{ categories.join(", ") }}
           </div>
         </div>
       </div>

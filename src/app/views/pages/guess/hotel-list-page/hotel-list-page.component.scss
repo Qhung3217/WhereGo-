@@ -20,7 +20,9 @@
   .filter-selected {
     display: flex;
     margin-bottom: 1.6rem;
+    overflow-x: auto;
     .filter {
+      flex-shrink: 0;
       margin-right: 0.8rem;
       font-size: 1.2rem;
       font-weight: 700;
@@ -79,6 +81,7 @@
     opacity: 0;
     pointer-events: none;
     transition: all 200ms linear;
+
     .filter__overlay {
       position: fixed;
       top: 0;
@@ -94,7 +97,6 @@
       top: 0;
       right: 0;
       bottom: 0;
-      overflow-y: auto;
       width: 75%;
       max-width: 35rem;
       padding: 1.6rem 1.4rem;
@@ -125,6 +127,13 @@
       border-bottom: 1px solid #e0e0e0;
       padding: 1.4rem 1.6rem;
     }
+    ::ng-deep .filter-box {
+      border: none;
+      padding-left: 0;
+      padding-right: 0;
+      overflow-y: auto;
+      height: 100%;
+    }
     &-title {
       font-size: 1.6rem;
     }
@@ -139,6 +148,7 @@
       }
     }
   }
+
   .filter-box.active {
     .filter__modal {
       visibility: visible;

@@ -7,6 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SidebarNavComponent {
   @Input() findInTitle = 'Can tho';
-  navItems = ['Hotels', 'Restaurants', 'Destinations'];
+  navItems = [
+    { label: 'Hotels', href: '/hotel' },
+    { label: 'Restaurants', href: '/restaurant' },
+    { label: 'Destinations', href: '/destination' },
+  ];
   constructor() {}
 }

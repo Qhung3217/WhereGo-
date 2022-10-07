@@ -1,10 +1,14 @@
 <nav class="sidebar-nav">
   <ul class="sidebar-nav__list container">
-    <li class="sidebar-nav__item">
+    <li class="sidebar-nav__object">
       {{ findInTitle }}
     </li>
-    <li class="sidebar-nav__item" *ngFor="let navItem of navItems">
-      {{ navItem }}
+    <li
+      class="sidebar-nav__item"
+      routerLinkActive="sidebar-nav__item--active"
+      *ngFor="let navItem of navItems"
+    >
+      <a [routerLink]="navItem.href">{{ navItem.label }}</a>
     </li>
   </ul>
 </nav>

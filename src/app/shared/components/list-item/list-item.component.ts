@@ -6,8 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./list-item.component.scss'],
 })
 export class ListItemComponent {
-  @Input() item: any;
+  @Input() thumb?: string;
+  @Input() name?: string;
+  @Input() type?: string;
+  @Input() rating: number = 0;
+  @Input() categories?: string[];
   @Input() isItemHotel: boolean = true;
-
-  constructor() {}
 }

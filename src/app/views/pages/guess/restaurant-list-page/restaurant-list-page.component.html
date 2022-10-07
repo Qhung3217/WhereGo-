@@ -1,0 +1,51 @@
+<app-sidebar-nav></app-sidebar-nav>
+<app-breadcrumb
+  [childLevels]="[{ level: 'hotel A', link: 'hotela' }]"
+></app-breadcrumb>
+<div class="container mb-8">
+  <div class="row">
+    <div class="col col-lg-3 filter-box" appDropdown>
+      <div class="filter-mobile__btn">
+        <app-sliders-icon class="filter-mobile__icon"></app-sliders-icon>
+        <span>Filter • 2</span>
+      </div>
+      <div class="filter__modal">
+        <div class="filter__overlay"></div>
+        <div class="filter__modal-box">
+          <div class="filter__modal-header">
+            <div>Reset</div>
+            <div class="filter__modal-title">Filters</div>
+            <app-x-icon class="filter__modal-icon"></app-x-icon>
+          </div>
+          <app-filter-box></app-filter-box>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-9">
+      <div class="property">
+        <div class="property-count">
+          <!-- display none if no filters is applied.
+          -->
+          <span>42</span> results match your filters.
+          <span class="clear-filters">Clear all filters</span>
+        </div>
+        <div class="filter-selected">
+          <div class="filter" *ngFor="let filter of filterSelected">
+            {{ filter }}
+            <app-x-icon class="filter__icon"></app-x-icon>
+          </div>
+        </div>
+        <div class="property__list">
+          <app-restaurant-card
+            class="property__item"
+            *ngFor="let restaurant of restaurants"
+            [restaurant]="restaurant"
+          ></app-restaurant-card>
+        </div>
+        <div class="property__pagination">
+          <app-pagination></app-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
