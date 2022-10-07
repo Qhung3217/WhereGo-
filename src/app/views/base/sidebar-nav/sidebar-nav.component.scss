@@ -1,4 +1,6 @@
 @import "settings/variables/color";
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
 .sidebar-nav {
   border-bottom: 1px solid #e0e0e0;
   background-color: white;
@@ -17,5 +19,17 @@
   &__item--active {
     border-bottom: 2px solid $primary-color;
     font-weight: 700;
+  }
+}
+@include maxWidth($screen-md) {
+  .sidebar-nav {
+    &__list {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+    &__item {
+      width: fit-content;
+      flex-shrink: 0;
+    }
   }
 }

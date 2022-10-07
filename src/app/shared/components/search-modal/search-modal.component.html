@@ -1,7 +1,6 @@
 <div class="modal">
-  <div class="modal__overlay" (click)="handleClose()">
-    <app-x-icon class="modal__close"></app-x-icon>
-  </div>
+  <div class="modal__overlay" (click)="handleClose()"></div>
+  <app-x-icon class="modal__close" (click)="handleClose()"></app-x-icon>
   <div class="modal__wrap search__wrap">
     <form class="search-form">
       <div class="form-group">

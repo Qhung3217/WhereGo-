@@ -1,0 +1,30 @@
+<div class="item">
+  <figure class="item__thumb">
+    <img [src]="item.img" alt="" />
+  </figure>
+  <div class="item__content">
+    <a href="" class="item__name">{{ item.name }}</a>
+    <div class="item__infor item__infor--hotel" *ngIf="isItemHotel">
+      <div class="item__infor-cta">
+        <a href="" class="btn item__infor-btn">Go to details</a>
+      </div>
+      <div class="item__infor-group">
+        <h3 class="item__infor-group-type" *ngIf="item.property">
+          {{ item.property }}
+        </h3>
+        <div class="item__infor-group-rating">
+          <app-rating-decimar [rate]="item.rating"></app-rating-decimar>
+          <span class="item__infor-group-review-count">17 reviews</span>
+        </div>
+        <div class="item__infor-group-categories">
+          <div
+            class="item__infor-group-category"
+            *ngFor="let amenity of item.amenities"
+          >
+            {{ amenity }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

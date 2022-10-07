@@ -59,7 +59,7 @@
     margin-top: 0.8rem;
   }
 }
-.filter-modal {
+.filter__modal {
   .filter__overlay {
     display: none;
   }
@@ -75,7 +75,10 @@
     right: 0;
     bottom: 0;
     z-index: 10;
-
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 200ms linear;
     .filter__overlay {
       position: fixed;
       top: 0;
@@ -84,6 +87,7 @@
       bottom: 0;
       background-color: rgba(0, 0, 0, 0.8);
       opacity: 0.8;
+      display: block;
     }
     &-box {
       position: absolute;
@@ -97,6 +101,12 @@
       padding-top: 4rem;
       background-color: white;
       box-shadow: 0 3px 12px 0 rgb(0 0 0 / 25%);
+
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(100%);
+      transition: transform 150ms ease-in-out;
     }
     &-header {
       display: block;
@@ -106,7 +116,7 @@
       position: fixed;
       top: 0;
       right: 0;
-      width: 75%;
+      width: 100%;
       max-width: 35rem;
       display: flex;
       align-items: center;
@@ -127,6 +137,23 @@
         height: 1.3rem;
         display: block;
       }
+    }
+  }
+  .filter-box.active {
+    .filter__modal {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .filter__overlay {
+      display: block;
+    }
+    .filter__modal-box {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
     }
   }
   .filter-mobile__btn {

@@ -11,6 +11,8 @@ import { HeartIconModule } from 'src/app/shared/icons/heart-icon/heart-icon.modu
 import { HeartSolidIconModule } from 'src/app/shared/icons/heart-solid-icon/heart-solid-icon.module';
 import { PaginationModule } from 'src/app/shared/components/pagination/pagination.module';
 import { SlidersIconModule } from 'src/app/shared/icons/sliders-icon/sliders-icon.module';
+import { DropdownDirectiveModule } from 'src/app/shared/directives/dropdown-directive/dropdown-directive.module';
+import { ListItemModule } from 'src/app/shared/components/list-item/list-item.module';
 @NgModule({
   declarations: [HotelListPageComponent, HotelCardComponent],
   imports: [
@@ -21,6 +23,9 @@ import { SlidersIconModule } from 'src/app/shared/icons/sliders-icon/sliders-ico
     FilterBoxModule,
     RatingDecimarModule,
     PaginationModule,
+    ListItemModule,
+
+    DropdownDirectiveModule,
 
     XIconModule,
     HeartIconModule,
