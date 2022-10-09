@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent {
-  page = 1;
+  @Input() page: number = 1;
+  @Input() itemsPerPage: number = 10;
+  @Input() maxSize: number = 5;
+  @Input() totalItems: number = 100;
 
   constructor() {}
 }

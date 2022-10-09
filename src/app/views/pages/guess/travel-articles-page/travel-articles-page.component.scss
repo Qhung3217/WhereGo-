@@ -1,0 +1,94 @@
+@import "settings/variables/color";
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
+.travel-articles {
+  max-width: 75.2rem;
+  width: calc(100% - 3.2rem);
+  margin: 0 auto;
+  margin-bottom: 7.2rem;
+  .title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 3.4rem;
+    display: block;
+    text-align: left;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid $primary-color;
+    margin-top: 7.2rem;
+    margin-bottom: 6.4rem;
+  }
+  &__list {
+    padding-bottom: 10rem;
+  }
+  &__item {
+    display: flex;
+  }
+  &__item + &__item {
+    margin-top: 8rem;
+  }
+  .item__content {
+    flex: 1;
+    padding-top: 1.2rem;
+    padding-right: 1.6rem;
+  }
+  .item__title {
+    font-size: 4.2rem;
+    font-weight: 700;
+    line-height: 5rem;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    color: $primary-color;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .item__short-desc {
+    margin-top: 1.6rem;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    color: $text-color-secondary;
+  }
+  .item__content-bottom {
+    margin-top: 1.6rem;
+    color: $text-color-secondary;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.2rem;
+  }
+  .item__thumb {
+    flex-shrink: 0;
+    height: 24.4rem;
+    width: 24.4rem;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+@include maxWidth($screen-md) {
+  .travel-articles {
+    &__item {
+      flex-direction: column-reverse;
+    }
+    &__item + &__item {
+      margin-top: 4.8rem;
+    }
+    .item__content {
+      padding-right: 0;
+    }
+    .item__title {
+      font-size: 3.2rem;
+      font-weight: 600;
+    }
+    .item__short-desc {
+      font-size: 1.8rem;
+    }
+    .item__thumb {
+      width: 100%;
+      height: 24.4rem;
+    }
+  }
+}

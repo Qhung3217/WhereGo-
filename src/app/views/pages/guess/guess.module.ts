@@ -12,6 +12,8 @@ import { DestinationListPageModule } from './destination-list-page/destination-l
 import { DestinationListPageComponent } from './destination-list-page/destination-list-page.component';
 import { SavedPageModule } from './saved-page/saved-page.module';
 import { SavedPageComponent } from './saved-page/saved-page.component';
+import { TravelArticlesPageModule } from './travel-articles-page/travel-articles-page.module';
+import { TravelArticlesPageComponent } from './travel-articles-page/travel-articles-page.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: 'restaurant', component: RestaurantListPageComponent },
   { path: 'destination', component: DestinationListPageComponent },
   { path: 'saved', component: SavedPageComponent },
+  { path: 'travel-articles', component: TravelArticlesPageComponent },
 ];
 
 @NgModule({
@@ -30,6 +33,7 @@ const routes: Routes = [
     RestaurantListPageModule,
     DestinationListPageModule,
     SavedPageModule,
+    TravelArticlesPageModule,
   ],
 })
 export class GuessModule {}
