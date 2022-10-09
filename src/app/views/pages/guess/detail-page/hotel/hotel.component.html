@@ -1,0 +1,50 @@
+<div class="hotel">
+  <app-breadcrumb></app-breadcrumb>
+  <div class="hotel__header">
+    <div class="header__title-group">
+      <h1>Boutique Lodge Can Tho</h1>
+      <div class="title-group__actions">
+        <a class="action">
+          <app-pencil-icon></app-pencil-icon>
+          Review
+        </a>
+        <div class="action">
+          <app-heart-icon></app-heart-icon>
+          Save
+        </div>
+        <div class="action">
+          <app-share-icon></app-share-icon>
+          Share
+        </div>
+      </div>
+    </div>
+    <div class="header__rating">
+      <app-rating-decimar></app-rating-decimar>
+      <div class="rating__review-number">53 reviews</div>
+    </div>
+    <a
+      [href]="'https://www.google.com/maps/search/?api=1&query=' + address"
+      rel="nofollow"
+      class="header__adress"
+      >61C National Road Nhon Khanh Hamlet, Nhon Nghia Ward, Can Tho 904497
+      Vietnam</a
+    >
+  </div>
+  <div class="hotel__body">
+    <div class="panel hotel__book-infor">
+      <input type="date" class="book__checkin" />
+      <input type="date" class="book__checkout" />
+      <div class="book__field">
+        <app-bed-icon></app-bed-icon>
+        Rooms
+      </div>
+      <div class="book__field">
+        <app-users-icon></app-users-icon>
+        People
+      </div>
+    </div>
+    <div class="hotel__galeries">
+      <app-thumb-galeries></app-thumb-galeries>
+    </div>
+  </div>
+</div>
