@@ -64,6 +64,9 @@
     text-decoration: none;
     margin-bottom: 1.6rem;
     display: block;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__infor {

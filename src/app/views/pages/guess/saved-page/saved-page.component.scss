@@ -1,0 +1,58 @@
+@import "settings/variables/color";
+.saved {
+  margin-bottom: 5rem;
+
+  &__title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2rem 0;
+    display: block;
+    text-align: center;
+  }
+  &__empty {
+    color: #757575;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+    margin-top: 6.4rem;
+    line-height: 1;
+  }
+  &__empty-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: $text-color;
+    margin-bottom: 1.4rem;
+  }
+
+  &__tabs {
+    display: flex;
+    margin-top: 1.6em;
+    margin-bottom: 1.6rem;
+    overflow-x: auto;
+  }
+  &__tab {
+    padding: 1rem 1.4rem;
+    border: 1px solid currentColor;
+    color: $text-color;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    border-radius: 0.4rem;
+    background-color: white;
+    margin-right: 1rem;
+    cursor: pointer;
+    &:hover {
+      color: white;
+      background-color: $text-color;
+      border-color: $text-color;
+    }
+  }
+  &__tab--active {
+    color: white;
+    background-color: $text-color;
+    font-weight: 700;
+    border-color: $text-color;
+  }
+  &__content {
+  }
+}

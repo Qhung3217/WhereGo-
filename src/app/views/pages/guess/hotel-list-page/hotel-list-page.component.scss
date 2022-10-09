@@ -1,6 +1,11 @@
 @import "settings/variables/color";
 @import "settings/variables/breakpoint";
 @import "settings/mixin";
+
+body {
+  background-color: #f2f2f2;
+}
+
 .filter-mobile__btn {
   display: none;
 }

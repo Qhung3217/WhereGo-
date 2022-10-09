@@ -9,12 +9,14 @@ import { MenuIconModule } from 'src/app/shared/icons/menu-icon/menu-icon.module'
 import { XIconModule } from 'src/app/shared/icons/x-icon/x-icon.module';
 import { DropdownDirectiveModule } from 'src/app/shared/directives/dropdown-directive/dropdown-directive.module';
 import { SearchModalModule } from 'src/app/shared/components/search-modal/search-modal.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [HeaderComponent],
   imports: [
     CommonModule,
     BrowserModule,
+    RouterModule,
 
     SearchModalModule,
 

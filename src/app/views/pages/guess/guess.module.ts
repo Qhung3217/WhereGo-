@@ -10,12 +10,15 @@ import { LandingPageModule } from './landing-page/landing-page.module';
 import { RestaurantListPageModule } from './restaurant-list-page/restaurant-list-page.module';
 import { DestinationListPageModule } from './destination-list-page/destination-list-page.module';
 import { DestinationListPageComponent } from './destination-list-page/destination-list-page.component';
+import { SavedPageModule } from './saved-page/saved-page.module';
+import { SavedPageComponent } from './saved-page/saved-page.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'hotel', component: HotelListPageComponent },
   { path: 'restaurant', component: RestaurantListPageComponent },
   { path: 'destination', component: DestinationListPageComponent },
+  { path: 'saved', component: SavedPageComponent },
 ];
 
 @NgModule({
@@ -26,6 +29,7 @@ const routes: Routes = [
     HotelListPageModule,
     RestaurantListPageModule,
     DestinationListPageModule,
+    SavedPageModule,
   ],
 })
 export class GuessModule {}

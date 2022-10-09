@@ -1,0 +1,48 @@
+<section class="saved container">
+  <h1 class="saved__title">My saved</h1>
+  <!-- show comment code block bellow if saved empty -->
+  <!-- <div class="saved__empty">
+    <h1 class="saved__empty-title">You haven’t saved anything yet</h1>
+    <p>
+      To save, search for hotels, restaurants and destinations, then tap the
+      heart
+    </p>
+  </div> -->
+  <ul class="saved__tabs">
+    <li
+      class="saved__tab"
+      [ngClass]="{ 'saved__tab--active': tabSelected === 'All' }"
+      (click)="tabSelected = 'All'"
+    >
+      All
+    </li>
+    <li
+      class="saved__tab"
+      [ngClass]="{ 'saved__tab--active': tabSelected === 'Hotels' }"
+      (click)="tabSelected = 'Hotels'"
+    >
+      Hotels
+    </li>
+    <li
+      class="saved__tab"
+      [ngClass]="{ 'saved__tab--active': tabSelected === 'Restaurants' }"
+      (click)="tabSelected = 'Restaurants'"
+    >
+      Restaurants
+    </li>
+    <li
+      class="saved__tab"
+      [ngClass]="{ 'saved__tab--active': tabSelected === 'Destinations' }"
+      (click)="tabSelected = 'Destinations'"
+    >
+      Destinations
+    </li>
+  </ul>
+  <div class="saved__content">
+    <div class="row gy-3">
+      <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+        <app-saved-item></app-saved-item>
+      </div>
+    </div>
+  </div>
+</section>
