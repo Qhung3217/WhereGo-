@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-detail-page',
   templateUrl: './detail-page.component.html',
-  styleUrls: ['./detail-page.component.scss']
+  styleUrls: ['./detail-page.component.scss'],
 })
-export class DetailPageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class DetailPageComponent {
+  constructor() {}
 }

@@ -1,6 +1,6 @@
 .rating {
   gap: 0.2rem;
-  height: 1.2rem;
+  height: 1.5rem;
 }
 .star {
   position: relative;
@@ -22,9 +22,9 @@
 }
 
 .circle {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 10rem;
-  border: 3px solid currentColor;
+  border: 2px solid currentColor;
   background-color: #fff;
 }

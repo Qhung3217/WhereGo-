@@ -1,9 +1,7 @@
 <swiper
-  style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
-  [spaceBetween]="10"
   [navigation]="true"
   [thumbs]="{ swiper: thumbsSwiper }"
-  class="mySwiper2"
+  class="main-swiper"
 >
   <ng-template swiperSlide
     ><img src="https://swiperjs.com/demos/images/nature-1.jpg" /></ng-template
@@ -29,11 +27,11 @@
 </swiper>
 <swiper
   (swiper)="thumbsSwiper = $event"
-  [spaceBetween]="10"
-  [slidesPerView]="4"
+  [spaceBetween]="2"
+  [slidesPerView]="'auto'"
   [freeMode]="true"
   [watchSlidesProgress]="true"
-  class="mySwiper"
+  class="sub-swiper"
 >
   <ng-template swiperSlide
     ><img src="https://swiperjs.com/demos/images/nature-1.jpg" /></ng-template

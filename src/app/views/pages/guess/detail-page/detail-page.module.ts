@@ -14,6 +14,8 @@ import { HeartSolidIconModule } from 'src/app/shared/icons/heart-solid-icon/hear
 import { BedIconModule } from 'src/app/shared/icons/bed-icon/bed-icon.module';
 import { UsersIconModule } from 'src/app/shared/icons/users-icon/users-icon.module';
 import { ThumbGaleriesComponent } from './thumb-galeries/thumb-galeries.component';
+import { SwiperModule } from 'swiper/angular';
+import { LocationDotIconModule } from 'src/app/shared/icons/location-dot-icon/location-dot-icon.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { ThumbGaleriesComponent } from './thumb-galeries/thumb-galeries.componen
   imports: [
     CommonModule,
 
+    SwiperModule,
+
     BreadcrumbModule,
     RatingDecimarModule,
 
@@ -36,6 +40,7 @@ import { ThumbGaleriesComponent } from './thumb-galeries/thumb-galeries.componen
     HeartSolidIconModule,
     BedIconModule,
     UsersIconModule,
+    LocationDotIconModule,
   ],
   exports: [DetailPageComponent],
 })

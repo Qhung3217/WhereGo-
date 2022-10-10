@@ -7,8 +7,6 @@ SwiperCore.use([Pagination]);
   templateUrl: './section-article.component.html',
   styleUrls: ['./section-article.component.scss'],
 })
-export class SectionArticleComponent implements OnInit {
+export class SectionArticleComponent {
   constructor() {}
-
-  ngOnInit(): void {}
 }

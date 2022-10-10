@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import SwiperCore, { FreeMode, Navigation, Thumbs } from 'swiper';
 
-SwiperCore.use([FreeMode, Navigation, Thumbs]);
+SwiperCore.use([FreeMode, Thumbs, Navigation]);
 @Component({
   selector: 'app-thumb-galeries',
   templateUrl: './thumb-galeries.component.html',

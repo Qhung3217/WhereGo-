@@ -1,0 +1,20 @@
+.main-swiper ::ng-deep {
+  height: 70rem;
+
+  img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+}
+.sub-swiper ::ng-deep {
+  height: 15rem;
+  .swiper-slide {
+    width: 15rem;
+  }
+  img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+}
