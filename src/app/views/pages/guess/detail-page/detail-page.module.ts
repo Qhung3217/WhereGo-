@@ -16,6 +16,8 @@ import { UsersIconModule } from 'src/app/shared/icons/users-icon/users-icon.modu
 import { ThumbGaleriesComponent } from './thumb-galeries/thumb-galeries.component';
 import { SwiperModule } from 'swiper/angular';
 import { LocationDotIconModule } from 'src/app/shared/icons/location-dot-icon/location-dot-icon.module';
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalenderDaysIconModule } from 'src/app/shared/icons/calender-days-icon/calender-days-icon.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { LocationDotIconModule } from 'src/app/shared/icons/location-dot-icon/lo
     CommonModule,
 
     SwiperModule,
+    NgbDatepickerModule,
 
     BreadcrumbModule,
     RatingDecimarModule,
@@ -41,6 +44,7 @@ import { LocationDotIconModule } from 'src/app/shared/icons/location-dot-icon/lo
     BedIconModule,
     UsersIconModule,
     LocationDotIconModule,
+    CalenderDaysIconModule,
   ],
   exports: [DetailPageComponent],
 })

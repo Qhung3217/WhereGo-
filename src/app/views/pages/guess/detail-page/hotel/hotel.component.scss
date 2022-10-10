@@ -1,18 +1,213 @@
+@import "settings/variables/color";
 .hotel {
   &__infor {
+    margin-bottom: 3.4rem;
+    display: flex;
   }
+
   &__book-infor {
+    margin-right: 1.2rem;
+    width: 33.333%;
+    padding-top: 6.4rem;
+  }
+  .book__date-group {
+    display: flex;
+    gap: 1.6rem;
+  }
+
+  .book__control-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .book__date-group .book__control-group {
+    width: calc(50% - 1.6rem);
+    gap: 0.5rem;
+  }
+
+  .book__control-group {
+    font-weight: 600;
+  }
+
+  .book__control {
+    position: relative;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.2rem;
+  }
+  .book__date-group .book__control {
+    padding-left: 0.8rem;
+  }
+  .book__control input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 1.2rem 0.8rem;
   }
   .book__date {
+    cursor: pointer;
+    user-select: none;
+    border-radius: 0.3rem;
+
+    &::-webkit-calendar-picker-indicator {
+      display: none;
+    }
   }
   .book__date--checkin {
+    box-shadow: -0.8rem 0 0 $secondary-color;
   }
   .book__date--checkout {
+    box-shadow: -0.8rem 0 0 $primary-danger;
   }
-  .book__field {
+  .control__icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0.9rem;
+    pointer-events: none;
+    cursor: pointer;
+  }
+  .book__people {
+    margin-top: 1.6rem;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .book__people label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .book__people .book__control {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: 3.5rem;
+    width: 10rem;
+    height: 3.7rem;
+  }
+  .book__people input {
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 0;
+    text-align: center;
+  }
+  .control {
+    border: none;
+    background-color: #e0e0e0;
+    outline: none;
+    font-size: 2.5rem;
+    display: block;
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    &:active {
+      background-color: darken(#e0e0e0, 5);
+    }
+  }
+  .btn {
+    width: 100%;
+    border-radius: 0.4rem;
+    margin-top: 2rem;
   }
   &__galeries {
+    width: 66.666%;
+    margin-left: 1.2rem;
+    border: 1px solid #e0e0e0;
+    background-color: white;
   }
-}
-.hotel__galeries ::ng-deep {
+  &__suggestions {
+    margin-bottom: 2.4rem;
+  }
+  &__suggestion {
+    display: flex;
+    padding: 1.2rem;
+    text-decoration: none;
+    color: $text-color;
+  }
+  .suggestion__thumb {
+    height: 116px;
+    width: 86px;
+    margin-right: 1.6rem;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .suggestion__infor {
+  }
+  .suggestion__title {
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .suggestion__infor p {
+    margin-top: 0.4rem;
+    display: block;
+    color: $text-color-secondary;
+    font-size: 1.2rem;
+  }
+  &__about {
+    margin-bottom: 2.4rem;
+  }
+  .about__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .rating__avg {
+    font-size: 4.8rem;
+    line-height: 2.2rem;
+    font-weight: 600;
+  }
+  .rating__infor {
+  }
+  .rating__type {
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.92rem;
+  }
+  .rating__rating {
+    margin-top: 0.4rem;
+    display: flex;
+    gap: 0.5rem;
+    color: $text-color-secondary;
+    font-weight: 400;
+  }
+
+  .about__desc {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+  }
+  .about__services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .services__group {
+  }
+  .services__group:nth-child(2) {
+    grid-row: 1/ 3;
+    grid-column: 2;
+  }
+  .group__title {
+    padding-top: 2rem;
+    margin-bottom: 1.6rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  .group__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .group__item {
+    flex-basis: 50%;
+    color: $text-color-secondary;
+    margin-bottom: 1.8rem;
+  }
+  .group__item:nth-child(even) {
+    padding-left: 0.4rem;
+  }
+  .group__item:nth-child(odd) {
+    padding-right: 0.4rem;
+  }
 }
