@@ -1,0 +1,61 @@
+<section class="destination">
+  <app-detail-header></app-detail-header>
+  <div class="property__body">
+    <div class="property__wrap">
+      <div class="destination__top">
+        <div
+          class="panel destination__about"
+          #about
+          (click)="about.classList.toggle('destination__about--full')"
+        >
+          <h1 class="panel__title">About</h1>
+          <p>
+            Touring a floating market in the Mekong Delta is a box that many
+            travellers to Saigon wish to check, and none are bigger, or more
+            popular than the Can Tho’s Cai Rang Floating Market.The Cai Rang
+            Floating Market, the largest wholesale floating market in the Mekong
+            Delta, starts around 04:00 and runs until 10:00, meaning that you’ll
+            have to get an early start of the day if you want to visit.The
+            market is about six kilometres from Can Tho, or about a 40-minute
+            boat ride. While floating down the river, you get a glimpse of life
+            along its shores. You’ll pass vibrantly painted boats anchored along
+            the shore, merchant vessels carrying loads down the river and houses
+            built on stilts over the water.Once you finally reach the market,
+            it’s an impressive site. A stretch of boats selling all variety of
+            goods lines the river. Not really a place for souvenirs, people come
+            here instead to buy large quantities of goods, mostly foodstuffs,
+            and you will get an idea of what water commerce in the Delta looks
+            like. Your guide on the boat will usually give you information about
+            Cai Rang as you weave through the hordes. You’ll learn that boats
+            identify what they are selling by hanging a sample off the top of a
+            long pole; if you want pineapple, simply scan the horizon for a
+            hanging pineapple. You’ll also get the opportunity to interact with
+            some of these floating merchants; most commonly this happens when a
+            small boat selling drinks latches onto the tour boat’s side.After
+            the market you’ll be ferried off to your breakfast break at a local
+            orchard. You’ll be led around a fairly large garden growing a big
+            variety of local fruits, which you’ll get to sample after your walk.
+            Once your breakfast or fruits is eaten, you’ll go back to the boat
+            and it’s time to explore some of the Mekong’s canals. Your tour boat
+            will slowly coast down a few of these quiet canals, choked on both
+            sides by greenery. As the sun starts to heat things up, your tour
+            will draw to a close, returning you to downtown Can Tho.Since the
+            market starts early in the morning, and because Can Tho is a healthy
+            bus ride from Saigon — about four hours — you won’t have the option
+            of seeing this floating market as a day tour from HCMC. Instead,
+            you’ll have to spend the night in Can Tho.
+          </p>
+          <div class="about__more">
+            <span class="more--full">Read more</span>
+            <span class="more--less">Read less</span>
+
+            <app-chevron-right-icon class="more__icon"></app-chevron-right-icon>
+          </div>
+        </div>
+        <div class="destination__galeries panel panel--no-padding">
+          <app-thumb-galeries></app-thumb-galeries>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -7,5 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class RatingDecimarComponent {
   @Input() rate = 3.5;
+  @Input() readOnly: boolean = true;
   constructor() {}
 }

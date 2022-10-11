@@ -31,14 +31,17 @@ import { SectionPromotionComponent } from './section-promotion/section-promotion
   imports: [
     CommonModule,
     RouterModule,
+
     SwiperModule,
+
+    CardModule,
+
     MapLocationDotIconModule,
     BedIconModule,
     UtensilIconModule,
     SearchModalModule,
     SearchIconModule,
     RatingDecimarModule,
-    CardModule,
     NewspaperIconModule,
   ],
   exports: [LandingPageComponent],

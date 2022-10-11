@@ -1,0 +1,38 @@
+.main-swiper ::ng-deep {
+  height: 37rem;
+  margin-bottom: 0.2rem;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    &:after {
+      color: white;
+      font-size: 2rem;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 0.4rem;
+      padding: 1.9rem;
+    }
+    &:hover:after {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+  }
+}
+.sub-swiper ::ng-deep {
+  height: 6rem;
+  .swiper-slide {
+    width: 6rem;
+    filter: brightness(0.3);
+    cursor: pointer;
+  }
+  .swiper-slide-thumb-active {
+    filter: brightness(1);
+  }
+  img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,76 @@
+<section
+  class="section-review"
+  [ngClass]="{ 'section-review--rounded': !!rounded }"
+>
+  <div class="panel">
+    <h1 class="panel__title">Reviews <span>(710)</span></h1>
+    <hr />
+    <div class="review__content">
+      <form class="review__form">
+        <div class="form__field">
+          <label for="">How would you rate your experience?</label>
+          <app-rating-decimar
+            [readOnly]="false"
+            [rate]="0"
+            class="form__rating"
+          ></app-rating-decimar>
+        </div>
+        <div class="form__field">
+          <label for="">Write your review</label>
+          <textarea
+            rows="5"
+            placeholder="Tell people about your experience: your meal, atmosphere, service?"
+            class="form__text"
+          ></textarea>
+        </div>
+        <button class="btn btn--primary form__submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <ul class="review__list">
+    <li class="review__item panel">
+      <div class="item__reviewer">
+        <figure class="reviewer__avatar">
+          <img src="https://picsum.photos/500/500?random=1" alt="" />
+        </figure>
+        <h1 class="reviewer__name">Laurie H</h1>
+      </div>
+      <div class="item__rating">
+        <app-rating-decimar></app-rating-decimar>
+      </div>
+      <div class="item__content">
+        Do not miss visiting it if you have chance to travel to Mekong. We did
+        in early morning by our cruise on mekong Eyes. Tasted a coffe and local
+        fruit. Nice to try!
+      </div>
+      <div class="item__review-time">Written October 8, 2022</div>
+    </li>
+    <li class="review__item panel">
+      <div class="item__reviewer">
+        <figure class="reviewer__avatar">
+          <img src="https://picsum.photos/500/500?random=1" alt="" />
+        </figure>
+        <h1 class="reviewer__name">Iris Sadin</h1>
+      </div>
+      <div class="item__rating">
+        <app-rating-decimar></app-rating-decimar>
+      </div>
+      <div class="item__content">
+        This market is so nice on the morning with many tropical fruits like
+        mangoes, jackfruits and durians etc. Besides, there are also many
+        floating cafe and restaurants on marker offering coffee and noodle, rice
+        for traders on the boats. Our guide invited us vietnamese coffee and
+        have breakfast with noodle soups so delicious. Moreover, we also cruised
+        into small wild canal system like a wild jungle and ended at a family
+        making chocolate. Of course, we also had a chocolate bar and drink so
+        delicious that we never had before. In conclusion, our experiences were
+        perfect and our guide are so wide range of knowledges so he can explain
+        any questions for us his whatsap +84936427369.
+      </div>
+      <div class="item__review-time">Written October 8, 2022</div>
+    </li>
+    <div class="panel">
+      <app-pagination></app-pagination>
+    </div>
+  </ul>
+</section>

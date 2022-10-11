@@ -1,0 +1,15 @@
+<div
+  class="section-detail"
+  [ngClass]="{
+    'section-detail--background': propertySelected !== '/destination'
+  }"
+>
+  <app-hotel *ngIf="propertySelected === '/hotel'"></app-hotel>
+  <app-restaurant *ngIf="propertySelected === '/restaurant'"> </app-restaurant>
+  <app-destination
+    *ngIf="propertySelected === '/destination'"
+  ></app-destination>
+  <div class="property__wrap">
+    <app-review [rounded]="propertySelected === '/destination'"></app-review>
+  </div>
+</div>

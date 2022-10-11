@@ -1,0 +1,89 @@
+@import "settings/variables/color";
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
+.destination {
+  &__top {
+    display: grid;
+    grid-template-columns: 373px calc(100% - 373px);
+    column-gap: 1.4rem;
+  }
+  &__about {
+    height: fit-content;
+    border-radius: 1.2rem;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 25%);
+    cursor: pointer;
+  }
+  &__about p {
+    margin-top: 2.4rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.2rem;
+    color: $text-color-secondary;
+  }
+
+  .about__more {
+    font-weight: 600;
+    text-decoration: underline;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    display: flex;
+    align-items: center;
+  }
+  .more--full {
+    display: block;
+  }
+  .more--less {
+    display: none;
+  }
+  .more__icon {
+    display: block;
+    margin-left: 0.4rem;
+  }
+  .more__icon ::ng-deep svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    transform: rotateZ(90deg);
+  }
+  &__galeries {
+    border-radius: 1.2rem;
+    overflow: hidden;
+    height: fit-content;
+  }
+}
+.destination__about.destination__about--full {
+  p {
+    display: block;
+  }
+  .more__icon ::ng-deep svg {
+    transform: rotateZ(-90deg);
+  }
+  .more--full {
+    display: none;
+  }
+  .more--less {
+    display: block;
+  }
+}
+
+@include maxWidth($screen-md) {
+  .destination {
+    .panel {
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+    }
+    &__top {
+      grid-template-columns: 1fr;
+      column-gap: 0;
+    }
+    &__about {
+      grid-row: 2/3;
+    }
+  }
+}

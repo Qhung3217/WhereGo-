@@ -1,0 +1,157 @@
+<div class="hotel property">
+  <app-detail-header
+    headerTitle="Nhon Nghia Ward"
+    address="61C National Road Nhon Khanh Hamlet, Nhon Nghia Ward, Can Tho 904497
+  Vietnam"
+  ></app-detail-header>
+  <div class="property__body">
+    <div class="property__wrap">
+      <div class="hotel__infor">
+        <div class="panel hotel__book-infor">
+          <form class="">
+            <div class="book__date-group">
+              <div class="book__control-group">
+                <label for="checkIn">Check In</label>
+                <div class="book__control">
+                  <input
+                    id="checkIn"
+                    type="date"
+                    class="book__date book__date--checkin"
+                    ngbDatepicker
+                    #checkIn="ngbDatepicker"
+                    [displayMonths]="2"
+                    (click)="checkIn.toggle()"
+                    (keypress)="$event.preventDefault()"
+                  />
+                  <app-calender-days-icon
+                    class="control__icon"
+                  ></app-calender-days-icon>
+                </div>
+              </div>
+              <div class="book__control-group">
+                <label for="checkOut">Check Out</label>
+                <div class="book__control">
+                  <input
+                    id="checkOut"
+                    type="date"
+                    class="book__date book__date--checkout"
+                    ngbDatepicker
+                    #checkOut="ngbDatepicker"
+                    [displayMonths]="2"
+                    (click)="checkOut.toggle()"
+                    (keypress)="$event.preventDefault()"
+                  />
+                  <app-calender-days-icon
+                    class="control__icon"
+                  ></app-calender-days-icon>
+                </div>
+              </div>
+            </div>
+            <div class="book__control-group book__people">
+              <label for="people">
+                <app-users-icon></app-users-icon>
+                People
+              </label>
+              <div class="book__control">
+                <button type="button" class="control" disabled>&minus;</button>
+                <input type="text" value="1" />
+                <button type="button" class="control">+</button>
+              </div>
+            </div>
+            <button type="submit" class="btn btn--primary">Book</button>
+          </form>
+        </div>
+        <div class="hotel__galeries">
+          <app-thumb-galeries></app-thumb-galeries>
+        </div>
+      </div>
+      <div class="hotel__suggestions panel">
+        <h1 class="panel__title">You may also like</h1>
+        <hr />
+        <div class="suggestion__list">
+          <div class="suggestion__item">
+            <a href="" class="hotel__suggestion">
+              <figure class="suggestion__thumb">
+                <img src="https://picsum.photos/500/500?random=1" alt="" />
+              </figure>
+              <div class="suggestion__infor">
+                <h1 class="suggestion__title">Ms. Ha Gueshouse</h1>
+                <app-rating-decimar></app-rating-decimar>
+                <p>366 reviews</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="suggestion__item">
+            <a href="" class="hotel__suggestion">
+              <figure class="suggestion__thumb">
+                <img src="https://picsum.photos/500/500?random=1" alt="" />
+              </figure>
+              <div class="suggestion__infor">
+                <h1 class="suggestion__title">Ms. Ha Gueshouse</h1>
+                <app-rating-decimar></app-rating-decimar>
+                <p>366 reviews</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel__about panel">
+        <h1 class="panel__title">About</h1>
+        <hr />
+
+        <div class="row">
+          <div class="col-12 col-lg-6 about__infor">
+            <div class="about__rating">
+              <div class="rating__avg">5.0</div>
+              <div class="rating__infor">
+                <span class="rating__type">Excellent</span>
+                <div class="rating__rating">
+                  <app-rating-decimar></app-rating-decimar>
+                  <span>63 reviews</span>
+                </div>
+              </div>
+            </div>
+            <div class="about__desc">
+              Boutique Lodge Can Tho a brand new homestay is located between Cai
+              Rang and Phong Dien Floating market, 9km away from the center of
+              Can Tho city. It is a peaceful river side homestay with abundant
+              surrounding fruit gardens and rice fields. Each room is equipped
+              with a private bathroom and outside sitting area.
+            </div>
+          </div>
+          <div class="col-12 col-lg-6 about__services">
+            <div class="services__group">
+              <h1 class="group__title">Room features</h1>
+              <ul class="group__list">
+                <li class="group__item">Air conditioning</li>
+                <li class="group__item">Room service</li>
+                <li class="group__item">Bottled water</li>
+                <li class="group__item">Clothes rack</li>
+              </ul>
+            </div>
+            <div class="services__group">
+              <h1 class="group__title">Property amenities</h1>
+              <ul class="group__list">
+                <li class="group__item">Free parking</li>
+                <li class="group__item">Free High Speed Internet (WiFi)</li>
+                <li class="group__item">
+                  Children Activities (Kid / Family Friendly)
+                </li>
+                <li class="group__item">Pets Allowed ( Dog / Pet Friendly )</li>
+                <li class="group__item">Laundry service</li>
+              </ul>
+            </div>
+            <div class="services__group">
+              <h1 class="group__title">Room types</h1>
+              <ul class="group__list">
+                <li class="group__item">Non-smoking rooms</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
