@@ -48,6 +48,7 @@
       cursor: pointer;
       text-decoration: none;
     }
+
     .action:last-child {
       padding-right: 0;
       border-right: none;
@@ -85,7 +86,7 @@
       font-size: 1.4rem;
       line-height: 1.8rem;
       color: $text-color;
-      padding-top: 1.2em;
+      padding-top: 1.2rem;
       padding-bottom: 1.2rem;
     }
   }
@@ -98,6 +99,9 @@
       }
       &__header {
         padding: 0 1.6rem 1.2rem;
+      }
+      .action span {
+        display: none;
       }
       &__title-group h1 {
         font-size: 2rem;

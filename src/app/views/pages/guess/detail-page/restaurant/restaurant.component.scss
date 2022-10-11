@@ -1,20 +1,82 @@
+@import "settings/variables/color";
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
 .restaurant {
-  &__infor {
-  }
   &__galeries {
     background-color: #fff;
     border: 1px solid #e0e0e0;
   }
+  &__infor {
+    margin-top: 2.4rem;
+    display: flex;
+  }
   &__col {
+    width: calc(50% - 1.2rem);
+    margin-right: 2.4em;
+    &:last-child {
+      margin-right: 0;
+    }
   }
   .col__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.2rem;
+    margin-bottom: 1.6rem;
   }
-  .col__group {
+  .col__group p {
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    font-weight: 500;
+    padding-top: 1.2rem;
+    padding-bottom: 2.4rem;
   }
   .group__title {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
   }
   &__rating {
+    font-size: 2.4rem;
+    font-weight: 600;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 2.4rem;
+    span {
+      font-size: 1.4rem;
+      margin-left: 0.4rem;
+    }
+    ::ng-deep .circle {
+      width: 2rem;
+      height: 2rem;
+    }
   }
   .col__address {
+    color: $text-color;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+    & > * {
+      display: inline-block;
+    }
+  }
+}
+
+@include maxWidth($screen-md) {
+  .restaurant {
+    &__infor {
+      flex-wrap: wrap;
+    }
+    &__col {
+      width: 100%;
+      margin-right: 0;
+    }
+    &__col:last-child {
+      margin-top: 1.2rem;
+    }
   }
 }
