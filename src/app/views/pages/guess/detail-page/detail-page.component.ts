@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail-page',
@@ -6,5 +7,12 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./detail-page.component.scss'],
 })
 export class DetailPageComponent {
-  constructor() {}
+  propertySelected = '/hotel';
+  constructor(private router: Router) {
+    console.log(this.router.url);
+    this.propertySelected = this.router.url.slice(
+      0,
+      this.router.url.indexOf('/', 1)
+    );
+  }
 }
