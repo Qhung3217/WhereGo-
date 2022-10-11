@@ -19,6 +19,8 @@ import { LocationDotIconModule } from 'src/app/shared/icons/location-dot-icon/lo
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalenderDaysIconModule } from 'src/app/shared/icons/calender-days-icon/calender-days-icon.module';
 import { PaginationModule } from 'src/app/shared/components/pagination/pagination.module';
+import { ChevronRightIconModule } from 'src/app/shared/icons/chevron-right-icon/chevron-right-icon.module';
+import { DetailHeaderComponent } from './detail-header/detail-header.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { PaginationModule } from 'src/app/shared/components/pagination/paginatio
     RestaurantComponent,
     DestinationComponent,
     ThumbGaleriesComponent,
+    DetailHeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +50,7 @@ import { PaginationModule } from 'src/app/shared/components/pagination/paginatio
     UsersIconModule,
     LocationDotIconModule,
     CalenderDaysIconModule,
+    ChevronRightIconModule,
   ],
   exports: [DetailPageComponent],
 })

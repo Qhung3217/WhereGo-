@@ -1,4 +1,7 @@
-<section class="section-review">
+<section
+  class="section-review"
+  [ngClass]="{ 'section-review--rounded': !!rounded }"
+>
   <div class="panel">
     <h1 class="panel__title">Reviews <span>(710)</span></h1>
     <hr />

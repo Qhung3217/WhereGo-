@@ -3,7 +3,11 @@
 @import "settings/mixin";
 .section-review {
 }
-
+.section-review--rounded {
+  .panel {
+    border-radius: 1.2rem;
+  }
+}
 .review__content {
   .review__form {
     max-width: 60rem;
@@ -104,10 +108,20 @@
 }
 
 @include maxWidth($screen-md) {
+  .section-review--rounded {
+    .panel {
+      border-radius: 0rem;
+      border: none;
+      box-shadow: none;
+    }
+  }
   .review__content {
     .form__field label {
       font-size: 2rem;
       line-height: 2.6rem;
     }
+  }
+  .review__item {
+    border-bottom: 1px solid #e0e0e0 !important;
   }
 }
