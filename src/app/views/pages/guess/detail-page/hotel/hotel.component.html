@@ -1,21 +1,23 @@
 <div class="hotel property">
   <div class="property__header">
-    <div class="container">
+    <div class="property__wrap">
       <app-breadcrumb></app-breadcrumb>
       <div class="property__title-group">
         <h1>Boutique Lodge Can Tho</h1>
         <div class="title-group__actions">
           <a class="action">
             <app-pencil-icon></app-pencil-icon>
-            Review
+
+            <span>Review</span>
           </a>
           <div class="action">
             <app-heart-icon></app-heart-icon>
-            Save
+
+            <span>Save</span>
           </div>
           <div class="action">
             <app-share-icon></app-share-icon>
-            Share
+            <span>Share</span>
           </div>
         </div>
       </div>
@@ -35,7 +37,7 @@
     </div>
   </div>
   <div class="property__body">
-    <div class="container">
+    <div class="property__wrap">
       <div class="hotel__infor">
         <div class="panel hotel__book-infor">
           <form class="">
@@ -98,8 +100,8 @@
       <div class="hotel__suggestions panel">
         <h1 class="panel__title">You may also like</h1>
         <hr />
-        <div class="row">
-          <div class="col-6 col-lg-3">
+        <div class="suggestion__list">
+          <div class="suggestion__item">
             <a href="" class="hotel__suggestion">
               <figure class="suggestion__thumb">
                 <img src="https://picsum.photos/500/500?random=1" alt="" />
@@ -111,7 +113,8 @@
               </div>
             </a>
           </div>
-          <div class="col-6 col-lg-3">
+
+          <div class="suggestion__item">
             <a href="" class="hotel__suggestion">
               <figure class="suggestion__thumb">
                 <img src="https://picsum.photos/500/500?random=1" alt="" />

@@ -18,3 +18,13 @@
 .panel--no-padding {
   padding: 0;
 }
+
+@include maxWidth($screen-md) {
+  .panel {
+    padding: 1.6rem;
+    &__title {
+      font-size: 1.8rem;
+      line-height: 2.2rem;
+    }
+  }
+}

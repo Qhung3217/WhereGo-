@@ -1,4 +1,6 @@
 @import "settings/variables/color";
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
 .hotel {
   &__infor {
     margin-bottom: 3.4rem;
@@ -7,12 +9,13 @@
 
   &__book-infor {
     margin-right: 1.2rem;
-    width: 33.333%;
+    // width: calc(33.333% - 1.2rem);
+    width: calc(41.9rem - 1.2rem);
     padding-top: 6.4rem;
+    flex-shrink: 0;
   }
   .book__date-group {
     display: flex;
-    gap: 1.6rem;
   }
 
   .book__control-group {
@@ -20,8 +23,11 @@
     flex-direction: column;
   }
   .book__date-group .book__control-group {
-    width: calc(50% - 1.6rem);
+    width: calc(50% - 0.8rem);
     gap: 0.5rem;
+  }
+  .book__date-group .book__control-group:last-child {
+    margin-left: 1.6rem;
   }
 
   .book__control-group {
@@ -108,7 +114,9 @@
     margin-top: 2rem;
   }
   &__galeries {
-    width: 66.666%;
+    // max-width: calc(66.666% - 1.2rem);
+    max-width: calc(100% - 1.2rem - 41.9rem);
+    flex: 1;
     margin-left: 1.2rem;
     border: 1px solid #e0e0e0;
     background-color: white;
@@ -116,6 +124,16 @@
   &__suggestions {
     margin-bottom: 2.4rem;
   }
+  .suggestion__list {
+    overflow-x: auto;
+    display: flex;
+    width: 100%;
+  }
+  .suggestion__item {
+    min-width: 27.5rem;
+    flex: 25% 0;
+  }
+
   &__suggestion {
     display: flex;
     padding: 1.2rem;
@@ -126,13 +144,16 @@
     height: 116px;
     width: 86px;
     margin-right: 1.6rem;
+    flex-shrink: 0;
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 0.2rem;
     }
   }
   .suggestion__infor {
+    flex-shrink: 0;
   }
   .suggestion__title {
     font-weight: 700;
@@ -209,5 +230,51 @@
   }
   .group__item:nth-child(odd) {
     padding-right: 0.4rem;
+  }
+}
+@include maxWidth($screen-lg) {
+  .hotel {
+    &__infor {
+      flex-wrap: wrap;
+    }
+    &__book-infor {
+      width: calc(36.7rem - 1.2rem);
+      height: fit-content;
+    }
+    &__galeries {
+      max-width: calc(100% - 1.2rem - 36.7rem);
+    }
+  }
+}
+@include maxWidth($screen-md) {
+  .hotel {
+    .action span {
+      display: none;
+    }
+    &__infor {
+      flex-wrap: wrap;
+    }
+    &__book-infor {
+      width: 100%;
+      margin-right: 0;
+      order: 2;
+    }
+    &__galeries {
+      order: 1;
+      max-width: 100%;
+      margin-left: 0;
+    }
+  }
+}
+@include maxWidth($screen-sm) {
+  .hotel {
+    .about__services {
+      grid-template-columns: 1fr;
+    }
+
+    .services__group:nth-child(2) {
+      grid-row: 1;
+      grid-column: 1;
+    }
   }
 }
