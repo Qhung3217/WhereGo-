@@ -18,6 +18,7 @@ import { SwiperModule } from 'swiper/angular';
 import { LocationDotIconModule } from 'src/app/shared/icons/location-dot-icon/location-dot-icon.module';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalenderDaysIconModule } from 'src/app/shared/icons/calender-days-icon/calender-days-icon.module';
+import { PaginationModule } from 'src/app/shared/components/pagination/pagination.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CalenderDaysIconModule } from 'src/app/shared/icons/calender-days-icon/
 
     BreadcrumbModule,
     RatingDecimarModule,
+    PaginationModule,
 
     ShareIconModule,
     PencilIconModule,
