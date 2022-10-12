@@ -6,12 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./section-nav-card.component.scss'],
 })
 export class SectionNavCardComponent {
-  searchModalConfig = {
-    show: false,
-    type: 'hotel',
-  };
+  searchModalConfig: {
+    show: boolean;
+    type: 'article' | 'hotel' | 'restaurant' | 'destination' | 'place';
+  } = { show: false, type: 'hotel' };
   constructor() {}
-  handleNavClick(type: string) {
+  handleNavClick(
+    type: 'article' | 'hotel' | 'restaurant' | 'destination' | 'place'
+  ) {
     this.searchModalConfig.show = true;
     this.searchModalConfig.type = type;
   }
