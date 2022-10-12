@@ -1,0 +1,38 @@
+<section class="profile">
+  <div class="profile__wrap panel">
+    <div class="profile__head">
+      <figure class="profile__avatar">
+        <img src="picsums.photos/500" alt="" />
+      </figure>
+      <div class="profile__infor">
+        <h1 class="infor__name">Quang Hung</h1>
+        <p class="infor__email">mail@mail.com</p>
+      </div>
+      <div class="profile__edit">Edit profile</div>
+    </div>
+    <div class="profile__tabs">
+      <a
+        routerLink=""
+        routerLinkActive="profile__tab--active"
+        class="profile__tab"
+        >Review</a
+      >
+      <a
+        routerLink=""
+        routerLinkActive="profile__tab--active"
+        class="profile__tab"
+        >Bookings</a
+      >
+      <a
+        routerLink=""
+        routerLinkActive="profile__tab--active"
+        class="profile__tab"
+        >Change password</a
+      >
+    </div>
+  </div>
+  <div class="panel">
+    <router-outlet></router-outlet>
+  </div>
+  <app-modal-edit-profile></app-modal-edit-profile>
+</section>

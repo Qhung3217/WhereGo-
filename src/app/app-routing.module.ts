@@ -12,6 +12,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./views/pages/auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./views/pages/traveler/traveler.module').then(
+        (m) => m.TravelerModule
+      ),
+  },
 ];
 
 @NgModule({
