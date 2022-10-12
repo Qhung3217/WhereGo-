@@ -1,0 +1,47 @@
+<section class="login">
+  <div class="login__wrap panel">
+    <form class="form" (ngSubmit)="handleSubmit(loginForm)" #loginForm="ngForm">
+      <h1 class="form__title">Log in</h1>
+      <div class="form__group">
+        <label for="email">Email</label>
+        <div class="form__control">
+          <input
+            type="text"
+            id="email"
+            placeholder="Your email address"
+            name="email"
+            ngModel
+            email
+            required
+            #email="ngModel"
+          />
+          <div class="form__helper" *ngIf="!email.valid && email.touched">
+            <span *ngIf="email.errors?.['required']">Email is empty</span>
+            <span *ngIf="email.errors?.['email']">Email address invalid</span>
+          </div>
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="pass">Password</label>
+        <div class="form__control">
+          <input
+            type="password"
+            id="pass"
+            placeholder="Your password"
+            name="password"
+            ngModel
+            required
+            #pass="ngModel"
+          />
+          <div class="form__helper" *ngIf="!pass.valid && pass.touched">
+            <span *ngIf="pass.errors?.['required']">Password is empty</span>
+          </div>
+        </div>
+      </div>
+      <div class="form__bottom">
+        <button class="btn btn--primary">Log in</button>
+      </div>
+      <aside>No account? <a routerLink="/auth/register">Create one</a></aside>
+    </form>
+  </div>
+</section>

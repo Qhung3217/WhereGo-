@@ -1,0 +1,78 @@
+<section class="register">
+  <div class="register__wrap panel">
+    <form class="form" (ngSubmit)="handleSubmit()">
+      <h1 class="form__title">Traveler register</h1>
+      <div class="form__group">
+        <label for="email">Email</label>
+        <div class="form__control">
+          <input type="text" id="email" placeholder="Your email address" />
+          <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
+            <span *ngIf="email.errors?.['required']">Email is empty</span>
+            <span *ngIf="email.errors?.['email']">Email address invalid</span>
+          </div> -->
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="name">Username</label>
+        <div class="form__control">
+          <input type="text" id="name" placeholder="Enter user name" />
+          <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
+            <span *ngIf="email.errors?.['required']">Email is empty</span>
+            <span *ngIf="email.errors?.['email']">Email address invalid</span>
+          </div> -->
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="dob">Date of birth</label>
+        <div class="form__control">
+          <input
+            type="text"
+            id="dob"
+            placeholder="--/--/--"
+            ngbDatepicker
+            readonly
+            #dob="ngbDatepicker"
+            (click)="dob.toggle()"
+            (keypress)="$event.preventDefault()"
+          />
+          <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
+            <span *ngIf="email.errors?.['required']">Email is empty</span>
+            <span *ngIf="email.errors?.['email']">Email address invalid</span>
+          </div> -->
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="tel">Phone</label>
+        <div class="form__control">
+          <input type="tel" id="tel" />
+          <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
+            <span *ngIf="email.errors?.['required']">Email is empty</span>
+            <span *ngIf="email.errors?.['email']">Email address invalid</span>
+          </div> -->
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="pass">Password</label>
+        <div class="form__control">
+          <input type="password" id="pass" />
+          <!-- <div class="form__helper" *ngIf="!pass.valid && pass.touched">
+            <span *ngIf="pass.errors?.['required']">Password is empty</span>
+          </div> -->
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="confirmPassword">Confirm password</label>
+        <div class="form__control">
+          <input type="password" id="confirmPassword" />
+          <!-- <div class="form__helper" *ngIf="!pass.valid && pass.touched">
+            <span *ngIf="pass.errors?.['required']">Password is empty</span>
+          </div> -->
+        </div>
+      </div>
+      <div class="form__bottom">
+        <button class="btn btn--primary">Register</button>
+      </div>
+      <aside>Have account? <a routerLink="/auth/login">Log in now</a></aside>
+    </form>
+  </div>
+</section>

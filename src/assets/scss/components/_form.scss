@@ -1,67 +1,82 @@
-%change-state {
-  box-shadow: 0px 4px 30px rgba(245, 245, 245, 0.17);
-  background: rgba(213, 220, 238, 0.9);
-  border: 4px solid $input-hover-color;
-  color: #32353c;
+@import "settings/variables/color";
+%reset-input {
+  outline: none;
+  border: 2px solid #e0e0e0;
+  border-radius: 0.8rem;
 }
+
 .form {
-  &-group {
-    margin-bottom: 2.3rem;
+  max-width: 410px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2rem;
+  &__title {
+    font-size: 2.8em;
+    font-weight: 700;
+    line-height: 3.3rem;
+    margin-bottom: 4rem;
+    text-align: center;
   }
-
-  &-control,
-  textarea {
-    border-radius: 4.2rem;
-    border: 4px solid $primary;
-    color: #d9d9d982;
-    background-color: transparent;
-    padding: 1.8rem 4.7rem;
-    transition: all 250ms ease;
+  &__group {
+  }
+  &__group + &__group {
+    margin-top: 1.6rem;
+  }
+  &__group label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 2rem;
+    padding-left: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+  &__control {
+    position: relative;
+  }
+  &__control input:not([type="checkbox"]),
+  &__control input:not([type="radio"]) {
+    @extend %reset-input;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-family: inherit;
+    font-weight: 500;
     width: 100%;
-
+    padding: 1.2rem 2rem;
+    transition: box-shadow 200ms ease;
     &:focus {
-      @extend %change-state;
-      outline: none;
-    }
-    &:not(:placeholder-shown) {
-      //change state when has value
-      @extend %change-state;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
   }
-  textarea {
-    font-family: $family;
-    resize: none;
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    &::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: rgb(169 169 169 / 78%);
-      outline: 1px solid slategrey;
-      border-radius: 4.2rem;
-    }
+  &__helper {
+    position: absolute;
+    bottom: -1.4rem;
+    right: 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $primary-danger;
   }
-  .btn {
-    margin-top: 4rem;
+  &__bottom {
+    width: 100%;
+    margin-top: 2.4rem;
+  }
+  &__bottom .btn {
+    display: block;
+    width: 100%;
+  }
+  aside {
+    display: block;
+    margin-top: 1.6rem;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: $text-color-secondary;
+  }
+  a {
+    color: $text-color;
   }
 }
-@include maxWidth(740px) {
-  .form-group {
-    margin-bottom: 2rem;
-  }
-  .form-control,
-  .form textarea {
-    border-width: 2px;
-    font-size: 2.1666rem;
-    line-height: 3.02rem;
-    padding: 2rem 2.33rem;
-    &:hover,
-    &:not(:placeholder-shown) {
-      border-width: 2px;
-    }
+
+@include maxWidth($screen-md) {
+  .form {
+    padding: 0;
   }
 }

@@ -18,6 +18,7 @@
                     type="date"
                     class="book__date book__date--checkin"
                     ngbDatepicker
+                    readonly
                     #checkIn="ngbDatepicker"
                     [displayMonths]="2"
                     (click)="checkIn.toggle()"
@@ -36,6 +37,7 @@
                     type="date"
                     class="book__date book__date--checkout"
                     ngbDatepicker
+                    readonly
                     #checkOut="ngbDatepicker"
                     [displayMonths]="2"
                     (click)="checkOut.toggle()"
