@@ -7,6 +7,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./views/pages/guess/guess.module').then((m) => m.GuessModule),
   },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./views/pages/auth/auth.module').then((m) => m.AuthModule),
+  },
 ];
 
 @NgModule({
