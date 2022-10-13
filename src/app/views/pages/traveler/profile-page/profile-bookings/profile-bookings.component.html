@@ -1,1 +1,9 @@
-<p>profile-bookings works!</p>
+<section class="bookings">
+  <div class="bookings--empty" *ngIf="bookingsData.length === 0">
+    <h1>You have no bookings yet.</h1>
+    <p>After you make a reservation, they will appear here.</p>
+  </div>
+  <div class="bookings__table">
+    <app-table [ths]="tableHeaders" [dataSource]="bookingsData"></app-table>
+  </div>
+</section>
