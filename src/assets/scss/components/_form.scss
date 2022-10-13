@@ -35,6 +35,14 @@
   &__control {
     position: relative;
   }
+  .control__icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    color: #757575;
+  }
   &__control input:not([type="checkbox"]),
   &__control input:not([type="radio"]) {
     @extend %reset-input;
@@ -67,6 +75,11 @@
   &__bottom .btn {
     display: block;
     width: 100%;
+    border-radius: 0.4rem;
+  }
+  &__bottom--inline .btn {
+    display: inline-block;
+    width: fit-content;
   }
   aside {
     display: block;
@@ -79,27 +92,47 @@
   a {
     color: $text-color;
   }
+  hr {
+    width: calc(100% - 4rem);
+    margin: 0 auto;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin-top: 2.4rem;
+    margin-bottom: 1.2rem;
+  }
 }
 .form.form--sm {
-  &__group label {
+  .form__group label {
     font-size: 1.2rem;
     line-height: 1.4rem;
     padding-left: 0;
   }
-  &__control input:not([type="checkbox"]),
-  &__control input:not([type="radio"]) {
-    @extend %reset-input;
+  .form__group + .form__group {
+    margin-top: 2.6rem;
+  }
+  .form__control input:not([type="checkbox"]),
+  .form__control input:not([type="radio"]) {
     font-size: 1.4rem;
     line-height: 1;
     font-weight: 400;
-    padding: 1.2rem 3.2rem;
+    padding: 0.6rem 1.2rem;
+    height: 4.2rem;
+    border-width: 1px;
   }
-  &__helper {
+  .control__icon + input:not([type="checkbox"]),
+  .control__icon + input:not([type="radio"]) {
+    padding-left: 3.2rem;
+  }
+  .form__helper {
     bottom: -1.6rem;
     left: 0rem;
     font-size: 1.4rem;
     font-weight: 600;
     color: $primary-danger;
+  }
+  .form__bottom .btn {
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
   }
 }
 

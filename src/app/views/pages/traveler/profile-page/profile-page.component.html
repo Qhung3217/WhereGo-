@@ -1,38 +1,38 @@
 <section class="profile">
-  <div class="profile__wrap panel">
-    <div class="profile__head">
-      <figure class="profile__avatar">
-        <img src="picsums.photos/500" alt="" />
-      </figure>
-      <div class="profile__infor">
-        <h1 class="infor__name">Quang Hung</h1>
-        <p class="infor__email">mail@mail.com</p>
+  <div class="profile__wrap">
+    <div class="profile__top panel">
+      <div class="profile__head">
+        <figure class="profile__avatar">
+          <img src="https://picsum.photos/500" alt="" />
+        </figure>
+        <div class="profile__infor">
+          <h1 class="infor__name">Quang Hung</h1>
+          <p class="infor__email">@Username</p>
+        </div>
       </div>
-      <div class="profile__edit">Edit profile</div>
+      <div class="profile__tabs">
+        <a
+          routerLink="edit"
+          routerLinkActive="profile__tab--active"
+          class="profile__tab"
+          >Edit</a
+        >
+        <a
+          routerLink="bookings"
+          routerLinkActive="profile__tab--active"
+          class="profile__tab"
+          >Bookings</a
+        >
+        <a
+          routerLink="change-password"
+          routerLinkActive="profile__tab--active"
+          class="profile__tab"
+          >Change password</a
+        >
+      </div>
     </div>
-    <div class="profile__tabs">
-      <a
-        routerLink=""
-        routerLinkActive="profile__tab--active"
-        class="profile__tab"
-        >Review</a
-      >
-      <a
-        routerLink=""
-        routerLinkActive="profile__tab--active"
-        class="profile__tab"
-        >Bookings</a
-      >
-      <a
-        routerLink=""
-        routerLinkActive="profile__tab--active"
-        class="profile__tab"
-        >Change password</a
-      >
+    <div class="panel">
+      <router-outlet></router-outlet>
     </div>
   </div>
-  <div class="panel">
-    <router-outlet></router-outlet>
-  </div>
-  <app-modal-edit-profile></app-modal-edit-profile>
 </section>

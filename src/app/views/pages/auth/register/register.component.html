@@ -23,6 +23,35 @@
         </div>
       </div>
       <div class="form__group">
+        <label for="pass">Password</label>
+        <div class="form__control">
+          <input type="password" id="pass" />
+          <!-- <div class="form__helper" *ngIf="!pass.valid && pass.touched">
+            <span *ngIf="pass.errors?.['required']">Password is empty</span>
+          </div> -->
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="confirmPassword">Confirm password</label>
+        <div class="form__control">
+          <input type="password" id="confirmPassword" />
+          <!-- <div class="form__helper" *ngIf="!pass.valid && pass.touched">
+            <span *ngIf="pass.errors?.['required']">Password is empty</span>
+          </div> -->
+        </div>
+      </div>
+      <hr />
+      <div class="form__group">
+        <label for="name">Your name</label>
+        <div class="form__control">
+          <input type="text" id="name" placeholder="Enter your name" />
+          <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
+            <span *ngIf="email.errors?.['required']">Email is empty</span>
+            <span *ngIf="email.errors?.['email']">Email address invalid</span>
+          </div> -->
+        </div>
+      </div>
+      <div class="form__group">
         <label for="dob">Date of birth</label>
         <div class="form__control">
           <input
@@ -51,24 +80,7 @@
           </div> -->
         </div>
       </div>
-      <div class="form__group">
-        <label for="pass">Password</label>
-        <div class="form__control">
-          <input type="password" id="pass" />
-          <!-- <div class="form__helper" *ngIf="!pass.valid && pass.touched">
-            <span *ngIf="pass.errors?.['required']">Password is empty</span>
-          </div> -->
-        </div>
-      </div>
-      <div class="form__group">
-        <label for="confirmPassword">Confirm password</label>
-        <div class="form__control">
-          <input type="password" id="confirmPassword" />
-          <!-- <div class="form__helper" *ngIf="!pass.valid && pass.touched">
-            <span *ngIf="pass.errors?.['required']">Password is empty</span>
-          </div> -->
-        </div>
-      </div>
+      <hr />
       <div class="form__bottom">
         <button class="btn btn--primary btn--radius-small">Register</button>
       </div>

@@ -36,3 +36,14 @@
 .btn.btn--radius-small {
   border-radius: 0.8rem;
 }
+.btn.btn--secondary {
+  background-color: white;
+  box-shadow: inset 0 0 0 1px black;
+  color: black;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    opacity: 0.6;
+  }
+}
