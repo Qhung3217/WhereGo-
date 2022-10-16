@@ -13,10 +13,17 @@ const routes: Routes = [
       import('./views/pages/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'profile',
+    path: 'traveler',
     loadChildren: () =>
       import('./views/pages/traveler/traveler.module').then(
         (m) => m.TravelerModule
+      ),
+  },
+  {
+    path: 'writter',
+    loadChildren: () =>
+      import('./views/pages/writter/writter.module').then(
+        (m) => m.WritterModule
       ),
   },
 ];

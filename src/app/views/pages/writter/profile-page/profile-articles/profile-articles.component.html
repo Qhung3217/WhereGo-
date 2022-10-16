@@ -1,0 +1,9 @@
+<section class="articles">
+  <div class="articles--empty" *ngIf="articlesData.length === 0">
+    <h1>You have no articles yet.</h1>
+    <p>Write your article <a href="">now.</a></p>
+  </div>
+  <div class="articles__table">
+    <app-table [ths]="tableHeaders" [dataSource]="articlesData"></app-table>
+  </div>
+</section>

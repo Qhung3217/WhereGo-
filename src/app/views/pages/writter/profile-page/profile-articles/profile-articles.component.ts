@@ -1,13 +1,13 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-profile-bookings',
-  templateUrl: './profile-bookings.component.html',
-  styleUrls: ['./profile-bookings.component.scss'],
+  selector: 'app-profile-articles',
+  templateUrl: './profile-articles.component.html',
+  styleUrls: ['./profile-articles.component.scss'],
 })
-export class ProfileBookingsComponent {
+export class ProfileArticlesComponent {
   tableHeaders = ['Hotel', 'Book date', 'People'];
-  bookingsData: {
+  articlesData: {
     hotelName: string;
     bookDate: string;
     people: number;

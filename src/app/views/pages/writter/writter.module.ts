@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
-
-import { ProfileBookingsComponent } from './profile-page/profile-bookings/profile-bookings.component';
-import { ProfileChangePasswordComponent } from './profile-page/profile-change-password/profile-change-password.component';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { ProfileEditComponent } from './profile-page/profile-edit/profile-edit.component';
-import { ImageIconModule } from 'src/app/shared/icons/image-icon/image-icon.module';
 import { TableModule } from 'src/app/shared/components/table/table.module';
+import { ImageIconModule } from 'src/app/shared/icons/image-icon/image-icon.module';
+import { ProfileArticlesComponent } from './profile-page/profile-articles/profile-articles.component';
+import { ProfileEditComponent } from './profile-page/profile-edit/profile-edit.component';
+import { ProfileChangePasswordComponent } from './profile-page/profile-change-password/profile-change-password.component';
+import { ArticleFormPageComponent } from './article-form-page/article-form-page.component';
 
 const routes: Routes = [
   {
@@ -17,19 +16,28 @@ const routes: Routes = [
     component: ProfilePageComponent,
     children: [
       { path: 'edit', component: ProfileEditComponent },
-      { path: 'bookings', component: ProfileBookingsComponent },
+      { path: 'articles', component: ProfileArticlesComponent },
       { path: 'change-password', component: ProfileChangePasswordComponent },
       { path: '', redirectTo: 'edit', pathMatch: 'full' },
     ],
+  },
+  {
+    path: 'new-article',
+    component: ArticleFormPageComponent,
+  },
+  {
+    path: ':articleId/edit',
+    component: ArticleFormPageComponent,
   },
 ];
 
 @NgModule({
   declarations: [
     ProfilePageComponent,
-    ProfileBookingsComponent,
+    ProfileArticlesComponent,
     ProfileChangePasswordComponent,
     ProfileEditComponent,
+    ArticleFormPageComponent,
   ],
   imports: [
     CommonModule,
@@ -41,4 +49,4 @@ const routes: Routes = [
     ImageIconModule,
   ],
 })
-export class TravelerModule {}
+export class WritterModule {}
