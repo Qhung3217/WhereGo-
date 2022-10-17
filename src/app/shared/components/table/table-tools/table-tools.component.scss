@@ -1,0 +1,51 @@
+@import "settings/variables/color";
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
+.table__tools {
+  display: flex;
+  margin-bottom: 2rem;
+  .tool__search {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .search__icon {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    ::ng-deep svg {
+      width: 2rem;
+      height: 2rem;
+      display: block;
+    }
+  }
+  .tool__search input {
+    border: 1px solid #e0e0e0;
+    padding: 0.8rem 1.2rem;
+    padding-left: 3rem;
+    font-size: 1.4rem;
+    font-family: inherit;
+    border-radius: 0.8rem;
+    transition: all 200ms ease-in;
+    &:focus {
+      outline: none;
+      border: 1px solid $primary-color;
+      box-shadow: 0px 3px 8px rgb(0 0 0 / 15%);
+    }
+  }
+}
+
+@include maxWidth($screen-md) {
+  .table__tools {
+    .tool__search {
+      width: 100%;
+    }
+    .tool__search input {
+      width: 100%;
+    }
+  }
+}

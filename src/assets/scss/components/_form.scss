@@ -2,7 +2,8 @@
 %reset-input {
   outline: none;
   border: 2px solid #e0e0e0;
-  border-radius: 0.8rem;
+
+  border-radius: 0.2rem;
 }
 
 .form {
@@ -17,13 +18,18 @@
     margin-bottom: 4rem;
     text-align: center;
   }
+
+  &__file--d-none {
+    display: none;
+  }
   &__group {
   }
   &__group + &__group {
     margin-top: 1.6rem;
   }
   &__group label {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+
     font-weight: 600;
     line-height: 2rem;
     padding-left: 0.4rem;
@@ -32,6 +38,16 @@
   &__control {
     position: relative;
   }
+
+  .control__icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    color: #757575;
+  }
+
   &__control input:not([type="checkbox"]),
   &__control input:not([type="radio"]) {
     @extend %reset-input;
@@ -42,6 +58,11 @@
     width: 100%;
     padding: 1.2rem 2rem;
     transition: box-shadow 200ms ease;
+
+    &.ng-invalid.ng-touched {
+      border-color: $primary-danger;
+    }
+
     &:focus {
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
@@ -61,6 +82,12 @@
   &__bottom .btn {
     display: block;
     width: 100%;
+
+    border-radius: 0.4rem;
+  }
+  &__bottom--inline .btn {
+    display: inline-block;
+    width: fit-content;
   }
   aside {
     display: block;
@@ -72,6 +99,48 @@
   }
   a {
     color: $text-color;
+  }
+  hr {
+    width: calc(100% - 4rem);
+    margin: 0 auto;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin-top: 2.4rem;
+    margin-bottom: 1.2rem;
+  }
+}
+.form.form--sm {
+  .form__group label {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    padding-left: 0;
+  }
+  .form__group + .form__group {
+    margin-top: 2.6rem;
+  }
+  .form__control input:not([type="checkbox"]),
+  .form__control input:not([type="radio"]) {
+    font-size: 1.4rem;
+    line-height: 1;
+    font-weight: 400;
+    padding: 0.6rem 1.2rem;
+    height: 4.2rem;
+    border-width: 1px;
+  }
+  .control__icon + input:not([type="checkbox"]),
+  .control__icon + input:not([type="radio"]) {
+    padding-left: 3.2rem;
+  }
+  .form__helper {
+    bottom: -1.6rem;
+    left: 0rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $primary-danger;
+  }
+  .form__bottom .btn {
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
   }
 }
 
