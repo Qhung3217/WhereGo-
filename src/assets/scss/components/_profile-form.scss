@@ -49,7 +49,7 @@
   }
 }
 @include maxWidth($screen-md) {
-  .profile-edit {
+  .profile-form {
     flex-direction: column;
     &__avatar-group {
       margin-top: -3.2rem;

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-table-body',
   templateUrl: './table-body.component.html',
@@ -8,12 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TableBodyComponent {
   @Input() ths: string[] = [];
   @Input() data: {}[] = [];
-
   constructor() {}
   getValues(dataElement: {}) {
-    console.log(Object.values(dataElement));
+    // console.log(Object.values(dataElement));
 
-    if (this.data.length > 0) return Object.values(dataElement);
+    if (this.data.length > 0) {
+      return Object.values(dataElement);
+    }
+
     return [];
   }
 }

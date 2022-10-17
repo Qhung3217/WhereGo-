@@ -1,0 +1,42 @@
+.table-paginator {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: center;
+  span {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.54);
+    margin-right: 3.2rem;
+  }
+  .paginator__actions {
+  }
+  .action__prev,
+  .action__next {
+    width: 4rem;
+    height: 4rem;
+    display: inline-block;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    text-align: center;
+    vertical-align: baseline;
+    &:disabled {
+      color: rgba(0, 0, 0, 0.26);
+      pointer-events: none;
+    }
+  }
+  .action__icon {
+    display: inline-block;
+  }
+  .action__icon,
+  .action__icon::ng-deep svg {
+    fill: currentColor;
+    color: currentColor;
+    height: 2rem;
+    width: 2rem;
+  }
+  .action__prev .action__icon ::ng-deep svg {
+    transform: rotate(180deg);
+  }
+}
