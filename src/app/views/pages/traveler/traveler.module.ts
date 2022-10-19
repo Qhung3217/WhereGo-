@@ -10,8 +10,13 @@ import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileEditComponent } from './profile-page/profile-edit/profile-edit.component';
 import { ImageIconModule } from 'src/app/shared/icons/image-icon/image-icon.module';
 import { TableModule } from 'src/app/shared/components/table/table.module';
+import { CheckOutPageComponent } from './check-out-page/check-out-page.component';
 
 const routes: Routes = [
+  {
+    path: 'check-out/:hotelId',
+    component: CheckOutPageComponent,
+  },
   {
     path: ':username',
     component: ProfilePageComponent,
@@ -30,6 +35,7 @@ const routes: Routes = [
     ProfileBookingsComponent,
     ProfileChangePasswordComponent,
     ProfileEditComponent,
+    CheckOutPageComponent,
   ],
   imports: [
     CommonModule,

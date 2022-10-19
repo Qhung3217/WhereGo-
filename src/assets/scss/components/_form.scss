@@ -43,6 +43,7 @@
     font-size: 1.4rem;
     color: #757575;
   }
+  &__control--intl-tel,
   &__control input:not([type="checkbox"]),
   &__control input:not([type="radio"]) {
     @extend %reset-input;
@@ -100,6 +101,27 @@
     margin-top: 2.4rem;
     margin-bottom: 1.2rem;
   }
+  &__image-preview {
+    text-align: center;
+    margin-top: 0.4rem;
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+    figure {
+      display: block;
+      width: 10rem;
+      height: 10rem;
+      margin: 0 auto;
+      margin-top: 0.4rem;
+      img {
+        border-radius: 40rem;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
 }
 .form.form--sm {
   .form__group label {
@@ -135,7 +157,30 @@
     font-size: 1.4rem;
   }
 }
+// ngx intl tel input
+.form__ngx-intl {
+  width: 100%;
 
+  * {
+    font-family: inherit;
+  }
+  .iti {
+    display: block;
+  }
+  .selected-dial-code {
+    font-size: 1.4rem;
+    line-height: 1;
+    font-weight: 400;
+  }
+  &.ng-invalid.ng-touched input {
+    border-color: $primary-danger;
+  }
+}
+.form__control--intl-tel {
+  font-family: inherit;
+  width: 100%;
+}
+// end ngx intl tel input
 @include maxWidth($screen-md) {
   .form {
     padding: 0;
