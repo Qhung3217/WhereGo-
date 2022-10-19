@@ -15,8 +15,9 @@
                 <div class="book__control">
                   <input
                     id="checkIn"
-                    type="date"
+                    type="text"
                     class="book__date book__date--checkin"
+                    placeholder="--/--/--"
                     ngbDatepicker
                     readonly
                     #checkIn="ngbDatepicker"
@@ -34,7 +35,8 @@
                 <div class="book__control">
                   <input
                     id="checkOut"
-                    type="date"
+                    type="text"
+                    placeholder="--/--/--"
                     class="book__date book__date--checkout"
                     ngbDatepicker
                     readonly

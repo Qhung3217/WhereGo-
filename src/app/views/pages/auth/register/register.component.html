@@ -1,58 +1,104 @@
 <section class="register">
   <div class="register__wrap panel">
-    <form class="form" (ngSubmit)="handleSubmit()">
+    <form
+      class="form relative"
+      (ngSubmit)="handleSubmit()"
+      [formGroup]="registerForm"
+    >
+      <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
       <h1 class="form__title">Traveler register</h1>
       <div class="form__group">
-        <label for="email">Email</label>
+        <label for="email">Email *</label>
         <div class="form__control">
-          <input type="text" id="email" placeholder="Your email address" />
-          <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
-            <span *ngIf="email.errors?.['required']">Email is empty</span>
-            <span *ngIf="email.errors?.['email']">Email address invalid</span>
-          </div> -->
+          <input
+            type="text"
+            id="email"
+            placeholder="Your email address"
+            formControlName="email"
+          />
+          <div class="form__helper" *ngIf="isInvalidControl('email')">
+            <span *ngIf="getControl('email')?.errors?.['required']"
+              >Email is empty</span
+            >
+            <span *ngIf="getControl('email')?.errors?.['email']"
+              >Email address invalid</span
+            >
+          </div>
         </div>
       </div>
       <div class="form__group">
-        <label for="name">Username</label>
+        <label for="username">Username *</label>
         <div class="form__control">
-          <input type="text" id="name" placeholder="Enter user name" />
-          <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
-            <span *ngIf="email.errors?.['required']">Email is empty</span>
-            <span *ngIf="email.errors?.['email']">Email address invalid</span>
-          </div> -->
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter user name"
+            formControlName="username"
+          />
+          <div class="form__helper" *ngIf="isInvalidControl('username')">
+            <span *ngIf="getControl('username')?.errors?.['required']"
+              >Username is empty</span
+            >
+          </div>
         </div>
       </div>
       <div class="form__group">
-        <label for="pass">Password</label>
+        <label for="pass">Password *</label>
         <div class="form__control">
-          <input type="password" id="pass" />
-          <!-- <div class="form__helper" *ngIf="!pass.valid && pass.touched">
-            <span *ngIf="pass.errors?.['required']">Password is empty</span>
-          </div> -->
+          <input type="password" id="pass" formControlName="password" />
+          <div class="form__helper" *ngIf="isInvalidControl('password')">
+            <span *ngIf="getControl('password')?.errors?.['required']"
+              >Password is empty</span
+            >
+            <span *ngIf="getControl('password')?.errors?.['minlength']"
+              >At least 6 characters required</span
+            >
+          </div>
         </div>
       </div>
       <div class="form__group">
-        <label for="confirmPassword">Confirm password</label>
+        <label for="confirmPassword">Confirm password *</label>
         <div class="form__control">
-          <input type="password" id="confirmPassword" />
-          <!-- <div class="form__helper" *ngIf="!pass.valid && pass.touched">
-            <span *ngIf="pass.errors?.['required']">Password is empty</span>
-          </div> -->
+          <input
+            type="password"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+          />
+          <div class="form__helper" *ngIf="isInvalidControl('confirmPassword')">
+            <span *ngIf="getControl('confirmPassword')?.errors?.['required']"
+              >Confirm password is empty</span
+            >
+            <span *ngIf="getControl('confirmPassword')?.errors?.['minlength']"
+              >At least 6 characters required</span
+            >
+          </div>
+          <div class="form__helper">
+            <span
+              *ngIf="registerForm.errors?.['confirmPassword'] && (registerForm.touched || registerForm.dirty)"
+              >Confirm password not match</span
+            >
+          </div>
         </div>
       </div>
       <hr />
       <div class="form__group">
-        <label for="name">Your name</label>
+        <label for="name">Your name *</label>
         <div class="form__control">
-          <input type="text" id="name" placeholder="Enter your name" />
-          <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
-            <span *ngIf="email.errors?.['required']">Email is empty</span>
-            <span *ngIf="email.errors?.['email']">Email address invalid</span>
-          </div> -->
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            formControlName="name"
+          />
+          <div class="form__helper" *ngIf="isInvalidControl('name')">
+            <span *ngIf="getControl('name')?.errors?.['required']"
+              >Your name is empty</span
+            >
+          </div>
         </div>
       </div>
       <div class="form__group">
-        <label for="dob">Date of birth</label>
+        <label for="dob">Date of birth *</label>
         <div class="form__control">
           <input
             type="text"
@@ -61,29 +107,60 @@
             ngbDatepicker
             readonly
             #dob="ngbDatepicker"
+            formControlName="dob"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
             (click)="dob.toggle()"
             (keypress)="$event.preventDefault()"
           />
-          <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
-            <span *ngIf="email.errors?.['required']">Email is empty</span>
-            <span *ngIf="email.errors?.['email']">Email address invalid</span>
-          </div> -->
+          <div class="form__helper" *ngIf="isInvalidControl('dob')">
+            <span *ngIf="getControl('dob')?.errors?.['required']"
+              >Date of birth is empty</span
+            >
+          </div>
         </div>
       </div>
       <div class="form__group">
-        <label for="tel">Phone</label>
+        <label for="tel">Phone *</label>
+
         <div class="form__control">
-          <input type="tel" id="tel" />
-          <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
-            <span *ngIf="email.errors?.['required']">Email is empty</span>
-            <span *ngIf="email.errors?.['email']">Email address invalid</span>
-          </div> -->
+          <input type="tel" id="tel" formControlName="tel" />
+          <div class="form__helper" *ngIf="isInvalidControl('tel')">
+            <span *ngIf="getControl('tel')?.errors?.['required']"
+              >Phone number is empty</span
+            >
+            <span *ngIf="getControl('tel')?.errors?.['isValidPhone']"
+              >Phone incorrect based on Viet Nam country</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="avatar">Avatar</label>
+
+        <div class="form__control">
+          <input
+            type="file"
+            id="avatar"
+            (change)="handleChangeAvatar($event)"
+          />
+          <div class="form__image-preview" *ngIf="!!avatarPreview">
+            <h3>Preview</h3>
+            <figure>
+              <img [src]="avatarPreview | safeUrl" alt="Preview image" />
+            </figure>
+          </div>
         </div>
       </div>
 
       <hr />
       <div class="form__bottom">
-        <button class="btn btn--primary btn--radius-small">Register</button>
+        <button
+          class="btn btn--primary btn--radius-small"
+          [disabled]="!registerForm.valid"
+        >
+          Register
+        </button>
       </div>
       <aside>Have account? <a routerLink="/auth/login">Log in now</a></aside>
     </form>

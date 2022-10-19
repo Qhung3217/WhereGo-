@@ -1,0 +1,61 @@
+:host {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 0.5em;
+  z-index: 1200;
+}
+.toast {
+  background-color: white;
+  padding: 0.8rem;
+  box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
+  border-radius: 8px;
+  margin-bottom: 1.6rem;
+  transition: all linear 0.3s;
+  min-width: 20rem;
+  transform: translateX(calc(100% + 32px));
+}
+.toast.show {
+  animation: slideInLeft ease 0.3s;
+  transform: translate(0);
+}
+.toast.hide {
+  animation: 5s fadeOut ease 0.3s;
+}
+.text-light ::ng-deep * {
+  color: white;
+}
+
+::ng-deep {
+  .toast-header {
+    background-color: transparent;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    .me-auto {
+      font-weight: 700;
+    }
+
+    button {
+    }
+  }
+  .toast-body {
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+  }
+}
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(calc(100% + 32px));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
