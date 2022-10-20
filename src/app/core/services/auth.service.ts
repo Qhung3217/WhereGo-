@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { LoginResponse } from '../interfaces/login-response.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cookie: CookieService) {}
   register(
     email: string,
     password: string,
@@ -30,5 +33,40 @@ export class AuthService {
       environment.apiURL + 'signup',
       payload
     );
+  }
+  login(email: string, password: string) {
+    return this.http
+      .post<LoginResponse>(
+        environment.apiURL + 'login',
+        {
+          email,
+          password,
+        },
+        {
+          params: {
+            type: 'traveler',
+          },
+        }
+      )
+      .pipe(tap((res) => this.handleAuthentication(res.token)));
+  }
+  writterLogin(email: string, password: string) {
+    return this.http
+      .post<LoginResponse>(
+        environment.apiURL + 'login',
+        {
+          email,
+          password,
+        },
+        {
+          params: {
+            type: 'writter',
+          },
+        }
+      )
+      .pipe(tap((res) => this.handleAuthentication(res.token)));
+  }
+  private handleAuthentication(token: string) {
+    this.cookie.set('token', token);
   }
 }

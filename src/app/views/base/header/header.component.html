@@ -55,8 +55,10 @@
           </li>
           <li class="header__item-btn">
             <!-- show sign in or header user -->
-            <!-- <a href="#" class="btn btn--primary"> Sign in </a> -->
-            <div class="header__user" appDropdown [runInMobile]="false">
+            <a routerLink="/auth/traveler/login" class="btn btn--primary"
+              >Sign in</a
+            >
+            <!-- <div class="header__user" appDropdown [runInMobile]="false">
               <figure class="user__avatar">
                 <img src="https://picsum.photos/500" alt="" />
               </figure>
@@ -78,7 +80,7 @@
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> -->
           </li>
         </ul>
       </nav>
@@ -86,7 +88,7 @@
   </div>
 </header>
 <app-search-modal
-  searchType="place"
+  searchType="all"
   *ngIf="showSearchModal"
   (closeEmit)="showSearchModal = false"
 ></app-search-modal>

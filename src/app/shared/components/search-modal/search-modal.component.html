@@ -6,11 +6,19 @@
       <div class="form-group">
         <app-search-icon class="icon"></app-search-icon>
         <div class="form-control">
-          <input type="text" placeholder="Where to?" name="place" />
+          <input
+            type="text"
+            [placeholder]="placeholder"
+            name="place"
+            [(ngModel)]="searchKey"
+          />
         </div>
       </div>
     </form>
-    <div class="search-suggestion" *ngIf="searchType === 'place'">
+    <div
+      class="search-suggestion"
+      *ngIf="searchType === 'all' && searchKey && searchKey !== ''"
+    >
       <ul class="suggestion-list">
         <li>
           <a href="#" class="suggestion-item">
@@ -18,7 +26,9 @@
               <app-bed-icon></app-bed-icon>
             </div>
             <div class="suggestion__text">
-              <h1><strong>Can tho</strong> hotels</h1>
+              <h1>
+                <strong>{{ searchKey }}</strong> hotels?
+              </h1>
             </div>
           </a>
         </li>
@@ -28,7 +38,9 @@
               <app-utensil-icon></app-utensil-icon>
             </div>
             <div class="suggestion__text">
-              <h1><strong>Can tho</strong> restaurants</h1>
+              <h1>
+                <strong>{{ searchKey }}</strong> restaurants?
+              </h1>
             </div>
           </a>
         </li>
@@ -38,7 +50,21 @@
               <app-map-location-dot-icon></app-map-location-dot-icon>
             </div>
             <div class="suggestion__text">
-              <h1><strong>Can tho</strong> where to go?</h1>
+              <h1>
+                <strong>{{ searchKey }}</strong> where to go?
+              </h1>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="suggestion-item">
+            <div class="suggestion__icon">
+              <app-newspaper-icon></app-newspaper-icon>
+            </div>
+            <div class="suggestion__text">
+              <h1>
+                <strong>{{ searchKey }}</strong> in travel article?
+              </h1>
             </div>
           </a>
         </li>

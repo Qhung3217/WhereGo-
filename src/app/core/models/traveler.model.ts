@@ -1,4 +1,4 @@
-import { Review } from './review.modal';
+import { Review } from './review.model';
 
 export class Traveler {
   constructor(

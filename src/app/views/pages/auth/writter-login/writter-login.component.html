@@ -2,7 +2,7 @@
   <div class="login__wrap panel relative">
     <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
     <form class="form" (ngSubmit)="handleSubmit(loginForm)" #loginForm="ngForm">
-      <h1 class="form__title">Log in</h1>
+      <h1 class="form__title"><span>Writter</span> log in</h1>
       <div class="form__group">
         <label for="email">Email</label>
         <div class="form__control">
@@ -48,12 +48,7 @@
           Log in
         </button>
       </div>
-      <aside>
-        No account? <a routerLink="/auth/traveler/register">Create one</a>
-      </aside>
-      <aside>
-        Are you a writter? <a routerLink="/auth/writter/login">Click here</a>
-      </aside>
+      <aside>No account? Contact us to create one.</aside>
     </form>
   </div>
 </section>

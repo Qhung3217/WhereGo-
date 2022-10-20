@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorCatchingInterceptor } from './core/interceptors/error-catching/error-catching.interceptor';
 import { ToasterModule } from './shared/components/toaster/toaster.module';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [AppComponent, FooterComponent],
   imports: [
@@ -23,6 +24,7 @@ import { ToasterModule } from './shared/components/toaster/toaster.module';
     ToasterModule,
   ],
   providers: [
+    CookieService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorCatchingInterceptor,
