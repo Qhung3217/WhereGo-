@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiURL: '/api/',
+  defaultImage: 'assets/images/image.webp',
 };
 
 /*

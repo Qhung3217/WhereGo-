@@ -1,10 +1,13 @@
 <div class="container">
   <app-section-nav-card></app-section-nav-card>
   <app-section-search></app-section-search>
-  <app-section-promotion></app-section-promotion>
-  <app-section-promotion title="Hotels you should go"></app-section-promotion>
+  <!-- <app-section-promotion></app-section-promotion> -->
   <app-section-promotion
-    title="Restaurants with nice cruisine"
+    titleHeader="Hotels you should go"
+  ></app-section-promotion>
+  <app-section-promotion
+    titleHeader="Restaurants with nice cruisine"
+    [category]="'restaurant'"
   ></app-section-promotion>
   <app-section-top-destination></app-section-top-destination>
   <app-section-article></app-section-article>

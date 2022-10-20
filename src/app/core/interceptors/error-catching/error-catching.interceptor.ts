@@ -97,11 +97,20 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
   }
 
   private messageUnauthorized() {
-    if (this.checkUrl('/sign-in')) return 'Email or password incorrect';
-    return '401 Unauthorized';
+    switch (true) {
+      case this.checkUrl('/auth/traveler/login'):
+      case this.checkUrl('/auth/writter/login'):
+        return 'Email or password incorrect';
+      default:
+        return '401 Unauthorized';
+    }
   }
   private checkUrl(url: string) {
-    const currentUrl = this.router.url.slice(0, this.router.url.indexOf('?'));
+    let currentUrl = this.router.url;
+    const indexOfQuestionMark = currentUrl.indexOf('?');
+    if (indexOfQuestionMark !== -1)
+      currentUrl = this.router.url.slice(0, indexOfQuestionMark);
+
     console.dir(currentUrl);
     return currentUrl && currentUrl == url;
   }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  SearchModalConfig,
+  SearchType,
+} from 'src/app/core/interfaces/search-modal-config.interface';
 
 @Component({
   selector: 'app-section-nav-card',
@@ -6,14 +10,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./section-nav-card.component.scss'],
 })
 export class SectionNavCardComponent {
-  searchModalConfig: {
-    show: boolean;
-    type: 'article' | 'hotel' | 'restaurant' | 'destination' | 'place';
-  } = { show: false, type: 'hotel' };
+  searchModalConfig: SearchModalConfig = { show: false, type: 'hotel' };
   constructor() {}
-  handleNavClick(
-    type: 'article' | 'hotel' | 'restaurant' | 'destination' | 'place'
-  ) {
+  handleNavClick(type: SearchType) {
     this.searchModalConfig.show = true;
     this.searchModalConfig.type = type;
   }

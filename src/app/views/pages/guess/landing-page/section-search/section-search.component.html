@@ -3,7 +3,12 @@
     <div class="form__group" (click)="showSearch = true">
       <app-search-icon class="icon"></app-search-icon>
       <div class="form__control">
-        <input type="text" placeholder="Where to?" name="place" />
+        <input
+          type="text"
+          placeholder="Where to?"
+          name="place"
+          autocomplete="off"
+        />
       </div>
     </div>
   </form>

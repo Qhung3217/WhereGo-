@@ -4,18 +4,18 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-writter-login',
+  templateUrl: './writter-login.component.html',
+  styleUrls: ['./writter-login.component.scss'],
 })
-export class LoginComponent {
+export class WritterLoginComponent {
   isFetching = false;
   constructor(private authService: AuthService, private router: Router) {}
 
   handleSubmit(loginForm: NgForm) {
     this.isFetching = true;
     this.authService
-      .login(loginForm.value['email'], loginForm.value['password'])
+      .writterLogin(loginForm.value['email'], loginForm.value['password'])
       .subscribe({
         next: (res) => {
           console.log('Login successfull: ', res);
