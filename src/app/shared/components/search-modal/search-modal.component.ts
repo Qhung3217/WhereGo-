@@ -1,11 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-search-modal',
   templateUrl: './search-modal.component.html',
   styleUrls: ['./search-modal.component.scss'],
 })
-export class SearchModalComponent {
+export class SearchModalComponent implements OnInit {
   @Input() searchType:
     | 'hotel'
     | 'restaurant'
@@ -13,10 +21,14 @@ export class SearchModalComponent {
     | 'all'
     | 'article' = 'all';
   @Output() closeEmit = new EventEmitter();
+  @ViewChild('input', { static: true }) input?: ElementRef;
   searchKey?: string;
   placeholder: string = 'Where to?';
   constructor() {
     this.setPlaceholder();
+  }
+  ngOnInit() {
+    this.input?.nativeElement.focus();
   }
   handleClose() {
     this.closeEmit.emit(true);

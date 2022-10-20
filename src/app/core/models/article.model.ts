@@ -1,10 +1,10 @@
 export class Article {
   constructor(
-    private id: number,
-    private title: string,
-    private image: string,
-    private shortDesc: string,
-    private createdDate: Date,
-    private writerName: string
+    public id: number,
+    public title: string,
+    public image: string,
+    public shortDesc: string,
+    public createdDate: Date,
+    public writerName: string
   ) {}
 }

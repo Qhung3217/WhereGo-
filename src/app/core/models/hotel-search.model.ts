@@ -1,11 +1,11 @@
 export class HotelSearch {
   constructor(
-    private id: number,
-    private name: string,
-    private address: string,
-    private hotelClass: string,
-    private image: string,
-    private price: number,
-    private districtName: string
+    public id: number,
+    public name: string,
+    public address: string,
+    public hotelClass: string,
+    public image: string,
+    public price: number,
+    public districtName: string
   ) {}
 }

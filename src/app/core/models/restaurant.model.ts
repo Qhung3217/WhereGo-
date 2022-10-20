@@ -2,14 +2,14 @@ import { Review } from './review.model';
 
 export class Restaurant {
   constructor(
-    private id: number,
-    private name: string,
-    private address: string,
+    public id: number,
+    public name: string,
+    public address: string,
     private thumbnail: string,
-    private cuisines: string,
-    private meals: string,
-    private features: string,
-    private restaurantGalleries: [],
-    private restaurantReviews: Review[]
+    public cuisines: string,
+    public meals: string,
+    public features: string,
+    public restaurantGalleries: [],
+    public restaurantReviews: Review[]
   ) {}
 }

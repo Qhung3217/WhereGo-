@@ -15,25 +15,25 @@
   text-decoration: none;
   color: $text-color;
   position: relative;
-  &:hover {
-    .card__title {
-      text-decoration: underline;
-      color: #545454;
-    }
-    .card__thumb {
-      opacity: 0.8;
-    }
-  }
+
   &__thumb,
   &__title {
     transition: all 200ms ease-in-out;
+  }
+  &__title:hover {
+    text-decoration: underline;
+    color: #545454;
   }
   &__thumb {
     width: 100%;
     img {
       display: block;
       width: 100%;
-      object-fit: contain;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+    &:hover {
+      opacity: 0.8;
     }
   }
   &__heart {
@@ -45,7 +45,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
+    cursor: pointer;
   }
+
   &__icon {
     width: 2rem;
     height: 2rem;
@@ -57,10 +60,12 @@
   &__icon--active {
     display: none;
   }
-  &__heart--active &__icon {
+  &__heart--active &__icon,
+  &__heart:hover &__icon {
     display: none;
   }
-  &__heart--active &__icon--active {
+  &__heart--active &__icon--active,
+  &__heart:hover &__icon--active {
     display: block;
   }
   &__content {

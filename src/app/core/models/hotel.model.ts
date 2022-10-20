@@ -2,17 +2,17 @@ import { Review } from './review.model';
 
 export class Hotel {
   constructor(
-    private id: number,
-    private name: string,
-    private hotelClass: string,
-    private description: string,
-    private image: string,
-    private price: number,
-    private roomFeatures: [],
-    private roomTypes: [],
-    private propertyAmenities: [],
-    private hotelGalleries: [],
-    private reviews: Review[],
-    private booking: any
+    public id: number,
+    public name: string,
+    public hotelClass: string,
+    public description: string,
+    public image: string,
+    public price: number,
+    public roomFeatures: [],
+    public roomTypes: [],
+    public propertyAmenities: [],
+    public hotelGalleries: [],
+    public reviews: Review[],
+    public booking: any
   ) {}
 }

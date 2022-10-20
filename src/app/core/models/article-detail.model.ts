@@ -1,12 +1,12 @@
 export class ArticleDetail {
   constructor(
-    private id: number,
-    private title: string,
-    private image: string,
-    private content: string,
-    private shortDesc: string,
-    private createdDate: Date,
-    private writer: {
+    public id: number,
+    public title: string,
+    public image: string,
+    public content: string,
+    public shortDesc: string,
+    public createdDate: Date,
+    public writer: {
       email: string;
       name: string;
       avatar: string;

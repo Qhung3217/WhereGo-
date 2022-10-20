@@ -18,6 +18,13 @@ import { SectionArticleComponent } from './section-article/section-article.compo
 import { NewspaperIconModule } from 'src/app/shared/icons/newspaper-icon/newspaper-icon.module';
 import { SwiperModule } from 'swiper/angular';
 import { SectionPromotionComponent } from './section-promotion/section-promotion.component';
+import {
+  LazyLoadImageModule,
+  LAZYLOAD_IMAGE_HOOKS,
+  ScrollHooks,
+} from 'ng-lazyload-image';
+
+import { ShortenPipeModule } from 'src/app/shared/pipes/shorten-pipe/shorten-pipe.module';
 @NgModule({
   declarations: [
     LandingPageComponent,
@@ -33,8 +40,10 @@ import { SectionPromotionComponent } from './section-promotion/section-promotion
     RouterModule,
 
     SwiperModule,
+    LazyLoadImageModule,
 
     CardModule,
+    ShortenPipeModule,
 
     MapLocationDotIconModule,
     BedIconModule,
@@ -45,5 +54,6 @@ import { SectionPromotionComponent } from './section-promotion/section-promotion
     NewspaperIconModule,
   ],
   exports: [LandingPageComponent],
+  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }],
 })
 export class LandingPageModule {}

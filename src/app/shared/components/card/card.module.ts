@@ -5,6 +5,11 @@ import { RatingDecimarModule } from '../rating-decimar/rating-decimar.module';
 import { HeartIconModule } from '../../icons/heart-icon/heart-icon.module';
 import { HeartSolidIconModule } from '../../icons/heart-solid-icon/heart-solid-icon.module';
 import { RouterModule } from '@angular/router';
+import {
+  LazyLoadImageModule,
+  LAZYLOAD_IMAGE_HOOKS,
+  ScrollHooks,
+} from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [CardComponent],
@@ -12,10 +17,14 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
+    LazyLoadImageModule,
+
     RatingDecimarModule,
+
     HeartIconModule,
     HeartSolidIconModule,
   ],
   exports: [CardComponent],
+  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }],
 })
 export class CardModule {}
