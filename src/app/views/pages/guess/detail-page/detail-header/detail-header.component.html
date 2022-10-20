@@ -25,7 +25,9 @@
       <div class="rating__review-number">{{ reviewNumber }} reviews</div>
     </div>
     <a
-      [href]="'https://www.google.com/maps/search/?api=1&query=' + address"
+      [href]="
+        'https://www.google.com/maps/search/?api=1&query=' + addressEncode
+      "
       rel="nofollow"
       class="header__address"
     >

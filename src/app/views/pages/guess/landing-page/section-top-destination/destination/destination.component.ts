@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Place } from 'src/app/core/models/place.model';
 import { ImageService } from 'src/app/core/services/image.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-destination',

@@ -1,10 +1,19 @@
-<div class="hotel property">
+<div class="hotel property relative">
+  <app-loading-spinner *ngIf="isFetching.hotel"></app-loading-spinner>
+  <div class="property__error" *ngIf="!hotel && !isFetching.hotel">
+    <app-circle-exclamation-icon
+      class="error__icon"
+    ></app-circle-exclamation-icon>
+    <h1>Oops! Something went wrong.</h1>
+    <aside>Try refeshing the page or try again later.</aside>
+    <button class="btn btn--primary" appRefresh>Refresh Page</button>
+  </div>
   <app-detail-header
-    headerTitle="Nhon Nghia Ward"
-    address="61C National Road Nhon Khanh Hamlet, Nhon Nghia Ward, Can Tho 904497
-  Vietnam"
+    [headerTitle]="hotel.name"
+    [address]="hotel.address"
+    *ngIf="hotel"
   ></app-detail-header>
-  <div class="property__body">
+  <div class="property__body" *ngIf="hotel">
     <div class="property__wrap">
       <div class="hotel__infor">
         <div class="panel hotel__book-infor">
@@ -72,27 +81,28 @@
       <div class="hotel__suggestions panel">
         <h1 class="panel__title">You may also like</h1>
         <hr />
-        <div class="suggestion__list">
-          <div class="suggestion__item">
-            <a href="" class="hotel__suggestion">
-              <figure class="suggestion__thumb">
-                <img src="https://picsum.photos/500/500?random=1" alt="" />
-              </figure>
-              <div class="suggestion__infor">
-                <h1 class="suggestion__title">Ms. Ha Gueshouse</h1>
-                <app-rating-decimar></app-rating-decimar>
-                <p>366 reviews</p>
-              </div>
-            </a>
-          </div>
+        <div class="suggestion__list relative">
+          <app-loading-spinner
+            *ngIf="isFetching.hotelSuggestion"
+          ></app-loading-spinner>
 
-          <div class="suggestion__item">
-            <a href="" class="hotel__suggestion">
+          <div
+            class="suggestion__item"
+            *ngFor="let hotelSugestion of hotelSuggestions"
+          >
+            <a
+              [routerLink]="['/hotel', hotelSugestion.id]"
+              class="hotel__suggestion"
+            >
               <figure class="suggestion__thumb">
-                <img src="https://picsum.photos/500/500?random=1" alt="" />
+                <img
+                  [defaultImage]="imageService.defaultImage"
+                  [lazyLoad]="imageService.render(hotelSugestion.image)"
+                  [alt]="hotelSugestion.name"
+                />
               </figure>
               <div class="suggestion__infor">
-                <h1 class="suggestion__title">Ms. Ha Gueshouse</h1>
+                <h1 class="suggestion__title">{{ hotelSugestion.name }}</h1>
                 <app-rating-decimar></app-rating-decimar>
                 <p>366 reviews</p>
               </div>
@@ -118,11 +128,7 @@
               </div>
             </div>
             <div class="about__desc">
-              Boutique Lodge Can Tho a brand new homestay is located between Cai
-              Rang and Phong Dien Floating market, 9km away from the center of
-              Can Tho city. It is a peaceful river side homestay with abundant
-              surrounding fruit gardens and rice fields. Each room is equipped
-              with a private bathroom and outside sitting area.
+              {{ hotel.description }}
             </div>
           </div>
           <div class="col-12 col-lg-6 about__services">

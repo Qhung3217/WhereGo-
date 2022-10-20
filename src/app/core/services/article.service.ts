@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ArticleDetail } from '../models/article-detail.model';
 import { Article } from '../models/article.model';
 
 @Injectable({
@@ -14,5 +15,8 @@ export class ArticleService {
         quantity: quantity,
       },
     });
+  }
+  getDetail(id: number) {
+    return this.http.get<ArticleDetail>(environment.apiURL + 'articles/' + id);
   }
 }
