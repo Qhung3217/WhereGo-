@@ -15,7 +15,7 @@ export class WritterLoginComponent {
   handleSubmit(loginForm: NgForm) {
     this.isFetching = true;
     this.authService
-      .writterLogin(loginForm.value['email'], loginForm.value['password'])
+      .writerLogin(loginForm.value['email'], loginForm.value['password'])
       .subscribe({
         next: (res) => {
           console.log('Login successfull: ', res);

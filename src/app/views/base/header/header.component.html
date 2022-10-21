@@ -19,31 +19,39 @@
             <app-x-icon></app-x-icon>
           </div>
           <!-- only show when login -->
-          <li>
+          <li *ngIf="writer || traveler">
             <a
-              routerLink="traveler/hung"
-              class="header__item cta header__item--mobile"
+              [routerLink]="
+                writer
+                  ? ['writer', writer.username]
+                  : ['traveler', traveler?.username]
+              "
+              class="header__item cta header__item--mobile no-shadow"
             >
               View profile</a
             >
           </li>
-          <li>
+          <li *ngIf="writer || traveler">
             <a
-              routerLink="traveler/hung/bookings"
-              class="header__item cta header__item--mobile"
+              [routerLink]="
+                writer
+                  ? ['writer', writer.username, 'articles']
+                  : ['traveler', traveler?.username, 'bookings']
+              "
+              class="header__item cta header__item--mobile no-shadow"
             >
-              Bookings</a
-            >
+              {{ writer ? "My articles" : "Bookings" }}
+            </a>
           </li>
-          <hr />
+          <hr *ngIf="writer || traveler" />
           <li>
-            <a routerLink="/travel-articles" class="header__item cta">
+            <a routerLink="/travel-articles" class="header__item cta no-shadow">
               <app-newspaper-icon class="header__icon"></app-newspaper-icon>
               Travel articles
             </a>
           </li>
           <li>
-            <a routerLink="/saved" class="header__item cta">
+            <a routerLink="/saved" class="header__item cta no-shadow">
               <app-heart-icon class="header__icon"></app-heart-icon>
               My saved</a
             >
@@ -55,32 +63,70 @@
           </li>
           <li class="header__item-btn">
             <!-- show sign in or header user -->
-            <a routerLink="/auth/traveler/login" class="btn btn--primary"
+            <a
+              routerLink="/auth/traveler/login"
+              class="btn btn--primary"
+              *ngIf="!writer && !traveler"
               >Sign in</a
             >
-            <!-- <div class="header__user" appDropdown [runInMobile]="false">
+            <div
+              class="header__user"
+              appDropdown
+              [runInMobile]="false"
+              *ngIf="writer || traveler"
+            >
               <figure class="user__avatar">
-                <img src="https://picsum.photos/500" alt="" />
+                <img
+                  [src]="
+                    imageService.render(writer?.avatar! || traveler?.avatar!)
+                  "
+                />
               </figure>
-              <h2 class="user__name">Quang Hung</h2>
+              <h2 class="user__name">
+                {{ writer?.name || traveler?.name }}
+              </h2>
               <div class="user__menu">
                 <ul class="user__list">
                   <li>
-                    <a routerLink="traveler/hung" class="user__item"
+                    <a
+                      [routerLink]="
+                        writer
+                          ? ['writer', writer.username!]
+                          : ['traveler', traveler?.username!]
+                      "
+                      class="user__item"
                       >View profile</a
                     >
                   </li>
                   <li>
-                    <a routerLink="traveler/hung/bookings" class="user__item"
-                      >Bookings</a
+                    <a
+                      [routerLink]="
+                        writer
+                          ? ['writer', writer.username!, 'articles']
+                          : ['traveler', traveler?.username!, 'bookings']
+                      "
+                      class="user__item"
                     >
+                      {{ traveler ? "Bookings" : "My articles" }}
+                    </a>
                   </li>
                   <li>
-                    <a href="" class="user__item">Sign out</a>
+                    <a
+                      [routerLink]="
+                        writer ? 'auth/writer/login' : 'auth/traveler/login'
+                      "
+                      (click)="
+                        writer
+                          ? authService.writerLogout()
+                          : authService.travelerLogout()
+                      "
+                      class="user__item"
+                      >Sign out</a
+                    >
                   </li>
                 </ul>
               </div>
-            </div> -->
+            </div>
           </li>
         </ul>
       </nav>

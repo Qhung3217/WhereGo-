@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -7,7 +6,10 @@ import { environment } from 'src/environments/environment';
 })
 export class ImageService {
   defaultImage = environment.defaultImage;
-  constructor(private http: HttpClient) {}
+  get default() {
+    return environment.apiURL + 'render/' + environment.defaultImageBE;
+  }
+  constructor() {}
 
   render(imagename: string) {
     return environment.apiURL + 'render/' + imagename;

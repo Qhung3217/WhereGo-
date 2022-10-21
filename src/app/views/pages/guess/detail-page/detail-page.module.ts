@@ -21,6 +21,15 @@ import { CalenderDaysIconModule } from 'src/app/shared/icons/calender-days-icon/
 import { PaginationModule } from 'src/app/shared/components/pagination/pagination.module';
 import { ChevronRightIconModule } from 'src/app/shared/icons/chevron-right-icon/chevron-right-icon.module';
 import { DetailHeaderComponent } from './detail-header/detail-header.component';
+import { LoadingSpinnerModule } from 'src/app/shared/components/loading-spinner/loading-spinner.module';
+import { CircleExclamationIconModule } from 'src/app/shared/icons/circle-exclamation-icon/circle-exclamation-icon.module';
+import { RefreshDirectiveModule } from 'src/app/shared/directives/refresh-directive/refresh-directive.module';
+import { RouterModule } from '@angular/router';
+import {
+  LazyLoadImageModule,
+  LAZYLOAD_IMAGE_HOOKS,
+  ScrollHooks,
+} from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [
@@ -34,13 +43,18 @@ import { DetailHeaderComponent } from './detail-header/detail-header.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
 
     SwiperModule,
     NgbDatepickerModule,
+    LazyLoadImageModule,
 
     BreadcrumbModule,
     RatingDecimarModule,
     PaginationModule,
+    LoadingSpinnerModule,
+
+    RefreshDirectiveModule,
 
     ShareIconModule,
     PencilIconModule,
@@ -51,7 +65,9 @@ import { DetailHeaderComponent } from './detail-header/detail-header.component';
     LocationDotIconModule,
     CalenderDaysIconModule,
     ChevronRightIconModule,
+    CircleExclamationIconModule,
   ],
   exports: [DetailPageComponent],
+  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }],
 })
 export class DetailPageModule {}

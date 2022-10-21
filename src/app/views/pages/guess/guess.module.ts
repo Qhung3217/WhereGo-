@@ -26,10 +26,10 @@ const routes: Routes = [
   { path: 'destination', component: DestinationListPageComponent },
   { path: 'saved', component: SavedPageComponent },
   { path: 'travel-articles', component: TravelArticlesPageComponent },
-  { path: 'hotel/:slug', component: DetailPageComponent },
-  { path: 'restaurant/:slug', component: DetailPageComponent },
-  { path: 'destination/:slug', component: DetailPageComponent },
-  { path: 'travel-articles/:slug', component: ArticleDetailPageComponent },
+  { path: 'hotel/:id', component: DetailPageComponent },
+  { path: 'restaurant/:id', component: DetailPageComponent },
+  { path: 'destination/:id', component: DetailPageComponent },
+  { path: 'travel-articles/:id', component: ArticleDetailPageComponent },
 ];
 
 @NgModule({
