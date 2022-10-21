@@ -6,6 +6,9 @@ import { environment } from 'src/environments/environment';
 })
 export class ImageService {
   defaultImage = environment.defaultImage;
+  get default() {
+    return environment.apiURL + 'render/' + environment.defaultImageBE;
+  }
   constructor() {}
 
   render(imagename: string) {

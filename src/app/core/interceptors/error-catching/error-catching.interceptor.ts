@@ -53,7 +53,7 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
         errorMessage.message = '404 Not Found';
         break;
       case 403:
-        errorMessage.message = '404 Not Found';
+        errorMessage.message = errRes.error;
         break;
       case 400:
         if (this.checkUrl('/reset-password'))

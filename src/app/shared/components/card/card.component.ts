@@ -11,9 +11,7 @@ export class CardComponent {
   @Input() category: 'hotel' | 'restaurant' = 'hotel';
   isHeartActive = false;
 
-  constructor(public imageService: ImageService) {
-    console.log('card ', this.item);
-  }
+  constructor(public imageService: ImageService) {}
   handleHeartClick(event: MouseEvent) {
     this.isHeartActive = !this.isHeartActive;
     event.stopPropagation();

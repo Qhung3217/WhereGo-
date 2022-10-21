@@ -20,7 +20,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'writter',
+    path: 'writer',
     loadChildren: () =>
       import('./views/pages/writter/writter.module').then(
         (m) => m.WritterModule

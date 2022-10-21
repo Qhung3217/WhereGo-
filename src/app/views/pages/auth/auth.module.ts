@@ -10,7 +10,7 @@ import { WritterLoginModule } from './writter-login/writter-login.module';
 
 const routes: Routes = [
   { path: 'traveler/login', component: LoginComponent },
-  { path: 'writter/login', component: WritterLoginComponent },
+  { path: 'writer/login', component: WritterLoginComponent },
   { path: 'traveler/register', component: RegisterComponent },
 ];
 

@@ -15,7 +15,7 @@ export class LoginComponent {
   handleSubmit(loginForm: NgForm) {
     this.isFetching = true;
     this.authService
-      .login(loginForm.value['email'], loginForm.value['password'])
+      .travelerLogin(loginForm.value['email'], loginForm.value['password'])
       .subscribe({
         next: (res) => {
           console.log('Login successfull: ', res);

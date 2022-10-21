@@ -1,15 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginResponse } from '../interfaces/login-response.interface';
+import { TravelerService } from './traveler.service';
+import { WriterService } from './writer.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private cookie: CookieService) {}
+  travelerCredential = new BehaviorSubject<string | null>(null);
+  writerCredential = new BehaviorSubject<string | null>(null);
+  constructor(
+    private http: HttpClient,
+    private cookie: CookieService,
+    private travelerService: TravelerService,
+    private writerService: WriterService
+  ) {}
   register(
     email: string,
     password: string,
@@ -34,7 +43,7 @@ export class AuthService {
       payload
     );
   }
-  login(email: string, password: string) {
+  travelerLogin(email: string, password: string) {
     return this.http
       .post<LoginResponse>(
         environment.apiURL + 'login',
@@ -48,9 +57,9 @@ export class AuthService {
           },
         }
       )
-      .pipe(tap((res) => this.handleAuthentication(res.token)));
+      .pipe(tap((res) => this.handleAuthentication(res.username, res.token)));
   }
-  writterLogin(email: string, password: string) {
+  writerLogin(email: string, password: string) {
     return this.http
       .post<LoginResponse>(
         environment.apiURL + 'login',
@@ -60,13 +69,35 @@ export class AuthService {
         },
         {
           params: {
-            type: 'writter',
+            type: 'writer',
           },
         }
       )
-      .pipe(tap((res) => this.handleAuthentication(res.token)));
+      .pipe(
+        tap((res) => this.handleAuthentication(res.username, res.token, true))
+      );
   }
-  private handleAuthentication(token: string) {
-    this.cookie.set('token', token);
+  writerLogout() {
+    this.cookie.deleteAll();
+    this.writerService.remove();
+  }
+  travelerLogout() {
+    this.cookie.deleteAll();
+    this.travelerService.remove();
+  }
+  private handleAuthentication(
+    username: string,
+    token: string,
+    isWritter = false
+  ) {
+    if (isWritter) {
+      this.cookie.set('writer', token);
+      this.writerLogout();
+      this.writerService.getDetail(username, token);
+    } else {
+      this.cookie.set('traveler', token);
+      this.travelerLogout();
+      this.travelerService.getDetail(username, token);
+    }
   }
 }
