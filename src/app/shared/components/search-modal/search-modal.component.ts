@@ -20,10 +20,11 @@ export class SearchModalComponent implements OnInit {
     | 'destination'
     | 'all'
     | 'article' = 'all';
+  @Input() placeholder: string = 'Where to?';
+
   @Output() closeEmit = new EventEmitter();
   @ViewChild('input', { static: true }) input?: ElementRef;
   searchKey?: string;
-  placeholder: string = 'Where to?';
   constructor() {
     this.setPlaceholder();
   }

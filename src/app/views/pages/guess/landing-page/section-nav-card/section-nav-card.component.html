@@ -25,6 +25,7 @@
   </div>
   <app-search-modal
     [searchType]="searchModalConfig.type"
+    [placeholder]="searchModalConfig.placeholder!"
     *ngIf="searchModalConfig.show"
     (closeEmit)="searchModalConfig.show = false"
   ></app-search-modal>
