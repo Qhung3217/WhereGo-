@@ -3,10 +3,14 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { ImageService } from 'src/app/core/services/image.service';
+import { SearchService } from 'src/app/core/services/search.service';
 
 @Component({
   selector: 'app-search-modal',
@@ -25,14 +29,64 @@ export class SearchModalComponent implements OnInit {
   @Output() closeEmit = new EventEmitter();
   @ViewChild('input', { static: true }) input?: ElementRef;
   searchKey?: string;
-  constructor() {
+  searchSuggestions: any[] = [];
+  isSearching = false;
+  constructor(
+    private searchService: SearchService,
+    public imageService: ImageService
+  ) {
     this.setPlaceholder();
   }
   ngOnInit() {
     this.input?.nativeElement.focus();
   }
+
   handleClose() {
     this.closeEmit.emit(true);
+  }
+  handleKeyPress() {
+    switch (this.searchType) {
+      case 'restaurant':
+        this.isSearching = true;
+
+        this.searchService
+          .restaurantSearch(this.searchKey || '')
+          .subscribe((res) => {
+            this.searchSuggestions = [...res];
+            this.isSearching = false;
+          });
+        break;
+      case 'destination':
+        this.isSearching = true;
+        this.searchService
+          .placeSearch(this.searchKey || '')
+          .subscribe((res) => {
+            this.searchSuggestions = [...res];
+            this.isSearching = false;
+          });
+
+        break;
+      case 'article':
+        this.isSearching = true;
+        this.searchService
+          .articleSearch(this.searchKey || '')
+          .subscribe((res) => {
+            this.searchSuggestions = [...res];
+            this.isSearching = false;
+          });
+        break;
+
+      default:
+        this.isSearching = true;
+        this.searchService
+          .hotelSearch(this.searchKey || '')
+          .subscribe((res) => {
+            this.searchSuggestions = [...res];
+            this.isSearching = false;
+          });
+
+        break;
+    }
   }
   private setPlaceholder() {
     switch (this.searchType) {
