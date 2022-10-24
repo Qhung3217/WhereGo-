@@ -10,9 +10,8 @@ import {
   LAZYLOAD_IMAGE_HOOKS,
   ScrollHooks,
 } from 'ng-lazyload-image';
-import { CardModule } from 'src/app/shared/components/card/card.module';
+
 import { RouterModule } from '@angular/router';
-import { SavedActionModule } from 'src/app/shared/directives/saved-action/saved-action.module';
 
 @NgModule({
   declarations: [SavedPageComponent, SavedItemComponent],

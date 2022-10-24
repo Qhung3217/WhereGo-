@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { SearchType } from '../interfaces/search-modal-config.interface';
 import { Article } from '../models/article.model';
@@ -26,7 +27,7 @@ export class SearchService {
   private search(category: SearchType, keyword: string) {
     let params = new HttpParams();
     if (category == 'destination') params = params.append('category', 'place');
-    else params = params.append('keyword', category);
+    else params = params.append('category', category);
     params = params.append('keyword', keyword);
     return this.http.get<Hotel[] | Restaurant[] | Place[] | Article[]>(
       environment.apiURL + 'search',

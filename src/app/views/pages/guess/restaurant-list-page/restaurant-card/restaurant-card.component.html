@@ -1,7 +1,43 @@
-<app-list-item
-  [thumb]="restaurant.img"
-  [name]="restaurant.name"
-  [rating]="restaurant.rating"
-  [categories]="restaurant.cuisines"
-  [isItemHotel]="false"
-></app-list-item>
+<div class="page-list-item">
+  <figure class="page-list-item__thumb">
+    <img
+      [src]="imageService.render(restaurant.thumbnail)"
+      [alt]="restaurant.name"
+    />
+    <div
+      class="page-list-item__heart cta"
+      [appSavedAction]="'restaurant'"
+      [item]="restaurant"
+    >
+      <app-heart-icon class="page-list-item__icon"></app-heart-icon>
+      <app-heart-solid-icon
+        class="page-list-item__icon page-list-item__icon--active"
+      ></app-heart-solid-icon>
+    </div>
+  </figure>
+  <div class="page-list-item__content">
+    <a
+      [routerLink]="['/restaurant', restaurant.id]"
+      class="page-list-item__name"
+      >{{ restaurant.name }}</a
+    >
+    <div class="page-list-item__infor page-list-item__infor--restaurant">
+      <div class="page-list-item__infor-group">
+        <div class="page-list-item__infor-group-rating">
+          <app-rating-decimar
+            [rate]="restaurant.averageRating"
+          ></app-rating-decimar>
+          <span class="page-list-item__infor-group-review-count"
+            >{{ restaurant.totalRating | number }} reviews</span
+          >
+        </div>
+
+        <div class="page-list-item__infor-group-categories">
+          <div class="page-list-item__infor-group-category">
+            {{ restaurant.cuisines.join(", ") }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

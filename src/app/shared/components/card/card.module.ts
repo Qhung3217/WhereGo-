@@ -10,7 +10,7 @@ import {
   LAZYLOAD_IMAGE_HOOKS,
   ScrollHooks,
 } from 'ng-lazyload-image';
-import { SavedActionModule } from '../../directives/saved-action/saved-action.module';
+import { SavedActionDirectiveModule } from '../../directives/saved-action/saved-action-directive.module';
 
 @NgModule({
   declarations: [CardComponent],
@@ -21,7 +21,7 @@ import { SavedActionModule } from '../../directives/saved-action/saved-action.mo
     LazyLoadImageModule,
 
     RatingDecimarModule,
-    SavedActionModule,
+    SavedActionDirectiveModule,
 
     HeartIconModule,
     HeartSolidIconModule,

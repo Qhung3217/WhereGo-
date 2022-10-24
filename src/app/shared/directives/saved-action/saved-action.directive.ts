@@ -40,21 +40,21 @@ export class SavedActionDirective implements OnInit {
       case 'restaurant':
         const restaurantList =
           this.restaurantService.getSavedListInLocal() as RestaurantLocalStorage[];
-        this.isHeartActive = !!restaurantList.find(
+        this.isHeartActive = !!restaurantList?.find(
           (item) => item.data.id === this.item.id
         );
         return;
       case 'destination':
         const placeList =
           this.placeService.getSavedListInLocal() as PlaceLocalStorage[];
-        this.isHeartActive = !!placeList.find(
+        this.isHeartActive = !!placeList?.find(
           (item) => item.data.id === this.item.id
         );
         return;
       default:
         const list =
           this.hotelService.getSavedListInLocal() as HotelLocalStorage[];
-        this.isHeartActive = !!list.find(
+        this.isHeartActive = !!list?.find(
           (item) => item.data.id === this.item.id
         );
         return;

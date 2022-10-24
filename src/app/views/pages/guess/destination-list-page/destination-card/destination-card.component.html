@@ -1,7 +1,43 @@
-<app-list-item
-  [thumb]="destination.img"
-  [name]="destination.name"
-  [type]="destination?.type ? destination.type : null"
-  [rating]="destination.rating"
-  [isItemHotel]="false"
-></app-list-item>
+<div class="page-list-item">
+  <figure class="page-list-item__thumb">
+    <img
+      [src]="imageService.render(destination.image)"
+      [alt]="destination.name"
+    />
+    <div
+      class="page-list-item__heart cta"
+      [appSavedAction]="'destination'"
+      [item]="destination"
+    >
+      <app-heart-icon class="page-list-item__icon"></app-heart-icon>
+      <app-heart-solid-icon
+        class="page-list-item__icon page-list-item__icon--active"
+      ></app-heart-solid-icon>
+    </div>
+  </figure>
+  <div class="page-list-item__content">
+    <a
+      [routerLink]="['/destination', destination.id]"
+      class="page-list-item__name"
+      >{{ destination.name }}</a
+    >
+    <div class="page-list-item__infor page-list-item__infor--restaurant">
+      <div class="page-list-item__infor-group">
+        <div class="page-list-item__infor-group-rating">
+          <app-rating-decimar
+            [rate]="destination.averageRating"
+          ></app-rating-decimar>
+          <span class="page-list-item__infor-group-review-count"
+            >{{ destination.totalRating | number }} reviews</span
+          >
+        </div>
+
+        <div class="page-list-item__infor-group-categories">
+          <div class="page-list-item__infor-group-category">
+            {{ destination.placeTypes.join(", ") }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,4 +7,4 @@ import { SavedActionDirective } from './saved-action.directive';
   imports: [CommonModule],
   exports: [SavedActionDirective],
 })
-export class SavedActionModule {}
+export class SavedActionDirectiveModule {}

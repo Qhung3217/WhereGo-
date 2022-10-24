@@ -1,31 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Restaurant } from 'src/app/core/models/restaurant.model';
+import { SearchService } from 'src/app/core/services/search.service';
 
 @Component({
   selector: 'app-restaurant-list-page',
   templateUrl: './restaurant-list-page.component.html',
   styleUrls: ['./restaurant-list-page.component.scss'],
 })
-export class RestaurantListPageComponent {
+export class RestaurantListPageComponent implements OnInit, OnDestroy {
   filterSelected = ['Restaurants', 'Breakfast'];
-  restaurants = [
-    {
-      img: 'https://picsum.photos/500?random=1',
-      name: 'Tomato - Pad Thai',
-      rating: '4.5',
-      cuisines: ['Thai'],
-    },
-    {
-      img: 'https://picsum.photos/500?random=2',
-      name: "L'Escale - Sky Garden & Lounge",
-      rating: '4.7',
-      cuisines: ['French', 'European'],
-    },
-    {
-      img: 'https://picsum.photos/500?random=3',
-      name: 'Phuong Nam Restaurant',
-      rating: '3.5',
-      cuisines: ['Vietnamese'],
-    },
-  ];
-  constructor() {}
+  restaurants!: Restaurant[];
+  restaurantSub!: Subscription;
+  isFetching = false;
+  constructor(
+    private searchService: SearchService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.restaurantSub = this.route.queryParams.subscribe((params: Params) => {
+      const keyword = params['keyword'];
+      console.log('list: ', keyword);
+      if (keyword) {
+        this.isFetching = true;
+        this.fetchData(keyword);
+      }
+    });
+  }
+  ngOnDestroy(): void {
+    if (this.restaurantSub) this.restaurantSub.unsubscribe();
+  }
+  private fetchData(keyword: string) {
+    this.searchService.restaurantSearch(keyword).subscribe({
+      next: (res) => {
+        this.restaurants = [...(res as Restaurant[])];
+        this.isFetching = false;
+      },
+      error: () => (this.isFetching = false),
+    });
+  }
 }

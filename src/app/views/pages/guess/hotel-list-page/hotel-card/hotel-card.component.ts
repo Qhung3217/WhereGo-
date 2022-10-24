@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Hotel } from 'src/app/core/models/hotel.model';
+import { ImageService } from 'src/app/core/services/image.service';
 
 @Component({
   selector: 'app-hotel-card',
@@ -6,6 +8,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./hotel-card.component.scss'],
 })
 export class HotelCardComponent {
-  @Input() hotel: any;
-  constructor() {}
+  @Input() hotel!: Hotel;
+  constructor(public imageService: ImageService) {}
 }

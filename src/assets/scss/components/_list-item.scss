@@ -1,7 +1,4 @@
-@import "settings/variables/color";
-@import "settings/variables/breakpoint";
-@import "settings/mixin";
-.item {
+.page-list-item {
   display: flex;
   background-color: white;
   border: 1px solid #e0e0e0;
@@ -36,7 +33,7 @@
   &__icon {
     width: 2rem;
     height: 2rem;
-    ::ng-deep svg {
+    svg {
       width: 100%;
       height: 100%;
     }
@@ -44,10 +41,10 @@
   &__icon--active {
     display: none;
   }
-  &__heart--active &__icon {
+  .heart--active &__icon {
     display: none;
   }
-  &__heart--active &__icon--active {
+  .heart--active &__icon--active {
     display: block;
   }
   &__content {
@@ -123,36 +120,36 @@
     margin-left: 0.8rem;
   }
 }
-.item__infor--hotel {
+.page-list-item .page-list-item__infor--hotel {
   grid-template-columns: 200px 1fr;
 }
-.item__infor--restaurant {
-  .item__infor-group {
+.page-list-item .page-list-item__infor--restaurant {
+  .page-list-item__infor-group {
     padding-left: 0;
   }
-  .item__infor-group-rating {
+  .page-list-item__infor-group-rating {
     margin-bottom: 0.4rem;
   }
-  .item__infor-group-category {
+  .page-list-item__infor-group-category {
     text-decoration: none;
   }
 }
 @include maxWidth($screen-xl) {
-  .item {
+  .page-list-item {
     &__thumb {
       width: 25rem;
     }
   }
-  .item__infor-hotel {
+  .page-list-item .page-list-item__infor-hotel {
     grid-template-columns: 150px 1fr;
 
-    .item__infor-group {
+    .page-list-item__infor-group {
       padding-left: 2.5rem;
     }
   }
 }
 @include maxWidth($screen-md) {
-  .item {
+  .page-list-item {
     flex-direction: column;
     &__thumb {
       width: 100%;
@@ -177,7 +174,7 @@
       margin-bottom: 1.2rem;
     }
   }
-  .item__infor--hotel {
+  .page-list-item .page-list-item__infor--hotel {
     grid-template-columns: 1fr;
     row-gap: 1rem;
   }

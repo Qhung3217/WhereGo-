@@ -1,32 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Hotel } from 'src/app/core/models/hotel.model';
+import { HotelService } from 'src/app/core/services/hotel.service';
+import { ImageService } from 'src/app/core/services/image.service';
+import { SearchService } from 'src/app/core/services/search.service';
 
 @Component({
   selector: 'app-hotel-list-page',
   templateUrl: './hotel-list-page.component.html',
   styleUrls: ['./hotel-list-page.component.scss'],
 })
-export class HotelListPageComponent {
+export class HotelListPageComponent implements OnInit, OnDestroy {
   filterSelected = ['Free parking', 'Pool', 'Breakfast included', 'Free wifi'];
-  hotels = [
-    {
-      img: 'https://picsum.photos/500?random=1',
-      name: 'Sheraton Can Tho',
-      rating: '4.5',
-      amenities: ['Free wifi', 'Pool', 'Breakfast included'],
-      property: 'Lodge',
-    },
-    {
-      img: 'https://picsum.photos/500?random=2',
-      name: 'Muong Thanh',
-      rating: '4.7',
-      amenities: ['Pool', 'Breakfast included'],
-    },
-    {
-      img: 'https://picsum.photos/500?random=3',
-      name: 'Green Village Mekhong',
-      rating: '3.5',
-      amenities: ['Pool', 'Breakfast included'],
-    },
-  ];
-  constructor() {}
+  hotels!: Hotel[];
+  hotelSub?: Subscription;
+  isFetching = false;
+  constructor(
+    private searchService: SearchService,
+    private route: ActivatedRoute
+  ) {}
+  ngOnInit(): void {
+    this.hotelSub = this.route.queryParams.subscribe((params: Params) => {
+      const keyword = params['keyword'];
+      console.log('list: ', keyword);
+      if (keyword) {
+        this.isFetching = true;
+        this.fetchData(keyword);
+      }
+    });
+  }
+  ngOnDestroy(): void {
+    if (this.hotelSub) this.hotelSub.unsubscribe();
+  }
+  private fetchData(keyword: string) {
+    this.searchService.hotelSearch(keyword).subscribe({
+      next: (res) => {
+        this.hotels = [...(res as Hotel[])];
+        this.isFetching = false;
+      },
+      error: () => (this.isFetching = false),
+    });
+  }
 }
