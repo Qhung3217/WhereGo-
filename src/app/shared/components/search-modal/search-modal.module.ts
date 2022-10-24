@@ -8,12 +8,17 @@ import { UtensilIconModule } from '../../icons/utensil-icon/utensil-icon.module'
 import { MapLocationDotIconModule } from '../../icons/map-location-dot-icon/map-location-dot-icon.module';
 import { XIconModule } from '../../icons/x-icon/x-icon.module';
 import { NewspaperIconModule } from '../../icons/newspaper-icon/newspaper-icon.module';
+import { LoadingSpinnerModule } from '../loading-spinner/loading-spinner.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [SearchModalComponent],
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
+
+    LoadingSpinnerModule,
 
     SearchIconModule,
     BedIconModule,

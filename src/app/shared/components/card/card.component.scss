@@ -60,15 +60,23 @@
   &__icon--active {
     display: none;
   }
-  &__heart--active &__icon,
-  &__heart:hover &__icon {
+  .heart--active &__icon,
+  .heart:hover &__icon {
     display: none;
   }
-  &__heart--active &__icon--active,
-  &__heart:hover &__icon--active {
+  .heart--active &__icon--active,
+  .heart:hover &__icon--active {
     display: block;
   }
   &__content {
+  }
+  &__sub-title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 2rem;
+    letter-spacing: 0.05rem;
+    color: #333;
+    text-transform: uppercase;
   }
   &__title {
     @extend %truncate;

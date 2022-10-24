@@ -1,4 +1,6 @@
-import { Review } from './review.model';
+import { Cuisine } from './cuisine.model';
+import { Feature } from './feature.model';
+import { Meal } from './meal.model';
 
 export class Restaurant {
   constructor(
@@ -6,7 +8,9 @@ export class Restaurant {
     public name: string,
     public address: string,
     public thumbnail: string,
-    public cuisines: string,
+    public cuisines: Cuisine[],
+    public meals: Meal[],
+    public features: Feature[],
     public districtName: string,
     public averageRating: number,
     public totalRating: number

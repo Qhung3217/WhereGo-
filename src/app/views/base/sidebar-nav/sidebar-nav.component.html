@@ -8,7 +8,9 @@
       routerLinkActive="sidebar-nav__item--active"
       *ngFor="let navItem of navItems"
     >
-      <a [routerLink]="navItem.href">{{ navItem.label }}</a>
+      <a [routerLink]="navItem.href" [queryParamsHandling]="'merge'">{{
+        navItem.label
+      }}</a>
     </li>
   </ul>
 </nav>

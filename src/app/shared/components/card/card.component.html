@@ -1,10 +1,6 @@
 <div class="relative">
   <!-- add class heart__icon--active to change icon -->
-  <div
-    class="card__heart cta"
-    [ngClass]="{ 'card__heart--active': isHeartActive }"
-    (click)="handleHeartClick($event)"
-  >
+  <div class="card__heart cta" [appSavedAction]="category" [item]="item">
     <app-heart-icon class="card__icon"></app-heart-icon>
     <app-heart-solid-icon
       class="card__icon card__icon--active"
@@ -28,18 +24,21 @@
     </figure>
 
     <div class="card__content">
+      <h3 class="card__sub-title" *ngIf="category === 'restaurant'">
+        {{ item.cuisines.join(", ") }}
+      </h3>
       <h1 class="card__title">
         {{ item?.name }}
       </h1>
       <div class="card__rating">
-        <app-rating-decimar></app-rating-decimar>
-        <span class="rating-total"> 1,510 </span>
+        <app-rating-decimar [rate]="item.averageRating"></app-rating-decimar>
+        <span class="rating-total">{{ item.totalItems | number }}</span>
       </div>
     </div>
     <!-- when card don't have tag show price instead -->
-    <div class="card__bottom">
+    <div class="card__bottom" *ngIf="category !== 'restaurant'">
       <span class="card__price"> from ${{ item?.price }}/night </span>
-      <span class="card__tag"> Moutains, Volcanos </span>
+      <span class="card__tag"> {{ item.districtName }} </span>
     </div>
   </a>
 </div>

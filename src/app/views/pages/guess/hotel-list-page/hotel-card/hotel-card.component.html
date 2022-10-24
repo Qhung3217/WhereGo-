@@ -1,7 +1,46 @@
-<app-list-item
-  [thumb]="hotel.img"
-  [name]="hotel.name"
-  [type]="hotel?.type ? hotel.type : null"
-  [rating]="hotel.rating"
-  [categories]="hotel.amenities"
-></app-list-item>
+<div class="page-list-item">
+  <figure class="page-list-item__thumb">
+    <img [src]="imageService.render(hotel.image)" [alt]="hotel.name" />
+    <div
+      class="page-list-item__heart cta"
+      [appSavedAction]="'hotel'"
+      [item]="hotel"
+    >
+      <app-heart-icon class="page-list-item__icon"></app-heart-icon>
+      <app-heart-solid-icon
+        class="page-list-item__icon page-list-item__icon--active"
+      ></app-heart-solid-icon>
+    </div>
+  </figure>
+  <div class="page-list-item__content">
+    <a [routerLink]="['/hotel', hotel.id]" class="page-list-item__name">{{
+      hotel.name
+    }}</a>
+    <div class="page-list-item__infor page-list-item__infor--hotel">
+      <div class="page-list-item__infor-cta">
+        <a
+          [routerLink]="['/hotel', hotel.id]"
+          class="btn page-list-item__infor-btn"
+          >Go to details</a
+        >
+      </div>
+      <div class="page-list-item__infor-group">
+        <div class="page-list-item__infor-group-rating">
+          <app-rating-decimar [rate]="hotel.averageRating"></app-rating-decimar>
+          <span class="page-list-item__infor-group-review-count"
+            >{{ hotel.totalRating | number }} reviews</span
+          >
+        </div>
+
+        <div class="page-list-item__infor-group-categories">
+          <div
+            class="page-list-item__infor-group-category"
+            *ngFor="let amenity of hotel.propertyAmenities.slice(0, 5)"
+          >
+            {{ amenity }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

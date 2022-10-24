@@ -3,7 +3,12 @@
   [childLevels]="[{ level: 'hotel A', link: 'hotela' }]"
 ></app-breadcrumb>
 <div class="container mb-8">
-  <div class="row">
+  <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
+  <div class="row search-empty" *ngIf="!destinations">
+    <h1>No Result Found</h1>
+    <aside>We did not find any destinations for your search</aside>
+  </div>
+  <div class="row" *ngIf="destinations">
     <div class="col col-lg-3 filter-box" appDropdown>
       <div class="filter-mobile__btn">
         <app-sliders-icon class="filter-mobile__icon"></app-sliders-icon>

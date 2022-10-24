@@ -2,9 +2,13 @@
   <div class="modal__overlay" (click)="handleClose()"></div>
   <app-x-icon class="modal__close" (click)="handleClose()"></app-x-icon>
   <div class="modal__wrap search__wrap">
-    <form class="search-form">
+    <form class="search-form" (ngSubmit)="onSubmit()" NgForm>
       <div class="form-group">
-        <app-search-icon class="icon"></app-search-icon>
+        <app-search-icon
+          class="icon"
+          [ngClass]="{ 'icon--disabled': !searchKey || searchKey === '' }"
+          (click)="onSubmit()"
+        ></app-search-icon>
         <div class="form-control">
           <input
             type="text"
@@ -13,6 +17,7 @@
             [(ngModel)]="searchKey"
             autocomplete="off"
             #input
+            (ngModelChange)="handleKeyPress()"
           />
         </div>
       </div>
@@ -23,7 +28,12 @@
     >
       <ul class="suggestion-list">
         <li>
-          <a href="#" class="suggestion-item">
+          <a
+            routerLink="/hotel"
+            [queryParams]="{ keyword: searchKey }"
+            class="suggestion-item"
+            (click)="handleClose()"
+          >
             <div class="suggestion__icon">
               <app-bed-icon></app-bed-icon>
             </div>
@@ -35,7 +45,12 @@
           </a>
         </li>
         <li>
-          <a href="#" class="suggestion-item">
+          <a
+            routerLink="/restaurant"
+            [queryParams]="{ keyword: searchKey }"
+            class="suggestion-item"
+            (click)="handleClose()"
+          >
             <div class="suggestion__icon">
               <app-utensil-icon></app-utensil-icon>
             </div>
@@ -47,7 +62,12 @@
           </a>
         </li>
         <li>
-          <a href="#" class="suggestion-item">
+          <a
+            routerLink="/destination"
+            [queryParams]="{ keyword: searchKey }"
+            class="suggestion-item"
+            (click)="handleClose()"
+          >
             <div class="suggestion__icon">
               <app-map-location-dot-icon></app-map-location-dot-icon>
             </div>
@@ -59,13 +79,43 @@
           </a>
         </li>
         <li>
-          <a href="#" class="suggestion-item">
+          <a
+            routerLink="travel-articles"
+            [queryParams]="{ keyword: searchKey }"
+            class="suggestion-item"
+            (click)="handleClose()"
+          >
             <div class="suggestion__icon">
               <app-newspaper-icon></app-newspaper-icon>
             </div>
             <div class="suggestion__text">
               <h1>
                 <strong>{{ searchKey }}</strong> in travel article?
+              </h1>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      class="search-suggestion relative"
+      *ngIf="searchType !== 'all' && searchKey && searchKey !== ''"
+      style="min-height: '10rem'"
+    >
+      <app-loading-spinner *ngIf="isSearching"></app-loading-spinner>
+      <ul class="suggestion-list">
+        <li *ngFor="let suggest of searchSuggestions">
+          <a [routerLink]="[searchType, suggest.id]" class="suggestion-item">
+            <figure class="suggestion__thumb">
+              <img
+                [src]="imageService.render(suggest.image || suggest.thumbnail)"
+                [alt]="suggest.name"
+              />
+            </figure>
+            <div class="suggestion__text">
+              <h1>
+                <strong>{{ suggest.name }}</strong> , {{ suggest.districtName }}
               </h1>
             </div>
           </a>

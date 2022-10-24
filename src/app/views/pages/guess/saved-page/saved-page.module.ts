@@ -5,11 +5,21 @@ import { SavedItemComponent } from './saved-item/saved-item.component';
 import { HeartIconModule } from 'src/app/shared/icons/heart-icon/heart-icon.module';
 import { HeartSolidIconModule } from 'src/app/shared/icons/heart-solid-icon/heart-solid-icon.module';
 import { RatingDecimarModule } from 'src/app/shared/components/rating-decimar/rating-decimar.module';
+import {
+  LazyLoadImageModule,
+  LAZYLOAD_IMAGE_HOOKS,
+  ScrollHooks,
+} from 'ng-lazyload-image';
+
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [SavedPageComponent, SavedItemComponent],
   imports: [
     CommonModule,
+    RouterModule,
+
+    LazyLoadImageModule,
 
     RatingDecimarModule,
 
@@ -17,5 +27,6 @@ import { RatingDecimarModule } from 'src/app/shared/components/rating-decimar/ra
     HeartSolidIconModule,
   ],
   exports: [SavedPageComponent, SavedItemComponent],
+  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }],
 })
 export class SavedPageModule {}

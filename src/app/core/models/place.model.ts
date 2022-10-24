@@ -1,4 +1,4 @@
-import { Review } from './review.model';
+import { PlaceType } from './place-type.model';
 
 export class Place {
   constructor(
@@ -6,6 +6,7 @@ export class Place {
     public name: string,
     public image: string,
     public districtName: string,
+    public placeTypes: PlaceType[],
     public averageRating: number,
     public totalRating: number
   ) {}
