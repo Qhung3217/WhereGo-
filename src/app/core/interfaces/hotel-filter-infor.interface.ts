@@ -6,4 +6,6 @@ export interface HotelFilterInfor {
   roomFeatures: RoomFeature[];
   roomTypes: RoomType[];
   propertyAmenities: PropertyAmenity[];
+  rating?: number;
+  hotelClasses?: any[];
 }

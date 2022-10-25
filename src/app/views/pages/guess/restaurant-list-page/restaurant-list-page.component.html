@@ -14,7 +14,7 @@
       <div class="col col-lg-3 filter-box" appDropdown>
         <div class="filter-mobile__btn">
           <app-sliders-icon class="filter-mobile__icon"></app-sliders-icon>
-          <span>Filter • 2</span>
+          <span>Filter • {{ filterSelected.length }}</span>
         </div>
         <div class="filter__modal">
           <div class="filter__overlay"></div>
@@ -69,7 +69,7 @@
               class="property__item"
               *ngFor="
                 let restaurant of restaurants
-                  | paginate: { itemsPerPage: 1, currentPage: page }
+                  | paginate: { itemsPerPage: 10, currentPage: page }
               "
               [restaurant]="restaurant"
             ></app-restaurant-card>

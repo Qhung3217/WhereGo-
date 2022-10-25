@@ -94,7 +94,8 @@ export class RestaurantListPageComponent implements OnInit, OnDestroy {
 
     /* ------------------ RESULT ------------------ */
     console.log('restaurant list: ', filterInfor, restemp);
-    if (isFiltered) this.restaurants = [...restemp];
+    if (isFiltered && this.restaurants.length > 0)
+      this.restaurants = [...restemp];
     else this.fetchData(this.keyword);
   }
 
@@ -132,22 +133,5 @@ export class RestaurantListPageComponent implements OnInit, OnDestroy {
         type: 'meal',
       });
     });
-    //   this.filterData.push({
-    //     filters: [
-    //       {
-    //         name: '5 star',
-    //         id: '5 star',
-    //       },
-    //       {
-    //         name: '4 star',
-    //         id: '4 star',
-    //       },
-    //       {
-    //         name: '3 star',
-    //         id: '3 star',
-    //       },
-    //     ],
-    //     nameGroup: 'Hotel class',
-    //   });
   }
 }

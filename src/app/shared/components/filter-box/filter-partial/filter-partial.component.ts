@@ -60,9 +60,13 @@ export class FilterPartialComponent implements OnInit, OnDestroy {
     } else if (removeFilter === 'rating') {
       this.ratingEvent.emit(0);
     } else {
-      const newFilterApply = this.filterApplies.filter(
-        (filterApply) => filterApply.type !== removeFilter.value
-      );
+      const newFilterApply = this.filterApplies.filter((filterApply) => {
+        return (
+          (filterApply?.type && filterApply.type !== removeFilter.value) ||
+          (filterApply?.name && filterApply.name !== removeFilter.value) ||
+          (filterApply?.feature && filterApply.feature !== removeFilter.value)
+        );
+      });
       console.log(
         JSON.stringify(newFilterApply),
         JSON.stringify(this.filterApplies),

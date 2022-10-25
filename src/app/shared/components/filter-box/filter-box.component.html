@@ -4,10 +4,9 @@
     [filterObject]="filterObject"
     (filterEvent)="handleFilterEvent($event)"
   ></app-restaurant-filter>
-
-  <!-- <app-filter-partial
+  <app-hotel-filter
     *ngIf="category === 'hotel'"
-    nameGroup="Traveler rating"
-    [isFilterRating]="true"
-  ></app-filter-partial> -->
+    [filterObject]="filterObject"
+    (filterEvent)="handleFilterEvent($event)"
+  ></app-hotel-filter>
 </div>
