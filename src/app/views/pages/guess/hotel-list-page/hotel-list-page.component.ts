@@ -16,6 +16,7 @@ export class HotelListPageComponent implements OnInit, OnDestroy {
   hotels!: Hotel[];
   hotelSub?: Subscription;
   isFetching = false;
+
   constructor(
     private searchService: SearchService,
     private route: ActivatedRoute

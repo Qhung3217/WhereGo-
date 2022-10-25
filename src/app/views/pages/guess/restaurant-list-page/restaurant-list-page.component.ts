@@ -22,6 +22,7 @@ export class RestaurantListPageComponent implements OnInit, OnDestroy {
   isFetching = false;
   keyword!: string;
   removeFilter: any = false;
+  page: number = 1;
   constructor(
     private searchService: SearchService,
     private route: ActivatedRoute,

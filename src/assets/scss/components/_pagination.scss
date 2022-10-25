@@ -1,0 +1,110 @@
+.global-pagination {
+  .ngx-pagination {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+  }
+  .ngx-pagination a:hover {
+    background-color: #f2f2f2;
+  }
+  li,
+  .ngx-pagination a {
+    font-size: 1.4rem;
+    line-height: 4rem;
+    font-weight: 600;
+    color: $primary-color !important;
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+    border-color: #f2f2f2;
+
+    padding: 0 !important;
+    border: none;
+  }
+  li.current {
+    background-color: #f2f2f2;
+  }
+
+  .pagination-next,
+  .pagination-previous {
+    padding: 0 !important;
+    margin-right: 0rem;
+    width: fit-content;
+    & > a,
+    & > span {
+      @extend .btn;
+      @extend .btn--primary;
+      border-radius: 0.3rem;
+      width: unset;
+      height: unset;
+      border: 1px solid transparent;
+      background-color: $primary-color;
+      color: white !important;
+      padding: 1rem 1.6rem !important;
+      font-weight: 600;
+      line-height: 1;
+      font-size: 1.6rem;
+    }
+    & > a:hover,
+    & > span:hover {
+      background-color: $primary-color;
+    }
+    & > a:active,
+    & > span:active {
+      color: white !important;
+      background-color: $primary-color !important;
+      border-color: inherit !important;
+      opacity: 0.8;
+    }
+    &.disabled span {
+      border: 1px solid #8c8c8c;
+      color: $primary-color !important;
+      cursor: default;
+      opacity: 0.32;
+      background-color: transparent;
+      pointer-events: none;
+    }
+  }
+  .pagination-previous {
+    margin-right: auto;
+    &:before,
+    a:before {
+      content: unset !important;
+    }
+  }
+  .pagination-next {
+    margin-left: auto;
+    &:after,
+    a:after {
+      content: unset !important;
+    }
+  }
+}
+
+@include maxWidth($screen-lg) {
+  .global-pagination {
+    .ngx-pagination {
+      position: relative;
+      height: 11.8rem;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .pagination-next,
+    .pagination-previous {
+      position: absolute;
+      width: calc(50% - 1.6rem);
+      top: 1.6rem;
+      & > a,
+      & > span {
+        width: 100%;
+      }
+    }
+    .pagination-next {
+      right: 0;
+    }
+    .pagination-previous {
+      left: 0;
+    }
+  }
+}

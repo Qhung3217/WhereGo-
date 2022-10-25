@@ -2,8 +2,9 @@
 @import "settings/variables/breakpoint";
 @import "settings/mixin";
 
-body {
+.page-list {
   background-color: #f2f2f2;
+  padding-bottom: 0.8rem;
 }
 .search-empty {
   text-align: center;
