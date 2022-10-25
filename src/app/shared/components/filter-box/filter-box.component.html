@@ -1,4 +1,13 @@
 <div class="filter-box panel">
-  <app-filter-partial class="filter-box__list"></app-filter-partial>
-  <app-filter-partial class="filter-box__list"></app-filter-partial>
+  <app-restaurant-filter
+    *ngIf="category === 'restaurant'"
+    [filterObject]="filterObject"
+    (filterEvent)="handleFilterEvent($event)"
+  ></app-restaurant-filter>
+
+  <!-- <app-filter-partial
+    *ngIf="category === 'hotel'"
+    nameGroup="Traveler rating"
+    [isFilterRating]="true"
+  ></app-filter-partial> -->
 </div>

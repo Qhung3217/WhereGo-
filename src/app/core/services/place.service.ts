@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { PlaceFilterInfor } from '../interfaces/place-filter-infor.interface';
 import { PlaceLocalStorage } from '../interfaces/place-local-storage.interface';
 import { PlaceDetail } from '../models/place-detail.model';
 import { Place } from '../models/place.model';
@@ -41,6 +42,9 @@ export class PlaceService {
     return savedList && (JSON.parse(savedList) as PlaceLocalStorage[]);
   }
 
+  getAllFilterInfor() {
+    return this.http.get<PlaceFilterInfor>(environment.apiURL + 'places/info');
+  }
   private storeSavedListInLocal(list: PlaceLocalStorage[]) {
     localStorage.setItem('placeSaved', JSON.stringify(list));
   }

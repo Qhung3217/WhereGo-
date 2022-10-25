@@ -1,13 +1,111 @@
 <div class="filter-partial" #filter>
   <h2 class="filter-partial__title">
-    Popular
+    {{ nameGroup }}
     <app-chevron-right-icon
       class="filter-partial__title-icon"
       (click)="filter.classList.toggle('filter-partial--shortened')"
     ></app-chevron-right-icon>
   </h2>
-  <div class="filter-partial__list">
-    <app-form-group-checkbox></app-form-group-checkbox>
-    <app-form-group-radio></app-form-group-radio>
+  <!-- -------------------------- OTHERS --------------------------- -->
+  <div class="filter-partial__list" *ngIf="!isFilterRating">
+    <div
+      class="checkbox"
+      *ngFor="let filter of filters"
+      (click)="handlCheckboxClick(filter)"
+    >
+      <label class="checkbox">
+        <input
+          type="checkbox"
+          class="checkbox__input"
+          [name]="filter.type || filter.name || filter.feature"
+          [id]="'restaurant' + filter.id"
+          (click)="$event.stopPropagation()"
+        />
+        <span class="checkbox__input-style">
+          <app-check-icon class="checkbox__icon"></app-check-icon>
+        </span>
+      </label>
+
+      <label [for]="'restaurant' + filter.id">{{
+        filter.type || filter.name || filter.feature
+      }}</label>
+    </div>
+  </div>
+  <!-- -------------------------- RATING --------------------------- -->
+  <div class="filter-partial__list" *ngIf="isFilterRating">
+    <div class="radio" (click)="handleRadioClick('4 star')">
+      <label class="radio">
+        <input
+          type="radio"
+          class="radio__input"
+          name="rating"
+          id="rating4"
+          (click)="$event.stopPropagation()"
+        />
+        <span class="radio__input-style">
+          <span class="radio__input-circle"></span>
+        </span>
+      </label>
+
+      <label for="rating4">
+        <app-rating-decimar
+          [rate]="4"
+          class="radio__rating"
+        ></app-rating-decimar>
+        <span>
+          {{ " & up" }}
+        </span>
+      </label>
+    </div>
+
+    <div class="radio" (click)="handleRadioClick('3 star')">
+      <label class="radio">
+        <input
+          type="radio"
+          class="radio__input"
+          name="rating"
+          id="rating3"
+          (click)="$event.stopPropagation()"
+        />
+        <span class="radio__input-style">
+          <span class="radio__input-circle"></span>
+        </span>
+      </label>
+
+      <label for="rating3">
+        <app-rating-decimar
+          [rate]="3"
+          class="radio__rating"
+        ></app-rating-decimar>
+        <span>
+          {{ " & up" }}
+        </span>
+      </label>
+    </div>
+
+    <div class="radio" (click)="handleRadioClick('2 star')">
+      <label class="radio">
+        <input
+          type="radio"
+          class="radio__input"
+          name="rating"
+          id="rating2"
+          (click)="$event.stopPropagation()"
+        />
+        <span class="radio__input-style">
+          <span class="radio__input-circle"></span>
+        </span>
+      </label>
+
+      <label for="rating2">
+        <app-rating-decimar
+          [rate]="2"
+          class="radio__rating"
+        ></app-rating-decimar>
+        <span>
+          {{ " & up" }}
+        </span>
+      </label>
+    </div>
   </div>
 </div>
