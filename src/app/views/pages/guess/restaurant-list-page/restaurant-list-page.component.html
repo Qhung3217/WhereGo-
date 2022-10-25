@@ -6,7 +6,7 @@
   <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
   <div class="row search-empty" *ngIf="!restaurants">
     <h1>No Result Found</h1>
-    <aside>We did not find any hotels for your search</aside>
+    <aside>We did not find any restaurants for your search</aside>
   </div>
   <div class="row" *ngIf="restaurants">
     <div class="col col-lg-3 filter-box" appDropdown>
@@ -25,32 +25,51 @@
           <app-filter-box
             [filterObject]="filterData"
             category="restaurant"
+            (filterChanged)="handleFilterChanged($event)"
           ></app-filter-box>
         </div>
       </div>
     </div>
     <div class="col-12 col-lg-9">
       <div class="property">
-        <div class="property-count">
+        <div class="property-count" *ngIf="filterSelected.length === 0">
+          <span>{{ restaurants.length }}</span>
+          results match your search.
+        </div>
+        <div class="property-count" *ngIf="filterSelected.length > 0">
           <!-- display none if no filters is applied.
           -->
-          <span>42</span> results match your filters.
-          <span class="clear-filters">Clear all filters</span>
+          <span>{{ restaurants.length }}</span>
+          results match your filters.
+          <span class="clear-filters" (click)="handleRemoveFilter('all')"
+            >Clear all filters</span
+          >
         </div>
         <div class="filter-selected">
           <div class="filter" *ngFor="let filter of filterSelected">
-            {{ filter }}
-            <app-x-icon class="filter__icon"></app-x-icon>
+            {{ filter.value }}
+            <app-x-icon
+              class="filter__icon"
+              (click)="
+                filter.type === 'rating'
+                  ? handleRemoveFilter('rating')
+                  : handleRemoveFilter(filter)
+              "
+            ></app-x-icon>
           </div>
         </div>
-        <div class="property__list">
+        <div class="search-empty" *ngIf="restaurants.length === 0">
+          <h1>No Result Found</h1>
+          <aside>We did not find any restaurants for your filters</aside>
+        </div>
+        <div class="property__list" *ngIf="restaurants.length > 0">
           <app-restaurant-card
             class="property__item"
             *ngFor="let restaurant of restaurants"
             [restaurant]="restaurant"
           ></app-restaurant-card>
         </div>
-        <div class="property__pagination">
+        <div class="property__pagination" *ngIf="restaurants.length > 0">
           <app-pagination></app-pagination>
         </div>
       </div>

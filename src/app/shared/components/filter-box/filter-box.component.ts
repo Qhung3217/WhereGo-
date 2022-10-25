@@ -9,7 +9,9 @@ import { FilterObject } from 'src/app/core/interfaces/filter-object.interface';
 export class FilterBoxComponent implements OnInit {
   @Input() filterObject: FilterObject[] = [];
   @Input() category: 'hotel' | 'restaurant' | 'destination' = 'hotel';
+
   @Output() filterChanged = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {
@@ -17,5 +19,6 @@ export class FilterBoxComponent implements OnInit {
   }
   handleFilterEvent(filters: any[]) {
     console.log('filter box: ', filters);
+    this.filterChanged.emit(filters);
   }
 }

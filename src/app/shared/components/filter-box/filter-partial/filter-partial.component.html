@@ -8,18 +8,15 @@
   </h2>
   <!-- -------------------------- OTHERS --------------------------- -->
   <div class="filter-partial__list" *ngIf="!isFilterRating">
-    <div
-      class="checkbox"
-      *ngFor="let filter of filters"
-      (click)="handlCheckboxClick(filter)"
-    >
+    <div class="checkbox" *ngFor="let filter of filters">
       <label class="checkbox">
         <input
           type="checkbox"
           class="checkbox__input"
           [name]="filter.type || filter.name || filter.feature"
+          [checked]="updateUIAfterRemove(filter.id)"
           [id]="'restaurant' + filter.id"
-          (click)="$event.stopPropagation()"
+          (change)="handlCheckboxChange(filter)"
         />
         <span class="checkbox__input-style">
           <app-check-icon class="checkbox__icon"></app-check-icon>
@@ -33,14 +30,14 @@
   </div>
   <!-- -------------------------- RATING --------------------------- -->
   <div class="filter-partial__list" *ngIf="isFilterRating">
-    <div class="radio" (click)="handleRadioClick('4 star')">
+    <div class="radio">
       <label class="radio">
         <input
           type="radio"
           class="radio__input"
           name="rating"
           id="rating4"
-          (click)="$event.stopPropagation()"
+          (change)="handleRadioChange(2)"
         />
         <span class="radio__input-style">
           <span class="radio__input-circle"></span>
@@ -58,14 +55,14 @@
       </label>
     </div>
 
-    <div class="radio" (click)="handleRadioClick('3 star')">
+    <div class="radio">
       <label class="radio">
         <input
           type="radio"
           class="radio__input"
           name="rating"
           id="rating3"
-          (click)="$event.stopPropagation()"
+          (change)="handleRadioChange(2)"
         />
         <span class="radio__input-style">
           <span class="radio__input-circle"></span>
@@ -83,14 +80,14 @@
       </label>
     </div>
 
-    <div class="radio" (click)="handleRadioClick('2 star')">
+    <div class="radio">
       <label class="radio">
         <input
           type="radio"
           class="radio__input"
           name="rating"
           id="rating2"
-          (click)="$event.stopPropagation()"
+          (change)="handleRadioChange(2)"
         />
         <span class="radio__input-style">
           <span class="radio__input-circle"></span>

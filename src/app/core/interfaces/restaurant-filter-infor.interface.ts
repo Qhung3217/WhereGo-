@@ -6,5 +6,5 @@ export interface RestaurantFilterInfor {
   cuisines: Cuisine[];
   meals: Meal[];
   features: Feature[];
-  rating?: string;
+  rating?: number;
 }

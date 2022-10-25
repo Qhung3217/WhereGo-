@@ -42,4 +42,40 @@ export class HotelListPageComponent implements OnInit, OnDestroy {
       error: () => (this.isFetching = false),
     });
   }
+  // private fetchFilterData() {
+  //   this.restaurantService.getAllFilterInfor().subscribe((data) => {
+  //     this.filterData.push({
+  //       filters: data.cuisines,
+  //       nameGroup: 'Cuisines',
+  //       type: 'cuisine',
+  //     });
+  //     this.filterData.push({
+  //       filters: data.features,
+  //       nameGroup: 'Features',
+  //       type: 'feature',
+  //     });
+  //     this.filterData.push({
+  //       filters: data.meals,
+  //       nameGroup: 'Meals',
+  //       type: 'meal',
+  //     });
+  //   });
+  //     this.filterData.push({
+  //       filters: [
+  //         {
+  //           name: '5 star',
+  //           id: '5 star',
+  //         },
+  //         {
+  //           name: '4 star',
+  //           id: '4 star',
+  //         },
+  //         {
+  //           name: '3 star',
+  //           id: '3 star',
+  //         },
+  //       ],
+  //       nameGroup: 'Hotel class',
+  //     });
+  // }
 }

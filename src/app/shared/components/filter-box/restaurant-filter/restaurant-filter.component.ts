@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FilterObject } from 'src/app/core/interfaces/filter-object.interface';
 
 @Component({
@@ -6,22 +13,20 @@ import { FilterObject } from 'src/app/core/interfaces/filter-object.interface';
   templateUrl: './restaurant-filter.component.html',
   styleUrls: ['./restaurant-filter.component.scss'],
 })
-export class RestaurantFilterComponent implements OnInit {
+export class RestaurantFilterComponent {
   @Input() filterObject: FilterObject[] = [];
+
   @Output() filterEvent = new EventEmitter();
 
-  filters: { cuisines: any[]; meals: any[]; features: any[]; rating: string } =
+  filters: { cuisines: any[]; meals: any[]; features: any[]; rating: number } =
     {
       cuisines: [],
       meals: [],
       features: [],
-      rating: '',
+      rating: 0,
     };
   constructor() {}
 
-  ngOnInit(): void {
-    console.log();
-  }
   handleFilterEvent(filterApplies: any[], type: string) {
     switch (type) {
       case 'cuisine':
@@ -38,7 +43,7 @@ export class RestaurantFilterComponent implements OnInit {
     }
     this.filterEvent.emit(this.filters);
   }
-  handleRatingEvent(rating: string) {
+  handleRatingEvent(rating: number) {
     this.filters.rating = rating;
     this.filterEvent.emit(this.filters);
   }
