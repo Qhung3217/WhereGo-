@@ -17,6 +17,11 @@ import { RouterModule } from '@angular/router';
 import { SavedActionDirectiveModule } from 'src/app/shared/directives/saved-action/saved-action-directive.module';
 import { LoadingSpinnerModule } from 'src/app/shared/components/loading-spinner/loading-spinner.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {
+  LazyLoadImageModule,
+  LAZYLOAD_IMAGE_HOOKS,
+  ScrollHooks,
+} from 'ng-lazyload-image';
 @NgModule({
   declarations: [HotelListPageComponent, HotelCardComponent],
   imports: [
@@ -24,6 +29,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RouterModule,
 
     NgxPaginationModule,
+    LazyLoadImageModule,
 
     BreadcrumbModule,
     SidebarNavModule,
@@ -41,5 +47,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SlidersIconModule,
   ],
   exports: [HotelListPageComponent],
+  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }],
 })
 export class HotelListPageModule {}

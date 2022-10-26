@@ -1,7 +1,7 @@
 <div class="breadcrumb container">
   <ul class="breadcrumb__list">
     <li class="breadcrumb__level">
-      <a [routerLink]="rootLevel.link">{{ rootLevel.root }}</a>
+      <a [routerLink]="rootLevel?.link">{{ rootLevel.root }}</a>
 
       <app-chevron-right-icon class="breadcrumb__icon"></app-chevron-right-icon>
     </li>
@@ -9,7 +9,7 @@
       class="breadcrumb__level"
       *ngFor="let child of childLevels; let i = index"
     >
-      <a [routerLink]="child.link">{{ child.level }}</a>
+      <a [routerLink]="child?.link">{{ child.level }}</a>
       <app-chevron-right-icon
         class="breadcrumb__icon"
         [style]="{ display: i === childLevels.length - 1 ? 'none' : 'block' }"

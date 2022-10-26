@@ -3,6 +3,13 @@
     <img
       [src]="imageService.render(restaurant.thumbnail)"
       [alt]="restaurant.name"
+      *ngIf="!isLazy"
+    />
+    <img
+      [lazyLoad]="imageService.render(restaurant.thumbnail)"
+      [defaultImage]="imageService.defaultImage"
+      [alt]="restaurant.name"
+      *ngIf="isLazy"
     />
     <div
       class="page-list-item__heart cta"

@@ -117,6 +117,7 @@ export class RestaurantListPageComponent implements OnInit, OnDestroy {
   }
   private fetchFilterData() {
     this.restaurantService.getAllFilterInfor().subscribe((data) => {
+      this.filterData = [];
       this.filterData.push({
         filters: data.cuisines,
         nameGroup: 'Cuisines',

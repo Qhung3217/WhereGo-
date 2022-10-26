@@ -17,6 +17,11 @@ import { HeartSolidIconModule } from 'src/app/shared/icons/heart-solid-icon/hear
 import { RouterModule } from '@angular/router';
 import { LoadingSpinnerModule } from 'src/app/shared/components/loading-spinner/loading-spinner.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {
+  LazyLoadImageModule,
+  LAZYLOAD_IMAGE_HOOKS,
+  ScrollHooks,
+} from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [DestinationListPageComponent, DestinationCardComponent],
@@ -25,6 +30,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RouterModule,
 
     NgxPaginationModule,
+    LazyLoadImageModule,
 
     BreadcrumbModule,
     SidebarNavModule,
@@ -42,5 +48,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SlidersIconModule,
   ],
   exports: [DestinationListPageComponent, DestinationCardComponent],
+  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }],
 })
 export class DestinationListPageModule {}

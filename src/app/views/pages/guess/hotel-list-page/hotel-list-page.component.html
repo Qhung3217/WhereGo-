@@ -1,7 +1,7 @@
-<app-sidebar-nav></app-sidebar-nav>
+<app-sidebar-nav [findInTitle]="keyword"></app-sidebar-nav>
 <section class="page-list">
   <app-breadcrumb
-    [childLevels]="[{ level: 'hotel A', link: 'hotela' }]"
+    [childLevels]="[{ level: keyword }]"
     class="container"
   ></app-breadcrumb>
   <div class="container relative">
@@ -69,9 +69,11 @@
               class="property__item"
               *ngFor="
                 let hotel of hotels
-                  | paginate: { itemsPerPage: 10, currentPage: page }
+                  | paginate: { itemsPerPage: 10, currentPage: page };
+                let i = index
               "
               [hotel]="hotel"
+              [isLazy]="i > 5"
             ></app-hotel-card>
           </div>
           <div class="property__pagination" *ngIf="hotels.length > 0">

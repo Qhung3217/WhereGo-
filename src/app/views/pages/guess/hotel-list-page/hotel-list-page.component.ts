@@ -132,6 +132,8 @@ export class HotelListPageComponent implements OnInit, OnDestroy {
   }
   private fetchFilterData() {
     this.hotelService.getAllFilterInfor().subscribe((data) => {
+      this.filterData = [];
+
       this.filterData.push({
         filters: data.roomTypes,
         nameGroup: 'Room types',

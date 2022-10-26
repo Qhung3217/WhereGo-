@@ -97,6 +97,8 @@ export class DestinationListPageComponent implements OnInit, OnDestroy {
 
   private fetchFilterData() {
     this.placeService.getAllFilterInfor().subscribe((data) => {
+      this.filterData = [];
+
       this.filterData.push({
         filters: data.placeTypes,
         nameGroup: 'Destination types',
