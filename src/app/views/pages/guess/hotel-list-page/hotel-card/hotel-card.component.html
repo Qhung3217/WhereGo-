@@ -13,6 +13,9 @@
     </div>
   </figure>
   <div class="page-list-item__content">
+    <div class="page-list-item__sub-name">
+      {{ hotel.hotelClass }}
+    </div>
     <a [routerLink]="['/hotel', hotel.id]" class="page-list-item__name">{{
       hotel.name
     }}</a>
@@ -24,6 +27,7 @@
           >Go to details</a
         >
       </div>
+
       <div class="page-list-item__infor-group">
         <div class="page-list-item__infor-group-rating">
           <app-rating-decimar [rate]="hotel.averageRating"></app-rating-decimar>

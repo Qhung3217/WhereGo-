@@ -3,17 +3,32 @@ import { CommonModule } from '@angular/common';
 import { FilterBoxComponent } from './filter-box.component';
 
 import { ChevronRightIconModule } from '../../icons/chevron-right-icon/chevron-right-icon.module';
-import { FormGroupCheckboxModule } from '../form-group-checkbox/form-group-checkbox.module';
 import { FilterPartialComponent } from './filter-partial/filter-partial.component';
-import { FormGroupRadioModule } from '../form-group-radio/form-group-radio.module';
+
+import { HotelFilterComponent } from './hotel-filter/hotel-filter.component';
+import { RestaurantFilterComponent } from './restaurant-filter/restaurant-filter.component';
+import { FormsModule } from '@angular/forms';
+import { CheckIconModule } from '../../icons/check-icon/check-icon.module';
+
+import { RatingDecimarModule } from '../rating-decimar/rating-decimar.module';
+import { DestinationFilterComponent } from './destination-filter/destination-filter.component';
 
 @NgModule({
-  declarations: [FilterBoxComponent, FilterPartialComponent],
+  declarations: [
+    FilterBoxComponent,
+    FilterPartialComponent,
+    HotelFilterComponent,
+    RestaurantFilterComponent,
+    DestinationFilterComponent,
+  ],
   imports: [
     CommonModule,
+    FormsModule,
+
+    RatingDecimarModule,
+
     ChevronRightIconModule,
-    FormGroupCheckboxModule,
-    FormGroupRadioModule,
+    CheckIconModule,
   ],
   exports: [FilterBoxComponent, FilterPartialComponent],
 })

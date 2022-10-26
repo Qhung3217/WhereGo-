@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { HotelFilterInfor } from '../interfaces/hotel-filter-infor.interface';
 import { HotelLocalStorage } from '../interfaces/hotel-local-storage.interface';
 import { HotelDetail } from '../models/hotel-detail.model';
 import { Hotel } from '../models/hotel.model';
@@ -41,7 +42,9 @@ export class HotelService {
     const savedList = localStorage.getItem('hotelSaved');
     return savedList && (JSON.parse(savedList) as HotelLocalStorage[]);
   }
-
+  getAllFilterInfor() {
+    return this.http.get<HotelFilterInfor>(environment.apiURL + 'hotels/info');
+  }
   private storeSavedListInLocal(list: HotelLocalStorage[]) {
     localStorage.setItem('hotelSaved', JSON.stringify(list));
   }

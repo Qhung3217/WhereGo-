@@ -16,12 +16,15 @@ import { HeartIconModule } from 'src/app/shared/icons/heart-icon/heart-icon.modu
 import { HeartSolidIconModule } from 'src/app/shared/icons/heart-solid-icon/heart-solid-icon.module';
 import { RouterModule } from '@angular/router';
 import { LoadingSpinnerModule } from 'src/app/shared/components/loading-spinner/loading-spinner.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [DestinationListPageComponent, DestinationCardComponent],
   imports: [
     CommonModule,
     RouterModule,
+
+    NgxPaginationModule,
 
     BreadcrumbModule,
     SidebarNavModule,

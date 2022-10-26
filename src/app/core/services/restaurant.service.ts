@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { RestaurantFilterInfor } from '../interfaces/restaurant-filter-infor.interface';
 import { RestaurantLocalStorage } from '../interfaces/restaurant-local-storage.interface';
 import { RestaurantDetail } from '../models/restaurant-detail-model';
 import { Restaurant } from '../models/restaurant.model';
@@ -47,7 +48,11 @@ export class RestaurantService {
     const savedList = localStorage.getItem('restaurantSaved');
     return savedList && (JSON.parse(savedList) as RestaurantLocalStorage[]);
   }
-
+  getAllFilterInfor() {
+    return this.http.get<RestaurantFilterInfor>(
+      environment.apiURL + 'restaurants/info'
+    );
+  }
   private storeSavedListInLocal(list: RestaurantLocalStorage[]) {
     localStorage.setItem('restaurantSaved', JSON.stringify(list));
   }

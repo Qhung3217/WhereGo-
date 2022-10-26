@@ -1,57 +1,89 @@
 <app-sidebar-nav></app-sidebar-nav>
-<app-breadcrumb
-  [childLevels]="[{ level: 'hotel A', link: 'hotela' }]"
-></app-breadcrumb>
-<div class="container mb-8 relative">
-  <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
-  <div class="row search-empty" *ngIf="!hotels">
-    <h1>No Result Found</h1>
-    <aside>We did not find any hotels for your search</aside>
-  </div>
-  <div class="row" *ngIf="hotels && hotels.length > 0">
-    <div class="col col-lg-3 filter-box" appDropdown>
-      <div class="filter-mobile__btn">
-        <app-sliders-icon class="filter-mobile__icon"></app-sliders-icon>
-        <span>Filter • 2</span>
-      </div>
-      <div class="filter__modal">
-        <div class="filter__overlay"></div>
-        <div class="filter__modal-box">
-          <div class="filter__modal-header">
-            <div>Reset</div>
-            <div class="filter__modal-title">Filters</div>
-            <app-x-icon class="filter__modal-icon"></app-x-icon>
+<section class="page-list">
+  <app-breadcrumb
+    [childLevels]="[{ level: 'hotel A', link: 'hotela' }]"
+    class="container"
+  ></app-breadcrumb>
+  <div class="container relative">
+    <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
+    <div class="row search-empty" *ngIf="!hotels">
+      <h1>No Result Found</h1>
+      <aside>We did not find any hotels for your search</aside>
+    </div>
+    <div class="row" *ngIf="hotels">
+      <div class="col col-lg-3 filter-box" appDropdown>
+        <div class="filter-mobile__btn">
+          <app-sliders-icon class="filter-mobile__icon"></app-sliders-icon>
+          <span>Filter • {{ filterSelected.length }}</span>
+        </div>
+        <div class="filter__modal">
+          <div class="filter__overlay"></div>
+          <div class="filter__modal-box">
+            <div class="filter__modal-header">
+              <div (click)="handleRemoveFilter('all')">Reset</div>
+              <div class="filter__modal-title">Filters</div>
+              <app-x-icon class="filter__modal-icon"></app-x-icon>
+            </div>
+            <app-filter-box
+              [filterObject]="filterData"
+              category="hotel"
+              (filterChanged)="handleFilterChanged($event)"
+            ></app-filter-box>
           </div>
-          <app-filter-box></app-filter-box>
+        </div>
+      </div>
+      <div class="col-12 col-lg-9">
+        <div class="property">
+          <div class="property-count" *ngIf="filterSelected.length === 0">
+            <span>{{ hotels.length }}</span>
+            results match your search.
+          </div>
+          <div class="property-count" *ngIf="filterSelected.length > 0">
+            <!-- display none if no filters is applied.
+            -->
+            <span>{{ hotels.length }}</span>
+            results match your filters.
+            <span class="clear-filters" (click)="handleRemoveFilter('all')"
+              >Clear all filters</span
+            >
+          </div>
+          <div class="filter-selected">
+            <div class="filter" *ngFor="let filter of filterSelected">
+              {{ filter.value }}
+              <app-x-icon
+                class="filter__icon"
+                (click)="
+                  filter.type === 'rating'
+                    ? handleRemoveFilter('rating')
+                    : handleRemoveFilter(filter)
+                "
+              ></app-x-icon>
+            </div>
+          </div>
+          <div class="search-empty" *ngIf="hotels.length === 0">
+            <h1>No Result Found</h1>
+            <aside>We did not find any restaurants for your filters</aside>
+          </div>
+          <div class="property__list" *ngIf="hotels.length > 0">
+            <app-hotel-card
+              class="property__item"
+              *ngFor="
+                let hotel of hotels
+                  | paginate: { itemsPerPage: 10, currentPage: page }
+              "
+              [hotel]="hotel"
+            ></app-hotel-card>
+          </div>
+          <div class="property__pagination" *ngIf="hotels.length > 0">
+            <pagination-controls
+              (pageChange)="page = $event"
+              [maxSize]="6"
+              class="global-pagination"
+              [responsive]="false"
+            ></pagination-controls>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-12 col-lg-9">
-      <div class="property">
-        <div class="property-count">
-          <!-- if no filter show total properties instead
-            <span>527</span> in Can Tho.
-          -->
-          <span>8 of 527</span> properties are available and match your filters.
-          <span class="clear-filters">Clear all filters</span>
-        </div>
-        <div class="filter-selected">
-          <div class="filter" *ngFor="let filter of filterSelected">
-            {{ filter }}
-            <app-x-icon class="filter__icon"></app-x-icon>
-          </div>
-        </div>
-        <div class="property__list">
-          <app-hotel-card
-            class="property__item"
-            *ngFor="let hotel of hotels"
-            [hotel]="hotel"
-          ></app-hotel-card>
-        </div>
-        <div class="property__pagination">
-          <app-pagination></app-pagination>
-        </div>
-      </div>
-    </div>
   </div>
-</div>
+</section>
