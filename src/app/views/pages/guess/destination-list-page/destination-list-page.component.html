@@ -14,45 +14,74 @@
       <div class="col col-lg-3 filter-box" appDropdown>
         <div class="filter-mobile__btn">
           <app-sliders-icon class="filter-mobile__icon"></app-sliders-icon>
-          <span>Filter • 2</span>
+          <span>Filter • {{ filterSelected.length }}</span>
         </div>
         <div class="filter__modal">
           <div class="filter__overlay"></div>
           <div class="filter__modal-box">
             <div class="filter__modal-header">
-              <div>Reset</div>
+              <div (click)="handleRemoveFilter('all')">Reset</div>
               <div class="filter__modal-title">Filters</div>
               <app-x-icon class="filter__modal-icon"></app-x-icon>
             </div>
-            <app-filter-box></app-filter-box>
+            <app-filter-box
+              [filterObject]="filterData"
+              category="destination"
+              (filterChanged)="handleFilterChanged($event)"
+            ></app-filter-box>
           </div>
         </div>
       </div>
       <div class="col-12 col-lg-9">
         <div class="property">
-          <div class="property-count">
+          <div class="property-count" *ngIf="filterSelected.length === 0">
+            <span>{{ destinations.length }}</span>
+            results match your search.
+          </div>
+          <div class="property-count" *ngIf="filterSelected.length > 0">
             <!-- if no filter show total properties instead
               <span>527</span> in Can Tho.
             -->
-            <span>8 of 527</span> properties are available and match your
-            filters.
-            <span class="clear-filters">Clear all filters</span>
+            <span>{{ destinations.length }} of {{ totalDestinations }}</span>
+            properties are available and match your filters.
+            <span class="clear-filters" (click)="handleRemoveFilter('all')"
+              >Clear all filters</span
+            >
           </div>
           <div class="filter-selected">
             <div class="filter" *ngFor="let filter of filterSelected">
-              {{ filter }}
-              <app-x-icon class="filter__icon"></app-x-icon>
+              {{ filter.value }}
+              <app-x-icon
+                class="filter__icon"
+                (click)="
+                  filter.type === 'rating'
+                    ? handleRemoveFilter('rating')
+                    : handleRemoveFilter(filter)
+                "
+              ></app-x-icon>
             </div>
           </div>
-          <div class="property__list">
+          <div class="search-empty" *ngIf="destinations.length === 0">
+            <h1>No Result Found</h1>
+            <aside>We did not find any destinations for your filters</aside>
+          </div>
+          <div class="property__list" *ngIf="destinations.length > 0">
             <app-destination-card
               class="property__item"
-              *ngFor="let destination of destinations"
+              *ngFor="
+                let destination of destinations
+                  | paginate: { itemsPerPage: 10, currentPage: page }
+              "
               [destination]="destination"
             ></app-destination-card>
           </div>
-          <div class="property__pagination">
-            <app-pagination></app-pagination>
+          <div class="property__pagination" *ngIf="destinations.length > 0">
+            <pagination-controls
+              (pageChange)="page = $event"
+              [maxSize]="6"
+              class="global-pagination"
+              [responsive]="false"
+            ></pagination-controls>
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { CheckIconModule } from '../../icons/check-icon/check-icon.module';
 
 import { RatingDecimarModule } from '../rating-decimar/rating-decimar.module';
+import { DestinationFilterComponent } from './destination-filter/destination-filter.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { RatingDecimarModule } from '../rating-decimar/rating-decimar.module';
     FilterPartialComponent,
     HotelFilterComponent,
     RestaurantFilterComponent,
+    DestinationFilterComponent,
   ],
   imports: [
     CommonModule,

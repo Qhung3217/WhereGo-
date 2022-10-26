@@ -9,4 +9,9 @@
     [filterObject]="filterObject"
     (filterEvent)="handleFilterEvent($event)"
   ></app-hotel-filter>
+  <app-destination-filter
+    *ngIf="category === 'destination'"
+    [filterObject]="filterObject"
+    (filterEvent)="handleFilterEvent($event)"
+  ></app-destination-filter>
 </div>
