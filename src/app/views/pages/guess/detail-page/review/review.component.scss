@@ -3,6 +3,15 @@
 @import "settings/mixin";
 .section-review {
 }
+.ng-submitted.ng-invalid {
+  .form__hint {
+    color: $primary-danger;
+  }
+  .ng-invalid {
+    border: 2px solid $primary-danger !important;
+  }
+}
+
 .section-review--rounded {
   .panel {
     border-radius: 1.2rem;

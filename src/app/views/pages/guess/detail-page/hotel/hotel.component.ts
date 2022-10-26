@@ -25,6 +25,7 @@ export class HotelComponent implements OnInit {
   averageRating: number = 0;
   ratingType: string = 'Excellent';
   reviewNumber: number = 0;
+  numberOfPeople: number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +42,16 @@ export class HotelComponent implements OnInit {
   }
   onSubmit(bookForm: NgForm) {
     console.log(bookForm.value);
+  }
+  decreaseNumberOfPeople() {
+    if (this.numberOfPeople > 1) this.numberOfPeople--;
+    else this.numberOfPeople = 1;
+  }
+  increaseNumberOfPeople() {
+    this.numberOfPeople++;
+  }
+  handle(event: any) {
+    console.log(event);
   }
   private fetchItem() {
     this.fetchHotelDetail();

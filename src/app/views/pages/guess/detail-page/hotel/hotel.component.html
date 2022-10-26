@@ -27,7 +27,13 @@
           <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
             <div class="book__date-group">
               <div class="book__control-group">
-                <label for="checkIn">Check In</label>
+                <label
+                  for="checkIn"
+                  [ngClass]="{
+                    form__hint: bookForm.submitted && !checkInControl.valid
+                  }"
+                  >Check In</label
+                >
                 <div class="book__control">
                   <input
                     id="checkIn"
@@ -39,6 +45,7 @@
                     required
                     ngbDatepicker
                     readonly
+                    #checkInControl="ngModel"
                     #checkIn="ngbDatepicker"
                     [displayMonths]="2"
                     (click)="checkIn.toggle()"
@@ -50,7 +57,13 @@
                 </div>
               </div>
               <div class="book__control-group">
-                <label for="checkOut">Check Out</label>
+                <label
+                  for="checkOut"
+                  [ngClass]="{
+                    form__hint: bookForm.submitted && !checkOutControl.valid
+                  }"
+                  >Check Out</label
+                >
                 <div class="book__control">
                   <input
                     id="checkOut"
@@ -62,6 +75,7 @@
                     required
                     ngbDatepicker
                     readonly
+                    #checkOutControl="ngModel"
                     #checkOut="ngbDatepicker"
                     [displayMonths]="2"
                     (click)="checkOut.toggle()"
@@ -74,17 +88,51 @@
               </div>
             </div>
             <div class="book__control-group book__people">
-              <label for="people">
+              <label
+                for="people"
+                [ngClass]="{
+                  form__hint: bookForm.submitted && !peopleControl.valid
+                }"
+              >
                 <app-users-icon></app-users-icon>
                 People
               </label>
               <div class="book__control">
-                <button type="button" class="control" disabled>&minus;</button>
-                <input type="text" name="people" value="1" ngModel required />
-                <button type="button" class="control">+</button>
+                <button
+                  type="button"
+                  class="control"
+                  [disabled]="numberOfPeople === 1"
+                  (click)="decreaseNumberOfPeople()"
+                >
+                  &minus;
+                </button>
+                <input
+                  type="text"
+                  name="people"
+                  [(ngModel)]="numberOfPeople"
+                  (change)="
+                    numberOfPeople < 1 ? (numberOfPeople = 1) : numberOfPeople
+                  "
+                  #peopleControl="ngModel"
+                  required
+                  appOnlyNumber
+                />
+                <button
+                  type="button"
+                  class="control"
+                  (click)="increaseNumberOfPeople()"
+                >
+                  +
+                </button>
               </div>
             </div>
-            <button type="submit" class="btn btn--primary">Book</button>
+            <button
+              type="submit"
+              class="btn btn--primary"
+              [disabled]="bookForm.submitted && !bookForm.valid"
+            >
+              Book
+            </button>
           </form>
         </div>
         <div class="hotel__galeries">
