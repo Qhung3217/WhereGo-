@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ImageService } from 'src/app/core/services/image.service';
 import SwiperCore, { FreeMode, Navigation, Thumbs } from 'swiper';
 
 SwiperCore.use([FreeMode, Thumbs, Navigation]);
@@ -9,5 +10,6 @@ SwiperCore.use([FreeMode, Thumbs, Navigation]);
 })
 export class ThumbGaleriesComponent {
   thumbsSwiper: any;
-  constructor() {}
+  @Input() galeries: any[] = [];
+  constructor(public imageService: ImageService) {}
 }

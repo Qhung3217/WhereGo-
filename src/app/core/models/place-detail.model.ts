@@ -1,3 +1,4 @@
+import { PlaceType } from './place-type.model';
 import { Review } from './review.model';
 
 export class PlaceDetail {
@@ -7,7 +8,7 @@ export class PlaceDetail {
     public description: string,
     public image: string,
     public placeReviews: Review[],
-    public placeTypes: [],
+    public placeTypes: PlaceType[],
     public placeGalleries: []
   ) {}
 }

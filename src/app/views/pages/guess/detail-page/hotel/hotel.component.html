@@ -1,5 +1,8 @@
 <div class="hotel property relative">
-  <app-loading-spinner *ngIf="isFetching.hotel"></app-loading-spinner>
+  <app-loading-spinner
+    *ngIf="isFetching.hotel"
+    style="display: block; width: 100%; height: 40rem"
+  ></app-loading-spinner>
   <div class="property__error" *ngIf="!hotel && !isFetching.hotel">
     <app-circle-exclamation-icon
       class="error__icon"
@@ -12,12 +15,16 @@
     [headerTitle]="hotel.name"
     [address]="hotel.address"
     *ngIf="hotel"
+    category="hotel"
+    [averageRating]="averageRating"
+    [reviewNumber]="reviewNumber"
+    [item]="hotel"
   ></app-detail-header>
   <div class="property__body" *ngIf="hotel">
     <div class="property__wrap">
       <div class="hotel__infor">
         <div class="panel hotel__book-infor">
-          <form class="">
+          <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
             <div class="book__date-group">
               <div class="book__control-group">
                 <label for="checkIn">Check In</label>
@@ -27,6 +34,9 @@
                     type="text"
                     class="book__date book__date--checkin"
                     placeholder="--/--/--"
+                    ngModel
+                    name="checkIn"
+                    required
                     ngbDatepicker
                     readonly
                     #checkIn="ngbDatepicker"
@@ -47,6 +57,9 @@
                     type="text"
                     placeholder="--/--/--"
                     class="book__date book__date--checkout"
+                    ngModel
+                    name="checkOut"
+                    required
                     ngbDatepicker
                     readonly
                     #checkOut="ngbDatepicker"
@@ -67,7 +80,7 @@
               </label>
               <div class="book__control">
                 <button type="button" class="control" disabled>&minus;</button>
-                <input type="text" value="1" />
+                <input type="text" name="people" value="1" ngModel required />
                 <button type="button" class="control">+</button>
               </div>
             </div>
@@ -75,7 +88,9 @@
           </form>
         </div>
         <div class="hotel__galeries">
-          <app-thumb-galeries></app-thumb-galeries>
+          <app-thumb-galeries
+            [galeries]="hotel.hotelGalleries"
+          ></app-thumb-galeries>
         </div>
       </div>
       <div class="hotel__suggestions panel">
@@ -103,8 +118,10 @@
               </figure>
               <div class="suggestion__infor">
                 <h1 class="suggestion__title">{{ hotelSugestion.name }}</h1>
-                <app-rating-decimar></app-rating-decimar>
-                <p>366 reviews</p>
+                <app-rating-decimar
+                  [rate]="hotelSugestion.averageRating"
+                ></app-rating-decimar>
+                <p>{{ hotelSugestion.totalRating }} reviews</p>
               </div>
             </a>
           </div>
@@ -118,12 +135,14 @@
         <div class="row">
           <div class="col-12 col-lg-6 about__infor">
             <div class="about__rating">
-              <div class="rating__avg">5.0</div>
+              <div class="rating__avg">{{ averageRating | number }}</div>
               <div class="rating__infor">
-                <span class="rating__type">Excellent</span>
+                <span class="rating__type">{{ ratingType }}</span>
                 <div class="rating__rating">
-                  <app-rating-decimar></app-rating-decimar>
-                  <span>63 reviews</span>
+                  <app-rating-decimar
+                    [rate]="averageRating"
+                  ></app-rating-decimar>
+                  <span>{{ reviewNumber }} reviews</span>
                 </div>
               </div>
             </div>
@@ -135,33 +154,42 @@
             <div class="services__group">
               <h1 class="group__title">Room features</h1>
               <ul class="group__list">
-                <li class="group__item">Air conditioning</li>
-                <li class="group__item">Room service</li>
-                <li class="group__item">Bottled water</li>
-                <li class="group__item">Clothes rack</li>
+                <li
+                  class="group__item"
+                  *ngFor="let roomFeature of hotel.roomFeatures"
+                >
+                  {{ roomFeature.feature }}
+                </li>
               </ul>
             </div>
             <div class="services__group">
               <h1 class="group__title">Property amenities</h1>
               <ul class="group__list">
-                <li class="group__item">Free parking</li>
-                <li class="group__item">Free High Speed Internet (WiFi)</li>
-                <li class="group__item">
-                  Children Activities (Kid / Family Friendly)
+                <li
+                  class="group__item"
+                  *ngFor="let amenity of hotel.propertyAmenities"
+                >
+                  {{ amenity.name }}
                 </li>
-                <li class="group__item">Pets Allowed ( Dog / Pet Friendly )</li>
-                <li class="group__item">Laundry service</li>
               </ul>
             </div>
             <div class="services__group">
               <h1 class="group__title">Room types</h1>
               <ul class="group__list">
-                <li class="group__item">Non-smoking rooms</li>
+                <li
+                  class="group__item"
+                  *ngFor="let roomType of hotel.roomTypes"
+                >
+                  {{ roomType.name }}
+                </li>
               </ul>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="property__wrap">
+      <app-review [reviews]="hotel.reviews"></app-review>
     </div>
   </div>
 </div>
