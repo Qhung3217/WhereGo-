@@ -9,6 +9,7 @@ export class RestaurantDetail {
     public name: string,
     public address: string,
     public thumbnail: string,
+    public district: string,
     public cuisines: Cuisine[],
     public meals: Meal[],
     public features: Feature[],

@@ -2,6 +2,7 @@
 @import "settings/variables/breakpoint";
 @import "settings/mixin";
 .section-review {
+  scroll-margin: 5rem;
 }
 .ng-submitted.ng-invalid {
   .form__hint {

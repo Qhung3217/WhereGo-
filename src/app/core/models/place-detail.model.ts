@@ -7,6 +7,7 @@ export class PlaceDetail {
     public name: string,
     public description: string,
     public image: string,
+    public district: string,
     public placeReviews: Review[],
     public placeTypes: PlaceType[],
     public placeGalleries: []

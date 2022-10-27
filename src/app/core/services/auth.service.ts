@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -15,6 +16,8 @@ export class AuthService {
   writerCredential = new BehaviorSubject<string | null>(null);
   constructor(
     private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router,
     private cookie: CookieService,
     private travelerService: TravelerService,
     private writerService: WriterService
@@ -57,7 +60,14 @@ export class AuthService {
           },
         }
       )
-      .pipe(tap((res) => this.handleAuthentication(res.username, res.token)));
+      .pipe(
+        tap((res) => {
+          this.handleAuthentication(res.username, res.token);
+          this.cookie.set('traveler', res.token);
+
+          this.travelerCredential.next(res.token);
+        })
+      );
   }
   writerLogin(email: string, password: string) {
     return this.http
@@ -74,7 +84,12 @@ export class AuthService {
         }
       )
       .pipe(
-        tap((res) => this.handleAuthentication(res.username, res.token, true))
+        tap((res) => {
+          this.handleAuthentication(res.username, res.token, true);
+          this.cookie.set('writer', res.token);
+
+          this.writerCredential.next(res.token);
+        })
       );
   }
   writerLogout() {
@@ -91,13 +106,38 @@ export class AuthService {
     isWritter = false
   ) {
     if (isWritter) {
-      this.cookie.set('writer', token);
       this.writerLogout();
       this.writerService.getDetail(username, token);
+      this.redirect(username);
     } else {
-      this.cookie.set('traveler', token);
       this.travelerLogout();
       this.travelerService.getDetail(username, token);
+      this.redirect(username, false);
     }
+  }
+  private redirect(username: string, isWriter = true) {
+    let nextUrl = null;
+    let scroll = null;
+    this.route.queryParamMap.subscribe((params) => {
+      nextUrl = params.get('redirectUrl');
+      scroll = params.get('scroll');
+    });
+
+    if (nextUrl) {
+      if (scroll)
+        this.router.navigate([nextUrl], {
+          queryParams: {
+            scroll: true,
+          },
+        });
+      else this.router.navigate([nextUrl]);
+    } else if (isWriter)
+      this.router.navigate(['/writer', username], {
+        queryParamsHandling: 'merge',
+      });
+    else
+      this.router.navigate(['/traveler', username], {
+        queryParamsHandling: 'merge',
+      });
   }
 }

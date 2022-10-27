@@ -5,10 +5,14 @@ import { RestaurantFilterInfor } from '../interfaces/restaurant-filter-infor.int
 import { RestaurantLocalStorage } from '../interfaces/restaurant-local-storage.interface';
 import { RestaurantDetail } from '../models/restaurant-detail-model';
 import { Restaurant } from '../models/restaurant.model';
+import { TravelerService } from './traveler.service';
 
 @Injectable({ providedIn: 'root' })
 export class RestaurantService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private travelerService: TravelerService
+  ) {}
   getRandom(quantity: number = 4) {
     return this.http.get<Restaurant[]>(
       environment.apiURL + 'restaurants/random',
@@ -51,6 +55,18 @@ export class RestaurantService {
   getAllFilterInfor() {
     return this.http.get<RestaurantFilterInfor>(
       environment.apiURL + 'restaurants/info'
+    );
+  }
+  review(rating: number, comment: string, restaurantId: number) {
+    const traveler = this.travelerService.traveler;
+    return this.http.post(
+      environment.apiURL + 'restaurants/' + restaurantId + '/review',
+      {
+        travelerEmail: traveler?.email,
+        restaurantId,
+        comment,
+        rating,
+      }
     );
   }
   private storeSavedListInLocal(list: RestaurantLocalStorage[]) {

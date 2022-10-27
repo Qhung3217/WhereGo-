@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { Traveler } from 'src/app/core/models/traveler.model';
 import { Writer } from 'src/app/core/models/writer.model';
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private travelerService: TravelerService,
     private writerService: WriterService,
+    private cookieService: CookieService,
     public imageService: ImageService,
     public authService: AuthService
   ) {}
@@ -50,6 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         else this.traveler = traveler;
       }
     );
+    if (!this.cookieService.get('traveler')) this.travelerService.remove();
   }
   private subcribeWriter() {
     this.writerService.loadFormLocal();
@@ -59,5 +62,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if (writer) this.writer = { ...writer };
       else this.writer = writer;
     });
+    if (!this.cookieService.get('writer')) this.writerService.remove();
   }
 }

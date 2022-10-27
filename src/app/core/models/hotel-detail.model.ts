@@ -12,6 +12,7 @@ export class HotelDetail {
     public description: string,
     public image: string,
     public price: number,
+    public district: string,
     public roomFeatures: RoomFeature[],
     public roomTypes: RoomType[],
     public propertyAmenities: PropertyAmenity[],

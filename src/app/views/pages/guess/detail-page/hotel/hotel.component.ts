@@ -1,6 +1,7 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HotelDetail } from 'src/app/core/models/hotel-detail.model';
 import { Hotel } from 'src/app/core/models/hotel.model';
 import { HotelService } from 'src/app/core/services/hotel.service';
@@ -29,6 +30,7 @@ export class HotelComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private hotelService: HotelService,
     public imageService: ImageService
   ) {}
@@ -42,6 +44,31 @@ export class HotelComponent implements OnInit {
   }
   onSubmit(bookForm: NgForm) {
     console.log(bookForm.value);
+    if (bookForm.valid) {
+      const people = bookForm.value['people'];
+
+      let ngbDateBucket = bookForm.value['checkIn'];
+      const checkIn = new Date(
+        ngbDateBucket.year,
+        ngbDateBucket.month - 1,
+        ngbDateBucket.day
+      );
+
+      ngbDateBucket = bookForm.value['checkOut'];
+      const checkOut = new Date(
+        ngbDateBucket.year,
+        ngbDateBucket.month - 1,
+        ngbDateBucket.day
+      );
+
+      this.router.navigate(['/traveler/check-out', this.hotel?.id], {
+        queryParams: {
+          people,
+          checkIn,
+          checkOut,
+        },
+      });
+    }
   }
   decreaseNumberOfPeople() {
     if (this.numberOfPeople > 1) this.numberOfPeople--;
@@ -52,6 +79,17 @@ export class HotelComponent implements OnInit {
   }
   handle(event: any) {
     console.log(event);
+  }
+  getCurrentDate() {
+    const currentDate = new Date();
+    return {
+      year: currentDate.getFullYear(),
+      month: currentDate.getMonth() + 1,
+      day: currentDate.getDate(),
+    };
+  }
+  handleReviewChange() {
+    this.router.navigate(['/hotel', this.hotelId]);
   }
   private fetchItem() {
     this.fetchHotelDetail();

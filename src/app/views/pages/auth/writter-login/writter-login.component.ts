@@ -21,7 +21,6 @@ export class WritterLoginComponent {
           console.log('Login successfull: ', res);
 
           this.isFetching = false;
-          this.router.navigate(['/']);
         },
         error: (err) => {
           console.log('Login failed: ', err);

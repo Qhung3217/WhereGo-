@@ -11,14 +11,17 @@ import { ProfileEditComponent } from './profile-page/profile-edit/profile-edit.c
 import { ImageIconModule } from 'src/app/shared/icons/image-icon/image-icon.module';
 import { TableModule } from 'src/app/shared/components/table/table.module';
 import { CheckOutPageComponent } from './check-out-page/check-out-page.component';
+import { TravelerAuthenticateGuard } from 'src/app/core/guards/traveler-authenticate.guard';
 
 const routes: Routes = [
   {
     path: 'check-out/:hotelId',
+    canActivate: [TravelerAuthenticateGuard],
     component: CheckOutPageComponent,
   },
   {
     path: ':username',
+    canActivate: [TravelerAuthenticateGuard],
     component: ProfilePageComponent,
     children: [
       { path: 'edit', component: ProfileEditComponent },

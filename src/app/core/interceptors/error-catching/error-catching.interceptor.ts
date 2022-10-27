@@ -60,6 +60,8 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
           errorMessage = this.catchResetPasswordError(errRes);
         if (this.checkUrl('/sign-up'))
           errorMessage.message = this.catchSignUpError(errRes);
+        if (this.checkUrl('/hotel/'))
+          errorMessage.message = errRes.error.message;
         break;
       case 401:
         errorMessage.message = this.messageUnauthorized();
@@ -106,12 +108,17 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
     }
   }
   private checkUrl(url: string) {
-    let currentUrl = this.router.url;
-    const indexOfQuestionMark = currentUrl.indexOf('?');
-    if (indexOfQuestionMark !== -1)
-      currentUrl = this.router.url.slice(0, indexOfQuestionMark);
+    const currentUrl = this.router.url;
 
-    console.dir(currentUrl);
-    return currentUrl && currentUrl == url;
+    return currentUrl.includes(url);
   }
+  // private checkUrl(url: string) {
+  //   let currentUrl = this.router.url;
+  //   const indexOfQuestionMark = currentUrl.indexOf('?');
+  //   if (indexOfQuestionMark !== -1)
+  //     currentUrl = this.router.url.slice(0, indexOfQuestionMark);
+
+  //   console.dir(currentUrl);
+  //   return currentUrl && currentUrl == url;
+  // }
 }

@@ -47,6 +47,7 @@
                     readonly
                     #checkInControl="ngModel"
                     #checkIn="ngbDatepicker"
+                    [minDate]="getCurrentDate()"
                     [displayMonths]="2"
                     (click)="checkIn.toggle()"
                     (keypress)="$event.preventDefault()"
@@ -77,6 +78,7 @@
                     readonly
                     #checkOutControl="ngModel"
                     #checkOut="ngbDatepicker"
+                    [minDate]="getCurrentDate()"
                     [displayMonths]="2"
                     (click)="checkOut.toggle()"
                     (keypress)="$event.preventDefault()"
@@ -237,7 +239,11 @@
       </div>
     </div>
     <div class="property__wrap">
-      <app-review [reviews]="hotel.reviews"></app-review>
+      <app-review
+        [reviews]="hotel.reviews"
+        (reviewSuccess)="handleReviewChange()"
+        [id]="hotel.id"
+      ></app-review>
     </div>
   </div>
 </div>

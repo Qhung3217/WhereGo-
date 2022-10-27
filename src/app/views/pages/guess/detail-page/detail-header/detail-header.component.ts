@@ -64,7 +64,7 @@ export class DetailHeaderComponent implements OnInit {
           cuisines,
           meals,
           features,
-          this.item.districtName,
+          this.item.district,
           this.averageRating,
           this.reviewNumber
         );
@@ -78,7 +78,7 @@ export class DetailHeaderComponent implements OnInit {
           this.item.id,
           this.item.name,
           this.item.image,
-          this.item.districtName,
+          this.item.district,
           placeTypes,
           this.averageRating,
           this.reviewNumber
@@ -102,7 +102,7 @@ export class DetailHeaderComponent implements OnInit {
           this.item.hotelClass,
           this.item.image,
           this.item.price,
-          this.item.districtName,
+          this.item.district,
           roomFeatures,
           roomTypes,
           propertyAmenities,
