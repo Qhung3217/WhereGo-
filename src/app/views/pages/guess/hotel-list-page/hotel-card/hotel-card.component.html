@@ -1,6 +1,16 @@
 <div class="page-list-item">
   <figure class="page-list-item__thumb">
-    <img [src]="imageService.render(hotel.image)" [alt]="hotel.name" />
+    <img
+      [src]="imageService.render(hotel.image)"
+      [alt]="hotel.name"
+      *ngIf="!isLazy"
+    />
+    <img
+      [lazyLoad]="imageService.render(hotel.image)"
+      [defaultImage]="imageService.defaultImage"
+      [alt]="hotel.name"
+      *ngIf="isLazy"
+    />
     <div
       class="page-list-item__heart cta"
       [appSavedAction]="'hotel'"

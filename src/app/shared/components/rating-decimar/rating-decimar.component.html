@@ -13,4 +13,5 @@
   [readonly]="readOnly"
   [max]="5"
   class="rating"
+  (rateChange)="handleRateChange($event)"
 ></ngb-rating>

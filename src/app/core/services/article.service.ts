@@ -16,6 +16,9 @@ export class ArticleService {
       },
     });
   }
+  getAll() {
+    return this.http.get<Article[]>(environment.apiURL + 'articles');
+  }
   getDetail(id: number) {
     return this.http.get<ArticleDetail>(environment.apiURL + 'articles/' + id);
   }

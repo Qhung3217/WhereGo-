@@ -9,6 +9,7 @@ import { ImageService } from 'src/app/core/services/image.service';
 })
 export class RestaurantCardComponent {
   @Input() restaurant!: Restaurant;
+  @Input() isLazy = true;
 
   constructor(public imageService: ImageService) {}
 }

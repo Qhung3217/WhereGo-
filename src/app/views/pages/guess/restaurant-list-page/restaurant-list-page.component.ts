@@ -106,6 +106,15 @@ export class RestaurantListPageComponent implements OnInit, OnDestroy {
     );
   }
 
+  handlePageChange(page: any) {
+    this.page = page;
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
+
   private fetchData(keyword: string) {
     this.searchService.restaurantSearch(keyword).subscribe({
       next: (res) => {
@@ -117,6 +126,7 @@ export class RestaurantListPageComponent implements OnInit, OnDestroy {
   }
   private fetchFilterData() {
     this.restaurantService.getAllFilterInfor().subscribe((data) => {
+      this.filterData = [];
       this.filterData.push({
         filters: data.cuisines,
         nameGroup: 'Cuisines',

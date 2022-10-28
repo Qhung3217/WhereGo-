@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class WritterLoginComponent {
   isFetching = false;
+  @ViewChild('emailInput', { static: true }) emailInput!: ElementRef;
   constructor(private authService: AuthService, private router: Router) {}
 
   handleSubmit(loginForm: NgForm) {
@@ -21,10 +22,10 @@ export class WritterLoginComponent {
           console.log('Login successfull: ', res);
 
           this.isFetching = false;
-          this.router.navigate(['/']);
         },
         error: (err) => {
           console.log('Login failed: ', err);
+          this.emailInput.nativeElement.focus();
           loginForm.resetForm();
           this.isFetching = false;
         },

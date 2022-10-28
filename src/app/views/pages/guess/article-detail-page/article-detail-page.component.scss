@@ -77,7 +77,22 @@
       object-position: center;
     }
   }
-  .article__content {
+  .article__content ::ng-deep img {
+    max-width: 100% !important;
+  }
+  .article__footer {
+    margin-top: 3.2rem;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 3.2rem;
+    margin-bottom: 6.4rem;
+    .writter__avatar {
+      width: 6rem;
+      height: 6rem;
+    }
+    .writter__name {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
   }
 }
 @include maxWidth($screen-md) {

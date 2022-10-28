@@ -1,26 +1,50 @@
 <section class="article-detail">
-  <div class="article-detail__wrap">
-    <app-breadcrumb></app-breadcrumb>
+  <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
+  <div class="fetch-fail" *ngIf="!article && !isFetching">
+    <app-circle-exclamation-icon
+      class="error__icon"
+    ></app-circle-exclamation-icon>
+    <h1>Oops! Something went wrong.</h1>
+    <aside>Try refeshing the page or try again later.</aside>
+    <button class="btn btn--primary" appRefresh>Refresh Page</button>
+  </div>
+  <div class="article-detail__wrap" *ngIf="article && !isFetching">
+    <app-breadcrumb
+      [childLevels]="[
+        { level: 'Travel articles', link: '/travel-articles' },
+        { level: article.title }
+      ]"
+    ></app-breadcrumb>
     <article class="article">
       <div class="article__infor">
         <h1 class="article__title">
-          Why Southern Spain is the perfect fall getaway
+          {{ article.title }}
         </h1>
         <h2 class="article__short-desc">
-          These six towns in Southern Spain are high on sunshine and low on
-          crowds.
+          {{ article.shortDesc }}
         </h2>
         <div class="article__writter">
           <figure class="writter__avatar">
-            <img src="https://picsum.photos/500?random=1" alt="" />
+            <img [src]="imageService.render(article.writer.avatar)" />
           </figure>
-          <span class="writter__name">By Megan Lloyd • Oct 7, 2022</span>
+          <span class="writter__name"
+            >By {{ article.writer.name }} •
+            {{ article.createdDate | date }}</span
+          >
         </div>
         <figure class="article__thumb">
-          <img src="https://picsum.photos/1200?random=2" alt="" />
+          <img [src]="imageService.render(article.image)" />
         </figure>
       </div>
-      <div class="article__content">article content</div>
+      <div class="article__content" [ngxSummernoteView]="article.content"></div>
+      <footer>
+        <div class="article__writter article__footer">
+          <figure class="writter__avatar">
+            <img [src]="imageService.render(article.writer.avatar)" />
+          </figure>
+          <span class="writter__name"> {{ article.writer.name }}</span>
+        </div>
+      </footer>
     </article>
   </div>
 </section>

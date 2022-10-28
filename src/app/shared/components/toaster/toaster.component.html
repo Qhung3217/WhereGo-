@@ -3,9 +3,10 @@
   [header]="toast.header"
   [autohide]="true"
   [delay]="toast.delay || 5000"
+  class="text-light"
   [ngClass]="{
-    'bg-success text-light': toast.type === 'success',
-    'bg-danger text-light': toast.type === 'error',
+    'bg-success ': toast.type === 'success',
+    'bg-danger': toast.type === 'error',
     warning: toast.type === 'warning',
     infor: toast.type === 'infor'
   }"

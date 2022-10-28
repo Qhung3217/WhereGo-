@@ -1,23 +1,32 @@
 <section class="section-article">
   <h1 class="section__title">New travel articles</h1>
   <swiper [slidesPerView]="1" [pagination]="{ clickable: true }" [lazy]="true">
-    <ng-template swiperSlide *ngFor="let article of articles">
-      <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+    <ng-template swiperSlide *ngFor="let article of articles; let i = index">
       <div class="article">
         <figure class="article__image">
           <img
             [attr.data-src]="imageService.render(article.image)"
             class="swiper-lazy"
+            *ngIf="i > 0"
           />
+          <img [src]="imageService.render(article.image)" *ngIf="i < 1" />
         </figure>
         <div class="article__content">
           <h1 class="article__title">{{ article.title }}</h1>
           <h2 class="article__sub-title">
             {{ article.shortDesc | shorten }}
           </h2>
-          <a href="" class="btn btn--primary">See more</a>
+          <a
+            [routerLink]="['travel-articles', article.id]"
+            class="btn btn--primary"
+            >See more</a
+          >
         </div>
       </div>
+      <div
+        class="swiper-lazy-preloader swiper-lazy-preloader-white"
+        *ngIf="i > 0"
+      ></div>
     </ng-template>
   </swiper>
 </section>

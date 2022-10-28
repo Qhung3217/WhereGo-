@@ -1,0 +1,44 @@
+.ngb-dp-day {
+  width: 3rem !important;
+  height: 3rem !important;
+}
+.ngb-dp-day:not(.disabled):hover {
+  background-color: #e0e0e0;
+}
+.ngb-dp-day > div {
+  width: 3rem !important;
+  height: 3rem !important;
+  line-height: 3rem !important;
+  font-size: 1.2rem;
+}
+.bg-primary {
+  background-color: $primary-color !important;
+}
+.ngb-dp-weekday {
+  width: 3rem !important;
+}
+.ngb-dp-weekdays .ngb-dp-weekday {
+  color: $secondary-color !important;
+}
+@include maxWidth($screen-md) {
+  .ngb-dp-months {
+    .ngb-dp-month:last-child {
+      display: none;
+    }
+  }
+  .ngb-dp-day {
+    width: 4rem !important;
+    height: 4rem !important;
+  }
+
+  .ngb-dp-day > div {
+    width: 4rem !important;
+    height: 4rem !important;
+    line-height: 4rem !important;
+    font-size: 1.4rem;
+  }
+
+  .ngb-dp-weekday {
+    width: 4rem !important;
+  }
+}

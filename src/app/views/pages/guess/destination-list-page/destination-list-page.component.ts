@@ -84,6 +84,14 @@ export class DestinationListPageComponent implements OnInit, OnDestroy {
       (filterSelect) => filterSelect.value !== filter.value
     );
   }
+  handlePageChange(page: any) {
+    this.page = page;
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
   private fetchData(keyword: string) {
     this.searchService.placeSearch(keyword).subscribe({
       next: (res) => {
@@ -97,6 +105,8 @@ export class DestinationListPageComponent implements OnInit, OnDestroy {
 
   private fetchFilterData() {
     this.placeService.getAllFilterInfor().subscribe((data) => {
+      this.filterData = [];
+
       this.filterData.push({
         filters: data.placeTypes,
         nameGroup: 'Destination types',

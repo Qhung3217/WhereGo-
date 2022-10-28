@@ -1,7 +1,14 @@
 @import "settings/variables/color";
 @import "settings/variables/breakpoint";
 @import "settings/mixin";
-
+.ng-submitted.ng-invalid {
+  .form__hint {
+    color: $primary-danger;
+  }
+  .ng-invalid {
+    border: 2px solid $primary-danger !important;
+  }
+}
 .hotel {
   &__infor {
     margin-bottom: 3.4rem;
@@ -154,7 +161,7 @@
     }
   }
   .suggestion__infor {
-    flex-shrink: 0;
+    flex-shrink: 1;
   }
   .suggestion__title {
     font-weight: 700;

@@ -7,7 +7,6 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { DestinationComponent } from './destination/destination.component';
 import { BreadcrumbModule } from 'src/app/shared/components/breadcrumb/breadcrumb.module';
 import { RatingDecimarModule } from 'src/app/shared/components/rating-decimar/rating-decimar.module';
-import { ShareIconModule } from 'src/app/shared/icons/share-icon/share-icon.module';
 import { PencilIconModule } from 'src/app/shared/icons/pencil-icon/pencil-icon.module';
 import { HeartIconModule } from 'src/app/shared/icons/heart-icon/heart-icon.module';
 import { HeartSolidIconModule } from 'src/app/shared/icons/heart-solid-icon/heart-solid-icon.module';
@@ -30,6 +29,9 @@ import {
   LAZYLOAD_IMAGE_HOOKS,
   ScrollHooks,
 } from 'ng-lazyload-image';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OnlyNumberDirectiveModule } from 'src/app/shared/directives/only-number-directive/only-number-directive.module';
 
 @NgModule({
   declarations: [
@@ -44,10 +46,13 @@ import {
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     SwiperModule,
     NgbDatepickerModule,
     LazyLoadImageModule,
+    NgxPaginationModule,
 
     BreadcrumbModule,
     RatingDecimarModule,
@@ -55,8 +60,8 @@ import {
     LoadingSpinnerModule,
 
     RefreshDirectiveModule,
+    OnlyNumberDirectiveModule,
 
-    ShareIconModule,
     PencilIconModule,
     HeartIconModule,
     HeartSolidIconModule,

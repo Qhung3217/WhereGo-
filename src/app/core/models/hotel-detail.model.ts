@@ -1,4 +1,7 @@
+import { PropertyAmenity } from './property-amenity.model';
 import { Review } from './review.model';
+import { RoomFeature } from './room-feature.model';
+import { RoomType } from './room-type.model';
 
 export class HotelDetail {
   constructor(
@@ -9,9 +12,10 @@ export class HotelDetail {
     public description: string,
     public image: string,
     public price: number,
-    public roomFeatures: [],
-    public roomTypes: [],
-    public propertyAmenities: [],
+    public district: string,
+    public roomFeatures: RoomFeature[],
+    public roomTypes: RoomType[],
+    public propertyAmenities: PropertyAmenity[],
     public hotelGalleries: [],
     public reviews: Review[],
     public booking: any

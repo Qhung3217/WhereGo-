@@ -1,27 +1,24 @@
 <div class="property__header">
   <div class="property__wrap">
-    <app-breadcrumb></app-breadcrumb>
+    <app-breadcrumb [childLevels]="[{ level: headerTitle }]"></app-breadcrumb>
     <div class="header__title-group">
       <h1>{{ headerTitle }}</h1>
       <div class="title-group__actions">
-        <a class="action">
+        <a routerLink="." fragment="reviews" class="action">
           <app-pencil-icon></app-pencil-icon>
 
           <span>Review</span>
         </a>
-        <div class="action">
-          <app-heart-icon></app-heart-icon>
-
-          <span>Save</span>
-        </div>
-        <div class="action">
-          <app-share-icon></app-share-icon>
-          <span>Share</span>
+        <div class="action" (click)="handleSavedAction()">
+          <app-heart-icon *ngIf="!isSaved"></app-heart-icon>
+          <app-heart-solid-icon *ngIf="isSaved"></app-heart-solid-icon>
+          <span *ngIf="!isSaved">Save</span>
+          <span *ngIf="isSaved">Saved</span>
         </div>
       </div>
     </div>
     <div class="header__rating">
-      <app-rating-decimar></app-rating-decimar>
+      <app-rating-decimar [rate]="averageRating"></app-rating-decimar>
       <div class="rating__review-number">{{ reviewNumber }} reviews</div>
     </div>
     <a
@@ -30,6 +27,7 @@
       "
       rel="nofollow"
       class="header__address"
+      target="_blank"
     >
       <app-location-dot-icon></app-location-dot-icon>
       {{ address }}
