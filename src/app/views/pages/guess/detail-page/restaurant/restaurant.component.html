@@ -1,42 +1,78 @@
 <div class="restaurant property">
+  <app-loading-spinner
+    *ngIf="isFetching.restaurant"
+    style="display: block; width: 100%; height: 40rem"
+  ></app-loading-spinner>
+  <div class="property__error" *ngIf="!restaurant && !isFetching.restaurant">
+    <app-circle-exclamation-icon
+      class="error__icon"
+    ></app-circle-exclamation-icon>
+    <h1>Oops! Something went wrong.</h1>
+    <aside>Try refeshing the page or try again later.</aside>
+    <button class="btn btn--primary" appRefresh>Refresh Page</button>
+  </div>
   <app-detail-header
-    headerTitle="Sao Hom"
-    address="Hai Ba Trung Street Can Tho Market, Can Tho 65000 Vietnam"
+    [headerTitle]="restaurant.name"
+    [address]="restaurant.address"
+    *ngIf="restaurant"
+    [averageRating]="averageRating"
+    [reviewNumber]="reviewNumber"
+    [item]="restaurant"
     category="restaurant"
   ></app-detail-header>
-  <div class="property__body">
+  <div class="property__body" *ngIf="restaurant">
     <div class="property__wrap">
-      <div class="restaurant__galeries">
-        <app-thumb-galeries></app-thumb-galeries>
+      <div class="restaurant__galeries img-contain">
+        <app-thumb-galeries
+          [galeries]="restaurant.restaurantGalleries"
+        ></app-thumb-galeries>
       </div>
       <div class="restaurant__infor">
         <div class="restaurant__col panel">
           <div class="col__title">Ratings and reviews</div>
           <div class="restaurant__rating">
-            3.5 <app-rating-decimar></app-rating-decimar>
-            <span>710 reviews</span>
+            {{ averageRating }}
+            <app-rating-decimar
+              [rate]="averageRating"
+              id="rating"
+            ></app-rating-decimar>
+            <span>{{ reviewNumber }} reviews</span>
           </div>
           <div class="col__title">Location</div>
-          <a class="col__address">
+          <a
+            class="col__address"
+            [href]="
+              'https://www.google.com/maps/search/?api=1&query=' + addressEncode
+            "
+          >
             <app-location-dot-icon></app-location-dot-icon>
-            Hai Ba Trung Street Can Tho Market, Can Tho 65000 Vietnam
+            {{ restaurant.address }}
           </a>
         </div>
         <div class="restaurant__col panel">
           <h1 class="col__title">Details</h1>
           <div class="col__group">
             <h1 class="group__title">Cuisines</h1>
-            <p>Asian, Vietnamese</p>
+            <p>{{ cuisinesString }}</p>
           </div>
           <div class="col__group">
-            <h1 class="group__title">SPECIAL DIETS</h1>
-            <p>Vegetarian Friendly, Vegan Options, Gluten Free Options</p>
+            <h1 class="group__title">Meals</h1>
+            <p>{{ mealsString }}</p>
+          </div>
+          <div class="col__group">
+            <h1 class="group__title">Features</h1>
+            <p>{{ featuresString }}</p>
           </div>
         </div>
       </div>
     </div>
     <div class="property__wrap">
-      <app-review></app-review>
+      <app-review
+        [reviews]="restaurant.restaurantReviews"
+        (reviewSuccess)="handleReviewChange()"
+        [id]="restaurant.id"
+        category="restaurant"
+      ></app-review>
     </div>
   </div>
 </div>

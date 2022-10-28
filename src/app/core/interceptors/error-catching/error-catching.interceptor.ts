@@ -60,7 +60,11 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
           errorMessage = this.catchResetPasswordError(errRes);
         if (this.checkUrl('/sign-up'))
           errorMessage.message = this.catchSignUpError(errRes);
-        if (this.checkUrl('/hotel/'))
+        if (
+          this.checkUrl('/hotel/') ||
+          this.checkUrl('/destination') ||
+          this.checkUrl('restaurant')
+        )
           errorMessage.message = errRes.error.message;
         break;
       case 401:

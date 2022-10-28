@@ -2,6 +2,12 @@
 @import "settings/variables/breakpoint";
 @import "settings/mixin";
 .restaurant {
+  #rating {
+    height: 2rem;
+  }
+  #rating :ng-deep .rating {
+    height: 100%;
+  }
   &__galeries {
     background-color: #fff;
     border: 1px solid #e0e0e0;

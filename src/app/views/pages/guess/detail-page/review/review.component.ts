@@ -58,6 +58,7 @@ export class ReviewComponent implements OnInit {
         this.scrollTarget.nativeElement.scrollIntoView({
           behavior: 'smooth',
         });
+      else localStorage.removeItem('review');
     });
   }
 

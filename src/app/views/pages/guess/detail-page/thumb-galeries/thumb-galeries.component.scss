@@ -5,7 +5,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    background-color: black;
   }
+
   .swiper-button-next,
   .swiper-button-prev {
     &:after {
@@ -35,4 +37,7 @@
     aspect-ratio: 1/1;
     object-fit: cover;
   }
+}
+:host-context(.img-contain) .main-swiper ::ng-deep img {
+  object-fit: contain;
 }

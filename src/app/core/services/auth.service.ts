@@ -99,6 +99,7 @@ export class AuthService {
   travelerLogout() {
     this.cookie.deleteAll();
     this.travelerService.remove();
+    console.log('traveler logout');
   }
   private handleAuthentication(
     username: string,

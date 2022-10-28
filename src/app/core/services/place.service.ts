@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { PlaceFilterInfor } from '../interfaces/place-filter-infor.interface';
 import { PlaceLocalStorage } from '../interfaces/place-local-storage.interface';
@@ -11,7 +12,8 @@ import { TravelerService } from './traveler.service';
 export class PlaceService {
   constructor(
     private http: HttpClient,
-    private travelerService: TravelerService
+    private travelerService: TravelerService,
+    private cookieService: CookieService
   ) {}
   getRandom(quantity: number = 4) {
     return this.http.get<Place[]>(environment.apiURL + 'places/random', {
@@ -51,6 +53,7 @@ export class PlaceService {
   }
   review(rating: number, comment: string, placeId: number) {
     const traveler = this.travelerService.traveler;
+    const token = this.cookieService.get('traveler');
     return this.http.post(
       environment.apiURL + 'places/' + placeId + '/review',
       {
@@ -58,10 +61,16 @@ export class PlaceService {
         placeId,
         comment,
         rating,
-      }
+      },
+      this.permitsion(token)
     );
   }
   private storeSavedListInLocal(list: PlaceLocalStorage[]) {
     localStorage.setItem('placeSaved', JSON.stringify(list));
+  }
+  private permitsion(token: string) {
+    return {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
+    };
   }
 }

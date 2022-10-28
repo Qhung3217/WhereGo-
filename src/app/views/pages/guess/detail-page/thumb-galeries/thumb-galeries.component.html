@@ -4,7 +4,7 @@
   class="main-swiper"
 >
   <ng-template swiperSlide *ngFor="let galery of galeries">
-    <img [src]="imageService.render(galery.label)" />
+    <img [src]="imageService.render(galery.label || galery.name)" />
   </ng-template>
 </swiper>
 <swiper
@@ -16,6 +16,6 @@
   class="sub-swiper"
 >
   <ng-template swiperSlide *ngFor="let galery of galeries">
-    <img [src]="imageService.render(galery.label)" />
+    <img [src]="imageService.render(galery.label || galery.name)" />
   </ng-template>
 </swiper>

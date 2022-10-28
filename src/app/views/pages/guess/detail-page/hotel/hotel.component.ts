@@ -89,7 +89,8 @@ export class HotelComponent implements OnInit {
     };
   }
   handleReviewChange() {
-    this.router.navigate(['/hotel', this.hotelId]);
+    this.router.navigate(['hotel', this.hotelId]);
+    setTimeout(() => window.location.reload(), 1000);
   }
   private fetchItem() {
     this.fetchHotelDetail();
@@ -120,7 +121,7 @@ export class HotelComponent implements OnInit {
 
   private getAverageRating() {
     if (!!this.hotel) {
-      console.log('avavava');
+      // console.log('Hotel detail average rating: ');
       const totalRating = this.hotel.reviews.reduce(
         (total, review) => (total += review.rating),
         0

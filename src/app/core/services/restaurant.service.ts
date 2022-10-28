@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { RestaurantFilterInfor } from '../interfaces/restaurant-filter-infor.interface';
 import { RestaurantLocalStorage } from '../interfaces/restaurant-local-storage.interface';
@@ -11,7 +12,8 @@ import { TravelerService } from './traveler.service';
 export class RestaurantService {
   constructor(
     private http: HttpClient,
-    private travelerService: TravelerService
+    private travelerService: TravelerService,
+    private cookieService: CookieService
   ) {}
   getRandom(quantity: number = 4) {
     return this.http.get<Restaurant[]>(
@@ -59,6 +61,8 @@ export class RestaurantService {
   }
   review(rating: number, comment: string, restaurantId: number) {
     const traveler = this.travelerService.traveler;
+    const token = this.cookieService.get('traveler');
+
     return this.http.post(
       environment.apiURL + 'restaurants/' + restaurantId + '/review',
       {
@@ -66,10 +70,16 @@ export class RestaurantService {
         restaurantId,
         comment,
         rating,
-      }
+      },
+      this.permitsion(token)
     );
   }
   private storeSavedListInLocal(list: RestaurantLocalStorage[]) {
     localStorage.setItem('restaurantSaved', JSON.stringify(list));
+  }
+  private permitsion(token: string) {
+    return {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
+    };
   }
 }
