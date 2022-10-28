@@ -106,6 +106,15 @@ export class RestaurantListPageComponent implements OnInit, OnDestroy {
     );
   }
 
+  handlePageChange(page: any) {
+    this.page = page;
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
+
   private fetchData(keyword: string) {
     this.searchService.restaurantSearch(keyword).subscribe({
       next: (res) => {

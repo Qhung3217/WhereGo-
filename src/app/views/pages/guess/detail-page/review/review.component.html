@@ -85,7 +85,7 @@
 
     <div class="panel" *ngIf="reviews.length">
       <pagination-controls
-        (pageChange)="page = $event"
+        (pageChange)="handlePageChange($event)"
         [maxSize]="6"
         class="global-pagination"
         [responsive]="false"

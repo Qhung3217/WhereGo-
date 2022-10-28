@@ -84,6 +84,14 @@ export class DestinationListPageComponent implements OnInit, OnDestroy {
       (filterSelect) => filterSelect.value !== filter.value
     );
   }
+  handlePageChange(page: any) {
+    this.page = page;
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
   private fetchData(keyword: string) {
     this.searchService.placeSearch(keyword).subscribe({
       next: (res) => {

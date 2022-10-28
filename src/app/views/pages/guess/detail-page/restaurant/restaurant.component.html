@@ -65,6 +65,44 @@
           </div>
         </div>
       </div>
+      <div class="restaurant__suggestions panel">
+        <h1 class="panel__title">You may also like</h1>
+        <hr />
+        <div class="suggestion__list relative">
+          <app-loading-spinner
+            *ngIf="isFetching.restaurantSuggestion"
+          ></app-loading-spinner>
+
+          <div
+            class="suggestion__item"
+            *ngFor="let restaurantSuggestion of restaurantSuggestions"
+          >
+            <a
+              [routerLink]="['/restaurant', restaurantSuggestion.id]"
+              class="restaurant__suggestion"
+            >
+              <figure class="suggestion__thumb">
+                <img
+                  [defaultImage]="imageService.defaultImage"
+                  [lazyLoad]="
+                    imageService.render(restaurantSuggestion.thumbnail)
+                  "
+                  [alt]="restaurantSuggestion.name"
+                />
+              </figure>
+              <div class="suggestion__infor">
+                <h1 class="suggestion__title">
+                  {{ restaurantSuggestion.name }}
+                </h1>
+                <app-rating-decimar
+                  [rate]="restaurantSuggestion.averageRating"
+                ></app-rating-decimar>
+                <p>{{ restaurantSuggestion.totalRating }} reviews</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="property__wrap">
       <app-review

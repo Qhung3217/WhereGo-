@@ -1,21 +1,47 @@
 <section class="travel-articles">
-  <h1 class="title">All Travel Articles</h1>
-  <ul class="travel-articles__list">
-    <li class="travel-articles__item">
-      <div class="item__content">
-        <a href="" class="item__title">
-          Why Southern Spain is the perfect fall getaway
-        </a>
-        <p class="item__short-desc">
-          These six towns in Southern Spain are high on sunshine and low on
-          crowds
-        </p>
-        <div class="item__content-bottom">By Megan Lloyd • Oct 7, 2022</div>
-      </div>
-      <figure class="item__thumb">
-        <img src="https://picsum.photos/500?random=5" alt="" />
-      </figure>
-    </li>
-  </ul>
-  <app-pagination [maxSize]="2"></app-pagination>
+  <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
+  <div class="fetch-fail" *ngIf="articles.length === 0 && !isFetching">
+    <app-circle-exclamation-icon
+      class="error__icon"
+    ></app-circle-exclamation-icon>
+    <h1>Oops! Something went wrong.</h1>
+    <aside>Try refeshing the page or try again later.</aside>
+    <button class="btn btn--primary" appRefresh>Refresh Page</button>
+  </div>
+  <div *ngIf="articles.length > 0 && !isFetching">
+    <h1 class="title">All Travel Articles</h1>
+    <ul class="travel-articles__list">
+      <li
+        class="travel-articles__item"
+        *ngFor="
+          let article of articles
+            | paginate: { itemsPerPage: 5, currentPage: page }
+        "
+      >
+        <div class="item__content">
+          <a [routerLink]="[article.id]" class="item__title">
+            {{ article.title }}
+          </a>
+          <p class="item__short-desc">
+            {{ article.shortDesc }}
+          </p>
+          <div class="item__content-bottom">
+            By {{ article.writerName }} • {{ article.createdDate | date }}
+          </div>
+        </div>
+        <figure class="item__thumb">
+          <img
+            [lazyLoad]="imageService.render(article.image)"
+            [defaultImage]="imageService.defaultImage"
+          />
+        </figure>
+      </li>
+    </ul>
+    <pagination-controls
+      (pageChange)="handlePageChange($event)"
+      [maxSize]="5"
+      class="global-pagination"
+      [responsive]="false"
+    ></pagination-controls>
+  </div>
 </section>

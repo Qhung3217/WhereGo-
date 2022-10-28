@@ -76,33 +76,14 @@ export class ReviewComponent implements OnInit {
         });
         return;
       }
-
-      switch (this.category) {
-        case 'hotel':
-          this.hotelService.review(rating, comment, this.id).subscribe({
-            next: () => this.handleReviewSuccess(),
-            error: (error) => this.handleReviewError(error.statusCode),
-          });
-          break;
-        case 'restaurant':
-          this.restaurantService.review(rating, comment, this.id).subscribe({
-            next: () => this.handleReviewSuccess(),
-            error: (error) => this.handleReviewError(error.statusCode),
-          });
-          break;
-        case 'destination':
-          this.placeService.review(rating, comment, this.id).subscribe({
-            next: () => this.handleReviewSuccess(),
-            error: (error) => this.handleReviewError(error.statusCode),
-          });
-          break;
-
-        default:
-          this.isFetching = false;
-          localStorage.removeItem('review');
-          break;
-      }
+      this.sendData(rating, comment);
     }
+  }
+  handlePageChange(page: any) {
+    this.page = page;
+    this.scrollTarget.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+    });
   }
   private initForm() {
     let rating = null;
@@ -139,5 +120,33 @@ export class ReviewComponent implements OnInit {
     const review = localStorage.getItem('review');
     if (review) return JSON.parse(review);
     return null;
+  }
+
+  private sendData(rating: number, comment: string) {
+    switch (this.category) {
+      case 'hotel':
+        this.hotelService.review(rating, comment, this.id).subscribe({
+          next: () => this.handleReviewSuccess(),
+          error: (error) => this.handleReviewError(error.statusCode),
+        });
+        break;
+      case 'restaurant':
+        this.restaurantService.review(rating, comment, this.id).subscribe({
+          next: () => this.handleReviewSuccess(),
+          error: (error) => this.handleReviewError(error.statusCode),
+        });
+        break;
+      case 'destination':
+        this.placeService.review(rating, comment, this.id).subscribe({
+          next: () => this.handleReviewSuccess(),
+          error: (error) => this.handleReviewError(error.statusCode),
+        });
+        break;
+
+      default:
+        this.isFetching = false;
+        localStorage.removeItem('review');
+        break;
+    }
   }
 }

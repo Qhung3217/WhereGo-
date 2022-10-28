@@ -70,6 +70,55 @@
       display: inline-block;
     }
   }
+  &__suggestions {
+    margin-top: 2.4rem;
+    margin-bottom: 2.4rem;
+    border-radius: 1.2rem;
+  }
+  .suggestion__list {
+    overflow-x: auto;
+    display: flex;
+    width: 100%;
+  }
+  .suggestion__item {
+    min-width: 27.5rem;
+    flex: 25% 0;
+  }
+
+  &__suggestion {
+    display: flex;
+    padding: 1.2rem;
+    text-decoration: none;
+    color: $text-color;
+  }
+  .suggestion__thumb {
+    height: 116px;
+    width: 86px;
+    margin-right: 1.6rem;
+    flex-shrink: 0;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.2rem;
+    }
+  }
+  .suggestion__infor {
+    flex-shrink: 1;
+  }
+  .suggestion__title {
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .suggestion__infor p {
+    margin-top: 0.4rem;
+    display: block;
+    color: $text-color-secondary;
+    font-size: 1.2rem;
+  }
 }
 
 @include maxWidth($screen-md) {
