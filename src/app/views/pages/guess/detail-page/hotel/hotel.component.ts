@@ -63,9 +63,9 @@ export class HotelComponent implements OnInit {
 
       this.router.navigate(['/traveler/check-out', this.hotel?.id], {
         queryParams: {
-          people,
-          checkIn,
-          checkOut,
+          people: people,
+          checkIn: JSON.stringify(checkIn),
+          checkOut: JSON.stringify(checkOut),
         },
       });
     }

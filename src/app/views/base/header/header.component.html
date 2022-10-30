@@ -115,11 +115,7 @@
                       [routerLink]="
                         writer ? 'auth/writer/login' : 'auth/traveler/login'
                       "
-                      (click)="
-                        writer
-                          ? authService.writerLogout()
-                          : authService.travelerLogout()
-                      "
+                      (click)="handleSignOut()"
                       class="user__item"
                       >Sign out</a
                     >

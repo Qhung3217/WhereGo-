@@ -77,6 +77,31 @@ export class TravelerService {
     this.traveler = undefined;
     this.travelerEvent.next(undefined);
   }
+  checkOut(
+    email: string,
+    hotelId: number,
+    bookingDate: string,
+    numberOfPeople: number,
+    price: number,
+    checkInDate: string,
+    checkOutDate: string
+  ) {
+    const token = this.cookie.get('traveler');
+
+    return this.http.post(
+      environment.apiURL + 'bookings',
+      {
+        travelerEmail: email,
+        hotelId: hotelId,
+        bookingDate: bookingDate,
+        numberOfPeople: numberOfPeople,
+        price: price,
+        checkInDate: checkInDate,
+        checkOutDate: checkOutDate,
+      },
+      this.permitsion(token)
+    );
+  }
   private saved(traveler: Traveler) {
     console.log('saved', traveler);
     this.traveler = { ...traveler };

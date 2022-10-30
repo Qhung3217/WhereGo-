@@ -1,5 +1,6 @@
-<section class="profile traveler-profile">
-  <app-fetch-fail *ngIf="!traveler"></app-fetch-fail>
+<section class="profile traveler-profile relative">
+  <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
+  <app-fetch-fail *ngIf="!traveler && !isFetching"></app-fetch-fail>
   <div class="profile__wrap" *ngIf="traveler">
     <div class="profile__top panel">
       <div class="profile__head">

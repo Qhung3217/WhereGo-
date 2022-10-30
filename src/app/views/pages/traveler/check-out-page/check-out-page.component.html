@@ -1,29 +1,56 @@
 <section class="checkout">
-  <div class="checkout__wrap">
+  <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
+  <app-fetch-fail
+    *ngIf="(!isFetching && !hotel) || !checkOutForm.valid"
+  ></app-fetch-fail>
+  <h1 class="checkout__title" *ngIf="hotel && checkOutForm.valid">
+    Your bookings information
+  </h1>
+  <div class="checkout__wrap" *ngIf="hotel && checkOutForm.valid">
     <div class="checkout__infor">
       <figure class="hotel__thumb">
-        <img src="https://picsum.photos/500" alt="" />
-        <span>International Hotel</span>
+        <img [src]="imageService.render(hotel.image)" [alt]="hotel.name" />
+        <span>{{ hotel.name }}</span>
       </figure>
       <div class="checkout__hotel">
-        <div class="checkout__text"><span>Amount of people: </span>2</div>
-        <div class="checkout__text"><span>Check in: </span>20/10/2020</div>
-        <div class="checkout__text"><span>Check out: </span>21/10/2020</div>
+        <div class="checkout__text">
+          <span>Amount of people: </span>{{ people }}
+        </div>
+        <div class="checkout__text">
+          <span>Check in:</span> {{ checkIn | date: "fullDate" }}
+        </div>
+        <div class="checkout__text">
+          <span>Check out:</span> {{ checkOut | date: "fullDate" }}
+        </div>
+        <hr />
+        <div class="checkout__text checkout__text--big">
+          <span>Your information</span>
+        </div>
+        <div class="checkout__text"><span>Email: </span> {{ email }}</div>
+        <div class="checkout__text"><span>Phone: </span> {{ tel }}</div>
+        <div class="checkout__text">
+          <aside>
+            If your information incorrect, please update your profile or
+            <a [routerLink]="['/traveler', username]">Click here</a>
+          </aside>
+        </div>
       </div>
     </div>
     <div class="checkout__price">
       <h1>Detail price</h1>
       <div class="price__row">
         <div class="row__item">Price</div>
-        <div class="row__item">500$</div>
+        <div class="row__item">{{ price | currency }}</div>
       </div>
       <hr />
       <div class="price__row price__row-total">
         <div class="row__item">Total</div>
-        <div class="row__item">500$</div>
+        <div class="row__item">{{ price | currency }}</div>
       </div>
       <div class="price__cta">
-        <button class="btn btn--primary">Checkout</button>
+        <button class="btn btn--primary" (click)="handleCheckOut()">
+          Checkout
+        </button>
       </div>
       <aside>
         This is a reference price, the price may be different when checking in
