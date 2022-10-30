@@ -16,6 +16,7 @@ import { LoadingSpinnerModule } from 'src/app/shared/components/loading-spinner/
 import { CircleExclamationIconModule } from 'src/app/shared/icons/circle-exclamation-icon/circle-exclamation-icon.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SafeUrlPipeModule } from 'src/app/shared/pipes/safe-url-pipe/safe-url-pipe.module';
+import { FetchFailModule } from 'src/app/shared/components/fetch-fail/fetch-fail.module';
 
 const routes: Routes = [
   {
@@ -53,6 +54,7 @@ const routes: Routes = [
 
     TableModule,
     LoadingSpinnerModule,
+    FetchFailModule,
 
     SafeUrlPipeModule,
 

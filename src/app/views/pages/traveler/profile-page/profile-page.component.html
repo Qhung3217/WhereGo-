@@ -1,12 +1,5 @@
 <section class="profile traveler-profile">
-  <div class="fetch-fail" *ngIf="!traveler">
-    <app-circle-exclamation-icon
-      class="error__icon"
-    ></app-circle-exclamation-icon>
-    <h1>Oops! Something went wrong.</h1>
-    <aside>Try refeshing the page or try again later.</aside>
-    <button class="btn btn--primary" appRefresh>Refresh Page</button>
-  </div>
+  <app-fetch-fail *ngIf="!traveler"></app-fetch-fail>
   <div class="profile__wrap" *ngIf="traveler">
     <div class="profile__top panel">
       <div class="profile__head">

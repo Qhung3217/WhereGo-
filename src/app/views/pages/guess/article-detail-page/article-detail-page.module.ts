@@ -5,6 +5,7 @@ import { BreadcrumbModule } from 'src/app/shared/components/breadcrumb/breadcrum
 import { LoadingSpinnerModule } from 'src/app/shared/components/loading-spinner/loading-spinner.module';
 import { CircleExclamationIconModule } from 'src/app/shared/icons/circle-exclamation-icon/circle-exclamation-icon.module';
 import { NgxSummernoteModule } from 'ngx-summernote';
+import { FetchFailModule } from 'src/app/shared/components/fetch-fail/fetch-fail.module';
 
 @NgModule({
   declarations: [ArticleDetailPageComponent],
@@ -13,7 +14,7 @@ import { NgxSummernoteModule } from 'ngx-summernote';
     NgxSummernoteModule,
     BreadcrumbModule,
     LoadingSpinnerModule,
-    CircleExclamationIconModule,
+    FetchFailModule,
   ],
   exports: [ArticleDetailPageComponent],
 })

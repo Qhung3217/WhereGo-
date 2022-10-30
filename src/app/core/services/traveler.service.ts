@@ -43,9 +43,10 @@ export class TravelerService {
     name: string,
     tel: string,
     dob: string,
-    avatar: null | File = null,
-    token: string
+    avatar: null | File = null
   ) {
+    const token = this.cookie.get('traveler');
+
     const payload = new FormData();
     payload.append('name', name);
     payload.append('tel', tel);
@@ -56,6 +57,18 @@ export class TravelerService {
     return this.http.put<{ statusCode: string; message: string }>(
       environment.apiURL + 'travelers/' + username,
       payload,
+      this.permitsion(token)
+    );
+  }
+  changePassword(email: string, oldPassword: string, newPassword: string) {
+    const token = this.cookie.get('traveler');
+    return this.http.put(
+      environment.apiURL + 'travelers/change-password',
+      {
+        email,
+        oldPassword,
+        newPassword,
+      },
       this.permitsion(token)
     );
   }

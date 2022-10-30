@@ -107,6 +107,8 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
       case this.checkUrl('/auth/traveler/login'):
       case this.checkUrl('/auth/writter/login'):
         return 'Email or password incorrect';
+      case this.checkUrl('/change-password'):
+        return 'Incorect password';
       default:
         return '401 Unauthorized';
     }

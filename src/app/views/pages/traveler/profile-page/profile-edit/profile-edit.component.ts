@@ -55,8 +55,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
         this.profileForm.get('name')?.value,
         this.profileForm.get('phone')?.value,
         dob,
-        this.profileForm.get('avatar')?.value,
-        this.cookieService.get('traveler')
+        this.profileForm.get('avatar')?.value
       )
       .subscribe({
         next: (data) => {
