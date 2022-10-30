@@ -6,7 +6,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
-  // Table body
+  /* ---------------- Table tools --------------- */
+
+  /* -------------- End table tools ------------- */
+
+  /* ---------------- Table body ---------------- */
+  @Input() showAction = false;
   @Input() ths: string[] = ['Col 1', 'Col 2', 'Col 3'];
   @Input() dataSource: {}[] = [
     {
@@ -15,11 +20,31 @@ export class TableComponent {
       col3: 'Data 3',
     },
   ];
-  // End table body
+  @Input() fieldSearch: string = '';
+  dataShow = [...this.dataSource];
+  /* -------------- End table body -------------- */
 
-  // Table tools
-
-  // End table tools
-
+  /* ---------------- Pagination ---------------- */
+  page = 1;
+  /* -------------- end pagination -------------- */
   constructor() {}
+
+  /* ---------------- Table body ---------------- */
+  getValues(dataElement: {}) {
+    // console.log(Object.values(dataElement));
+
+    if (this.dataSource.length > 0) {
+      return Object.values(dataElement);
+    }
+
+    return [];
+  }
+
+  /* -------------- End table body -------------- */
+
+  /* ---------------- PAGINATION ---------------- */
+  handlePageChange(page: number) {
+    this.page = page;
+  }
+  /* -------------- END PAGINATION -------------- */
 }

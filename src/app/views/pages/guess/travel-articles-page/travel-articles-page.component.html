@@ -1,13 +1,6 @@
 <section class="travel-articles">
   <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
-  <div class="fetch-fail" *ngIf="articles.length === 0 && !isFetching">
-    <app-circle-exclamation-icon
-      class="error__icon"
-    ></app-circle-exclamation-icon>
-    <h1>Oops! Something went wrong.</h1>
-    <aside>Try refeshing the page or try again later.</aside>
-    <button class="btn btn--primary" appRefresh>Refresh Page</button>
-  </div>
+  <app-fetch-fail *ngIf="articles.length === 0 && !isFetching"></app-fetch-fail>
   <div *ngIf="articles.length > 0 && !isFetching">
     <h1 class="title">All Travel Articles</h1>
     <ul class="travel-articles__list">

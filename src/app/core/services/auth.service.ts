@@ -63,7 +63,7 @@ export class AuthService {
       .pipe(
         tap((res) => {
           this.handleAuthentication(res.username, res.token);
-          this.cookie.set('traveler', res.token);
+          this.setCookie(res.token, 1, false);
 
           this.travelerCredential.next(res.token);
         })
@@ -86,7 +86,7 @@ export class AuthService {
       .pipe(
         tap((res) => {
           this.handleAuthentication(res.username, res.token, true);
-          this.cookie.set('writer', res.token);
+          this.setCookie(res.token, 1, true);
 
           this.writerCredential.next(res.token);
         })
@@ -140,5 +140,25 @@ export class AuthService {
       this.router.navigate(['/traveler', username], {
         queryParamsHandling: 'merge',
       });
+  }
+  private setCookie(token: string, hour: number = 1, isWriter: boolean) {
+    if (isWriter)
+      this.cookie.set('writer', token, {
+        expires: this.addHoursToCurrentDate(hour),
+      });
+    else
+      this.cookie.set('traveler', token, {
+        expires: this.addHoursToCurrentDate(hour),
+      });
+  }
+  private addHoursToCurrentDate(hour: number) {
+    const currentDate = new Date();
+    const MINUTE_IN_HOUR = 60;
+    const SECOND_IN_HOUR = 60;
+    const MILISECOND_IN_SECOND = 1000;
+    return new Date(
+      currentDate.getTime() +
+        hour * MINUTE_IN_HOUR * SECOND_IN_HOUR * MILISECOND_IN_SECOND
+    );
   }
 }

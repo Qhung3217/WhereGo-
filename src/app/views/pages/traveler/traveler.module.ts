@@ -12,6 +12,11 @@ import { ImageIconModule } from 'src/app/shared/icons/image-icon/image-icon.modu
 import { TableModule } from 'src/app/shared/components/table/table.module';
 import { CheckOutPageComponent } from './check-out-page/check-out-page.component';
 import { TravelerAuthenticateGuard } from 'src/app/core/guards/traveler-authenticate.guard';
+import { LoadingSpinnerModule } from 'src/app/shared/components/loading-spinner/loading-spinner.module';
+import { CircleExclamationIconModule } from 'src/app/shared/icons/circle-exclamation-icon/circle-exclamation-icon.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SafeUrlPipeModule } from 'src/app/shared/pipes/safe-url-pipe/safe-url-pipe.module';
+import { FetchFailModule } from 'src/app/shared/components/fetch-fail/fetch-fail.module';
 
 const routes: Routes = [
   {
@@ -42,12 +47,19 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
+
     NgbDatepickerModule,
 
     TableModule,
+    LoadingSpinnerModule,
+    FetchFailModule,
+
+    SafeUrlPipeModule,
 
     ImageIconModule,
+    CircleExclamationIconModule,
   ],
 })
 export class TravelerModule {}

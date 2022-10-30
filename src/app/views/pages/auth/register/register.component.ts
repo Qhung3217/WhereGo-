@@ -90,7 +90,7 @@ export class RegisterComponent {
       {
         email: [null, [Validators.required, Validators.email]],
         password: [null, [Validators.required, Validators.minLength(6)]],
-        confirmPassword: [null, [Validators.required, Validators.minLength(6)]],
+        confirmPassword: [null, [Validators.required]],
         username: [null, [Validators.required]],
         name: [null, [Validators.required]],
         tel: [undefined, [Validators.required, phoneValidator.bind(this)]],

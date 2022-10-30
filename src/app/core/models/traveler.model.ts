@@ -1,4 +1,5 @@
-import { Review } from './review.model';
+import { SimpleReview } from './simple-review.model';
+import { Booking } from './booking.model';
 
 export class Traveler {
   constructor(
@@ -9,8 +10,9 @@ export class Traveler {
     public tel: string,
     public avatar: string,
     public dob: Date,
-    public restaurantReviews: Review[],
-    public placeReviews: Review[],
-    public hotelReviews: Review[]
+    public restaurantReviews: SimpleReview[],
+    public placeReviews: SimpleReview[],
+    public hotelReviews: SimpleReview[],
+    public bookings: Booking[]
   ) {}
 }

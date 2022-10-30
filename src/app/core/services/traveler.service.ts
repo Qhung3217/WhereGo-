@@ -37,6 +37,41 @@ export class TravelerService {
       { defaultValue: null }
     );
   }
+
+  update(
+    username: string,
+    name: string,
+    tel: string,
+    dob: string,
+    avatar: null | File = null
+  ) {
+    const token = this.cookie.get('traveler');
+
+    const payload = new FormData();
+    payload.append('name', name);
+    payload.append('tel', tel);
+    payload.append('dob', dob);
+    if (avatar == null) payload.append('avatar', '');
+    else payload.append('avatar', avatar);
+
+    return this.http.put<{ statusCode: string; message: string }>(
+      environment.apiURL + 'travelers/' + username,
+      payload,
+      this.permitsion(token)
+    );
+  }
+  changePassword(email: string, oldPassword: string, newPassword: string) {
+    const token = this.cookie.get('traveler');
+    return this.http.put(
+      environment.apiURL + 'travelers/change-password',
+      {
+        email,
+        oldPassword,
+        newPassword,
+      },
+      this.permitsion(token)
+    );
+  }
   remove() {
     localStorage.removeItem('traveler');
     this.traveler = undefined;

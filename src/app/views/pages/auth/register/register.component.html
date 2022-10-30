@@ -64,20 +64,23 @@
             id="confirmPassword"
             formControlName="confirmPassword"
           />
-          <div class="form__helper" *ngIf="isInvalidControl('confirmPassword')">
-            <span *ngIf="getControl('confirmPassword')?.errors?.['required']"
+          <div class="form__helper">
+            <span
+              *ngIf="getControl('confirmPassword')?.errors?.['required'] && isInvalidControl('confirmPassword')"
               >Confirm password is empty</span
             >
-            <span *ngIf="getControl('confirmPassword')?.errors?.['minlength']"
-              >At least 6 characters required</span
+
+            <span
+              *ngIf="registerForm.errors?.['confirmPassword'] && getControl('confirmPassword')?.valid"
+              >Confirm password not match</span
             >
           </div>
-          <div class="form__helper">
+          <!-- <div class="form__helper">
             <span
               *ngIf="registerForm.errors?.['confirmPassword'] && (registerForm.touched || registerForm.dirty)"
               >Confirm password not match</span
             >
-          </div>
+          </div> -->
         </div>
       </div>
       <hr />
@@ -142,6 +145,7 @@
           <input
             type="file"
             id="avatar"
+            accept=".png,.jpg,.jpeg"
             (change)="handleChangeAvatar($event)"
           />
           <div class="form__image-preview" *ngIf="!!avatarPreview">

@@ -1,14 +1,18 @@
 <section class="profile traveler-profile">
-  <div class="profile__wrap">
+  <app-fetch-fail *ngIf="!traveler"></app-fetch-fail>
+  <div class="profile__wrap" *ngIf="traveler">
     <div class="profile__top panel">
       <div class="profile__head">
         <figure class="profile__avatar">
-          <img src="https://picsum.photos/500" alt="" />
+          <img
+            [src]="imageService.render(traveler.avatar)"
+            [alt]="'Avatar of ' + traveler.name"
+          />
         </figure>
         <div class="profile__infor">
           <h2 class="infor__role">Traveler</h2>
-          <h1 class="infor__name">Quang Hung</h1>
-          <p class="infor__email">@Username</p>
+          <h1 class="infor__name">{{ traveler.name }}</h1>
+          <p class="infor__email">@{{ traveler.username }}</p>
         </div>
       </div>
       <div class="profile__tabs">
@@ -32,7 +36,7 @@
         >
       </div>
     </div>
-    <div class="panel">
+    <div class="panel relative">
       <router-outlet></router-outlet>
     </div>
   </div>
