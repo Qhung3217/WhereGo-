@@ -1,13 +1,64 @@
-<app-table-tools> </app-table-tools>
-<app-table-body [ths]="ths" [data]="dataSource"></app-table-body>
-<div class="table-paginator">
-  <span>1 - 5 of 20</span>
-  <div class="paginator__actions">
-    <button class="action__prev" disabled>
-      <app-chevron-right-icon class="action__icon"></app-chevron-right-icon>
-    </button>
-    <button class="action__next">
-      <app-chevron-right-icon class="action__icon"></app-chevron-right-icon>
-    </button>
+<div class="table__tools">
+  <div class="tool__search">
+    <app-search-icon class="search__icon"></app-search-icon>
+    <input type="text" placeholder="Search name" [(ngModel)]="fieldSearch" />
   </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngFor="let th of ths">{{ th }}</th>
+      <th *ngIf="showAction" class="th__action">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let data of dataSource
+          | filter: fieldSearch
+          | paginate: { itemsPerPage: 5, currentPage: page }
+      "
+    >
+      <td *ngFor="let dataValue of getValues(data)">
+        <div [innerHTML]="dataValue"></div>
+      </td>
+      <td class="action" *ngIf="showAction">
+        <app-edit-icon class="action__icon"></app-edit-icon>
+        <app-trash-icon class="action__icon"></app-trash-icon>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="table-paginator">
+  <span
+    >1 - {{ dataSource.length > 5 ? 5 : dataSource.length }} of
+    {{ dataSource.length }}</span
+  >
+
+  <pagination-controls
+    (pageChange)="handlePageChange($event)"
+    [maxSize]="0"
+    class="paginator"
+    [responsive]="false"
+    previousLabel=""
+    nextLabel=""
+  ></pagination-controls>
+
+  <!-- <div class="paginator__actions">
+    <button
+      class="action__prev"
+      [disabled]="page === 1"
+      (click)="handlePrevBtn()"
+    >
+      <app-chevron-right-icon class="action__icon"></app-chevron-right-icon>
+    </button>
+    <button
+      class="action__next"
+      [disabled]="disabledNextBtn()"
+      (click)="handleNextBtn()"
+    >
+      <app-chevron-right-icon class="action__icon"></app-chevron-right-icon>
+    </button>
+  </div> -->
 </div>

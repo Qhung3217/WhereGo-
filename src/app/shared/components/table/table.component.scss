@@ -1,3 +1,144 @@
+@import "settings/variables/color";
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
+/* ---------------- TABLE TOOL ---------------- */
+.table__tools {
+  display: flex;
+  margin-bottom: 2rem;
+  .tool__search {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .search__icon {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    ::ng-deep svg {
+      width: 2rem;
+      height: 2rem;
+      display: block;
+    }
+  }
+  .tool__search input {
+    border: 1px solid #e0e0e0;
+    padding: 0.8rem 1.2rem;
+    padding-left: 3rem;
+    font-size: 1.4rem;
+    font-family: inherit;
+    border-radius: 0.8rem;
+    transition: all 200ms ease-in;
+    &:focus {
+      outline: none;
+      border: 1px solid $primary-color;
+      box-shadow: 0px 3px 8px rgb(0 0 0 / 15%);
+    }
+  }
+}
+
+@include maxWidth($screen-md) {
+  .table__tools {
+    .tool__search {
+      width: 100%;
+    }
+    .tool__search input {
+      width: 100%;
+    }
+  }
+}
+
+/* -------------- END TABLE TOOL -------------- */
+
+/* ------------------- TABLE ------------------ */
+
+.section-table {
+  display: block;
+  overflow-x: auto;
+}
+.table {
+  margin-bottom: 2rem;
+  width: 100%;
+  min-width: 50rem;
+  td {
+    vertical-align: top;
+  }
+
+  td div {
+    white-space: break-spaces !important;
+  }
+  td div,
+  th {
+    width: fit-content;
+    white-space: nowrap;
+    vertical-align: top;
+  }
+  thead {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: $text-color;
+    line-height: 1.8rem;
+    border-bottom: 1px solid $secondary-color;
+  }
+  .th__action {
+    width: 8rem;
+  }
+
+  tbody {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: $text-color-secondary;
+    line-height: 1.6rem;
+  }
+  tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 200ms ease-in-out;
+    &:hover {
+      background-color: #e9f8f2;
+      border-color: #e9f8f2;
+    }
+  }
+  tbody td ::ng-deep img {
+    width: 8rem;
+    object-fit: cover;
+  }
+  .action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    min-width: 7rem;
+  }
+  .action__icon {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    color: $text-color-secondary;
+    opacity: 0.6;
+    transition: all 100ms linear;
+    &:hover {
+      color: $secondary-color;
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+}
+@include maxWidth($screen-md) {
+  .table {
+    td,
+    th {
+      // min-width: 10rem;
+    }
+    td {
+      padding: 1.2rem;
+    }
+  }
+}
+
+/* ----------------- End table ---------------- */
 .table-paginator {
   display: flex;
   justify-content: flex-end;
@@ -9,8 +150,7 @@
     color: rgba(0, 0, 0, 0.54);
     margin-right: 3.2rem;
   }
-  .paginator__actions {
-  }
+
   .action__prev,
   .action__next {
     width: 4rem;
@@ -38,5 +178,29 @@
   }
   .action__prev .action__icon ::ng-deep svg {
     transform: rotate(180deg);
+  }
+}
+.paginator ::ng-deep {
+  .ngx-pagination {
+    margin-bottom: 0;
+  }
+  .pagination-previous:before {
+    content: "" !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512' width='20px' height='20px'%3E%3Cpath d='M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 278.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z'/%3E%3C/svg%3E");
+    height: 2rem;
+    width: 2rem;
+  }
+  .pagination-next:after {
+    content: "" !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512' width='20px' height='20px'%3E%3Cpath d='M342.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L274.7 256 105.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z' /%3E%3C/svg%3E");
+
+    height: 2rem;
+    width: 2rem;
+  }
+  .pagination-previous.disabled:before {
+    opacity: 0.6;
+  }
+  .pagination-next.disabled:after {
+    opacity: 0.6;
   }
 }

@@ -142,6 +142,7 @@
           <input
             type="file"
             id="avatar"
+            accept=".png,.jpg,.jpeg"
             (change)="handleChangeAvatar($event)"
           />
           <div class="form__image-preview" *ngIf="!!avatarPreview">
