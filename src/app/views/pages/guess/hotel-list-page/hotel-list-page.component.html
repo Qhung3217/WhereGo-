@@ -6,7 +6,7 @@
   ></app-breadcrumb>
   <div class="container relative">
     <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
-    <div class="row search-empty" *ngIf="!hotels">
+    <div class="row search-empty" *ngIf="!hotels && !isFetching">
       <h1>No Result Found</h1>
       <aside>We did not find any hotels for your search</aside>
     </div>

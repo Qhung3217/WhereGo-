@@ -142,14 +142,17 @@ export class AuthService {
       });
   }
   private setCookie(token: string, hour: number = 1, isWriter: boolean) {
-    if (isWriter)
+    if (isWriter) {
+      if (this.cookie.check('writer')) this.cookie.delete('writer');
       this.cookie.set('writer', token, {
         expires: this.addHoursToCurrentDate(hour),
       });
-    else
+    } else {
+      if (this.cookie.check('traveler')) this.cookie.delete('traveler');
       this.cookie.set('traveler', token, {
         expires: this.addHoursToCurrentDate(hour),
       });
+    }
   }
   private addHoursToCurrentDate(hour: number) {
     const currentDate = new Date();

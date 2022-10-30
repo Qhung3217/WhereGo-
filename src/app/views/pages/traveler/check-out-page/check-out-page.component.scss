@@ -5,6 +5,14 @@
   background-color: #f2f2f2;
   padding-top: 1.6rem;
   padding-bottom: 1.6rem;
+  &__title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 3.6rem;
+    display: block;
+    text-align: center;
+    margin-bottom: 3.2rem;
+  }
   &__wrap {
     max-width: 75.2rem;
     width: calc(100% - 3.2rem);
@@ -12,6 +20,7 @@
     display: flex;
     gap: 2rem;
   }
+
   &__infor {
     max-width: 50%;
     width: 100%;
@@ -54,6 +63,7 @@
       );
     }
   }
+
   &__text {
     font-size: 1.6rem;
     line-height: 1.2;
@@ -61,9 +71,23 @@
     span {
       font-weight: 600;
     }
+    aside {
+      font-size: 1.2rem;
+      line-height: 1.4;
+      color: $text-color-secondary;
+      font-weight: 400;
+    }
+    aside a {
+      color: inherit;
+      font-weight: 500;
+    }
   }
   &__text + &__text {
     margin-top: 0.8rem;
+  }
+  &__text--big {
+    font-size: 2.4rem;
+    text-transform: capitalize;
   }
   &__price {
     max-width: 50%;

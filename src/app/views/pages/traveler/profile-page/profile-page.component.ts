@@ -1,4 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { Traveler } from 'src/app/core/models/traveler.model';
 import { ImageService } from 'src/app/core/services/image.service';
@@ -12,8 +14,11 @@ import { TravelerService } from 'src/app/core/services/traveler.service';
 export class ProfilePageComponent implements OnInit, OnDestroy {
   traveler?: Traveler;
   travelerSub!: Subscription;
+  isFetching = false;
   constructor(
     private travelerService: TravelerService,
+    private route: ActivatedRoute,
+    private cookieService: CookieService,
     public imageService: ImageService
   ) {}
   ngOnInit() {
@@ -24,13 +29,17 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   }
 
   private subcribeTraveler() {
-    if (this.travelerService.traveler)
-      this.traveler = { ...this.travelerService.traveler };
-    this.travelerSub = this.travelerService.travelerEvent.subscribe(
-      (traveler) => {
-        if (traveler) this.traveler = { ...traveler };
-        else this.traveler = traveler;
+    this.route.params.subscribe((params) => {
+      const username = params['username'];
+      if (username) {
+        this.isFetching = true;
+        this.travelerService
+          .getDetail(username, this.cookieService.get('traveler'))
+          .then((traveler) => {
+            if (traveler) this.traveler = { ...traveler };
+            this.isFetching = false;
+          });
       }
-    );
+    });
   }
 }
