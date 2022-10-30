@@ -1,7 +1,8 @@
 <section class="profile-form">
+  <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
   <label for="avatar" class="profile-form__avatar-group">
     <figure class="profile-form__avatar">
-      <img src="https://picsum.photos/500" alt="" />
+      <img [src]="avatarPreview | safeUrl" />
     </figure>
     <div class="avatar__overlay">
       <app-image-icon></app-image-icon>
@@ -9,30 +10,31 @@
     </div>
   </label>
 
-  <form class="form form--sm" (ngSubmit)="handleSubmit()">
-    <input type="file" id="avatar" class="form__file--d-none" />
+  <form
+    class="form form--sm"
+    (ngSubmit)="handleSubmit()"
+    [formGroup]="profileForm"
+  >
+    <input
+      type="file"
+      id="avatar"
+      class="form__file--d-none"
+      accept="image/*"
+      (change)="handleChangeAvatar($event)"
+    />
 
     <div class="form__group">
       <label for="name">Name</label>
       <div class="form__control">
-        <input type="text" id="name" />
-        <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
-              <span *ngIf="email.errors?.['required']">Email is empty</span>
-              <span *ngIf="email.errors?.['email']">Email address invalid</span>
-            </div> -->
+        <input type="text" id="name" formControlName="name" />
+        <div class="form__helper" *ngIf="isInvalidControl('name')">
+          <span *ngIf="getControl('name')?.errors?.['required']"
+            >Your name is empty</span
+          >
+        </div>
       </div>
     </div>
-    <div class="form__group">
-      <label for="name">Username</label>
-      <div class="form__control">
-        <span class="control__icon">@</span>
-        <input type="text" id="name" />
-        <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
-              <span *ngIf="email.errors?.['required']">Email is empty</span>
-              <span *ngIf="email.errors?.['email']">Email address invalid</span>
-            </div> -->
-      </div>
-    </div>
+
     <div class="form__group">
       <label for="dob">Date of birth</label>
       <div class="form__control">
@@ -42,33 +44,45 @@
           placeholder="--/--/--"
           ngbDatepicker
           readonly
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          formControlName="dob"
           #dob="ngbDatepicker"
           (click)="dob.toggle()"
           (keypress)="$event.preventDefault()"
           style="cursor: pointer"
         />
-        <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
-              <span *ngIf="email.errors?.['required']">Email is empty</span>
-              <span *ngIf="email.errors?.['email']">Email address invalid</span>
-            </div> -->
+        <div class="form__helper" *ngIf="isInvalidControl('dob')">
+          <span *ngIf="getControl('dob')?.errors?.['required']"
+            >Date of birth is empty</span
+          >
+        </div>
       </div>
     </div>
     <div class="form__group">
-      <label for="tel">Phone</label>
+      <label for="phone">Phone</label>
       <div class="form__control">
-        <input type="tel" id="tel" />
-        <!-- <div class="form__helper" *ngIf="!email.valid && email.touched">
-              <span *ngIf="email.errors?.['required']">Email is empty</span>
-              <span *ngIf="email.errors?.['email']">Email address invalid</span>
-            </div> -->
+        <input type="phone" id="phone" formControlName="phone" />
+        <div class="form__helper" *ngIf="isInvalidControl('phone')">
+          <span *ngIf="getControl('phone')?.errors?.['required']"
+            >Phone number is empty</span
+          >
+          <span *ngIf="getControl('phone')?.errors?.['isValidPhone']"
+            >Phone number invalid in Viet Nam country</span
+          >
+        </div>
       </div>
     </div>
 
     <div class="form__bottom form__bottom--inline">
-      <button class="btn btn--secondary btn--radius-small" type="button">
+      <!-- <button class="btn btn--secondary btn--radius-small" type="button">
         Cancel
-      </button>
-      <button type="submit" class="btn btn--primary btn--radius-small">
+      </button> -->
+      <button
+        type="submit"
+        class="btn btn--primary btn--radius-small"
+        [disabled]="!profileForm.valid"
+      >
         Save
       </button>
     </div>

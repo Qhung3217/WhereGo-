@@ -10,7 +10,12 @@
   </label>
 
   <form class="form form--sm" (ngSubmit)="handleSubmit()">
-    <input type="file" id="avatar" class="form__file--d-none" />
+    <input
+      type="file"
+      id="avatar"
+      class="form__file--d-none"
+      accept="image/*"
+    />
 
     <div class="form__group">
       <label for="name">Name</label>

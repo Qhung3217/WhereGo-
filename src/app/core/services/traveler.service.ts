@@ -37,6 +37,28 @@ export class TravelerService {
       { defaultValue: null }
     );
   }
+
+  update(
+    username: string,
+    name: string,
+    tel: string,
+    dob: string,
+    avatar: null | File = null,
+    token: string
+  ) {
+    const payload = new FormData();
+    payload.append('name', name);
+    payload.append('tel', tel);
+    payload.append('dob', dob);
+    if (avatar == null) payload.append('avatar', '');
+    else payload.append('avatar', avatar);
+
+    return this.http.put<{ statusCode: string; message: string }>(
+      environment.apiURL + 'travelers/' + username,
+      payload,
+      this.permitsion(token)
+    );
+  }
   remove() {
     localStorage.removeItem('traveler');
     this.traveler = undefined;
