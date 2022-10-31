@@ -1,14 +1,19 @@
 <section class="profile writter-profile">
-  <div class="profile__wrap">
+  <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
+  <app-fetch-fail *ngIf="!writer && !isFetching"></app-fetch-fail>
+  <div class="profile__wrap" *ngIf="writer">
     <div class="profile__top panel">
       <div class="profile__head">
         <figure class="profile__avatar">
-          <img src="https://picsum.photos/500" alt="" />
+          <img
+            [src]="imageService.render(writer.avatar)"
+            [alt]="'Avatar of ' + writer.name"
+          />
         </figure>
         <div class="profile__infor">
           <h2 class="infor__role">Writter</h2>
-          <h1 class="infor__name">Quang Hung</h1>
-          <p class="infor__email">@Username</p>
+          <h1 class="infor__name">{{ writer.name }}</h1>
+          <p class="infor__email">@{{ writer.username }}</p>
         </div>
       </div>
       <div class="profile__tabs">
@@ -32,7 +37,7 @@
         >
       </div>
     </div>
-    <div class="panel">
+    <div class="panel relative">
       <router-outlet></router-outlet>
     </div>
   </div>

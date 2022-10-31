@@ -9,11 +9,17 @@ import { ProfileArticlesComponent } from './profile-page/profile-articles/profil
 import { ProfileEditComponent } from './profile-page/profile-edit/profile-edit.component';
 import { ProfileChangePasswordComponent } from './profile-page/profile-change-password/profile-change-password.component';
 import { ArticleFormPageComponent } from './article-form-page/article-form-page.component';
+import { LoadingSpinnerModule } from 'src/app/shared/components/loading-spinner/loading-spinner.module';
+import { FetchFailModule } from 'src/app/shared/components/fetch-fail/fetch-fail.module';
+import { SafeUrlPipeModule } from 'src/app/shared/pipes/safe-url-pipe/safe-url-pipe.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { WriterAuthenticateGuard } from 'src/app/core/guards/writer-authenticate.guard';
 
 const routes: Routes = [
   {
     path: ':username',
     component: ProfilePageComponent,
+    canActivate: [WriterAuthenticateGuard],
     children: [
       { path: 'edit', component: ProfileEditComponent },
       { path: 'articles', component: ProfileArticlesComponent },
@@ -23,10 +29,14 @@ const routes: Routes = [
   },
   {
     path: 'new-article',
+    canActivate: [WriterAuthenticateGuard],
+
     component: ArticleFormPageComponent,
   },
   {
     path: ':articleId/edit',
+    canActivate: [WriterAuthenticateGuard],
+
     component: ArticleFormPageComponent,
   },
 ];
@@ -41,10 +51,16 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
+
     NgbDatepickerModule,
 
     TableModule,
+    LoadingSpinnerModule,
+    FetchFailModule,
+
+    SafeUrlPipeModule,
 
     ImageIconModule,
   ],
