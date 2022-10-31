@@ -4,6 +4,11 @@
     <p>Write your article <a href="">now.</a></p>
   </div>
   <div class="articles__table">
-    <app-table [ths]="tableHeaders" [dataSource]="articlesData"></app-table>
+    <app-table
+      [ths]="tableHeaders"
+      [dataSource]="articlesData"
+      [showArticle]="true"
+      [articleIds]="ids"
+    ></app-table>
   </div>
 </section>

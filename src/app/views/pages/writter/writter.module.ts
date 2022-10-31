@@ -17,6 +17,18 @@ import { WriterAuthenticateGuard } from 'src/app/core/guards/writer-authenticate
 
 const routes: Routes = [
   {
+    path: 'article/new',
+    canActivate: [WriterAuthenticateGuard],
+
+    component: ArticleFormPageComponent,
+  },
+  {
+    path: 'article/:articleId/edit',
+    canActivate: [WriterAuthenticateGuard],
+
+    component: ArticleFormPageComponent,
+  },
+  {
     path: ':username',
     component: ProfilePageComponent,
     canActivate: [WriterAuthenticateGuard],
@@ -26,18 +38,6 @@ const routes: Routes = [
       { path: 'change-password', component: ProfileChangePasswordComponent },
       { path: '', redirectTo: 'edit', pathMatch: 'full' },
     ],
-  },
-  {
-    path: 'new-article',
-    canActivate: [WriterAuthenticateGuard],
-
-    component: ArticleFormPageComponent,
-  },
-  {
-    path: ':articleId/edit',
-    canActivate: [WriterAuthenticateGuard],
-
-    component: ArticleFormPageComponent,
   },
 ];
 

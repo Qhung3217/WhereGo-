@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -6,12 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
-  /* ---------------- Table tools --------------- */
-
-  /* -------------- End table tools ------------- */
-
   /* ---------------- Table body ---------------- */
-  @Input() showAction = false;
+  // article's properties
+  @Input() showArticle = false;
+  @Input() articleIds: any[] = [];
+  @Input() idOfObjectAction = -1;
+  // end  article's properties
   @Input() ths: string[] = ['Col 1', 'Col 2', 'Col 3'];
   @Input() dataSource: {}[] = [
     {
@@ -27,7 +28,7 @@ export class TableComponent {
   /* ---------------- Pagination ---------------- */
   page = 1;
   /* -------------- end pagination -------------- */
-  constructor() {}
+  constructor(private router: Router) {}
 
   /* ---------------- Table body ---------------- */
   getValues(dataElement: {}) {
@@ -38,6 +39,9 @@ export class TableComponent {
     }
 
     return [];
+  }
+  goToArticle(index: number) {
+    this.router.navigate(['/travel-articles', this.articleIds[index]]);
   }
 
   /* -------------- End table body -------------- */

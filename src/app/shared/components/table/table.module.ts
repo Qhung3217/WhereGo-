@@ -9,11 +9,13 @@ import { TrashIconModule } from 'src/app/shared/icons/trash-icon/trash-icon.modu
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [TableComponent],
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
 
     NgxPaginationModule,
     Ng2SearchPipeModule,

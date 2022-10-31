@@ -1,3 +1,5 @@
+import { SimpleArticle } from './simple-article.mode';
+
 export class Writer {
   constructor(
     public email: string,
@@ -7,12 +9,6 @@ export class Writer {
     public tel: string,
     public avatar: string,
     public dob: Date,
-    public articles: {
-      id: number;
-      image: string;
-      content: string;
-      shortDesc: string;
-      createdDate: Date;
-    }
+    public articles: SimpleArticle[]
   ) {}
 }
