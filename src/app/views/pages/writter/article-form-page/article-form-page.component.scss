@@ -64,4 +64,14 @@
     font-weight: 700;
     margin-bottom: 0.8rem;
   }
+  .article__bottom {
+    padding-top: 4.2rem;
+    text-align: right;
+  }
+  .article__bottom .btn--primary {
+    width: 20rem;
+  }
+  .article__bottom .btn--secondary {
+    margin-right: 2rem;
+  }
 }
