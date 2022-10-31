@@ -125,13 +125,7 @@ export class AuthService {
     });
 
     if (nextUrl) {
-      if (scroll)
-        this.router.navigate([nextUrl], {
-          queryParams: {
-            scroll: true,
-          },
-        });
-      else this.router.navigate([nextUrl]);
+      this.router.navigateByUrl(decodeURIComponent(nextUrl));
     } else if (isWriter)
       this.router.navigate(['/writer', username], {
         queryParamsHandling: 'merge',

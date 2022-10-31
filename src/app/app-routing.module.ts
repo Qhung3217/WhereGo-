@@ -28,7 +28,7 @@ const routes: Routes = [
   },
 ];
 const routerOptions: ExtraOptions = {
-  useHash: false,
+  scrollPositionRestoration: 'enabled',
   anchorScrolling: 'enabled',
 };
 @NgModule({

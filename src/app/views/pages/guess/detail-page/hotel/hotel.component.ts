@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -42,6 +41,7 @@ export class HotelComponent implements OnInit {
       }
     });
   }
+
   onSubmit(bookForm: NgForm) {
     console.log(bookForm.value);
     if (bookForm.valid) {
