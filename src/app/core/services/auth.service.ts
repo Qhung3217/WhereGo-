@@ -62,9 +62,9 @@ export class AuthService {
       )
       .pipe(
         tap((res) => {
+          if (this.cookie.check('writer')) this.travelerLogout();
           this.handleAuthentication(res.username, res.token);
           this.setCookie(res.token, 1, false);
-
           this.travelerCredential.next(res.token);
         })
       );
@@ -85,9 +85,9 @@ export class AuthService {
       )
       .pipe(
         tap((res) => {
+          if (this.cookie.check('traveler')) this.writerLogout();
           this.handleAuthentication(res.username, res.token, true);
           this.setCookie(res.token, 1, true);
-
           this.writerCredential.next(res.token);
         })
       );
@@ -95,6 +95,7 @@ export class AuthService {
   writerLogout() {
     this.cookie.deleteAll();
     this.writerService.remove();
+    console.log('Writer logout');
   }
   travelerLogout() {
     this.cookie.deleteAll();
@@ -107,11 +108,11 @@ export class AuthService {
     isWritter = false
   ) {
     if (isWritter) {
-      this.writerLogout();
+      if (this.cookie.check('writer')) this.writerLogout();
       this.writerService.getDetail(username, token);
       this.redirect(username);
     } else {
-      this.travelerLogout();
+      if (this.cookie.check('traveler')) this.travelerLogout();
       this.travelerService.getDetail(username, token);
       this.redirect(username, false);
     }

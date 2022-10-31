@@ -42,8 +42,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.showSearchModal = true;
   }
   handleSignOut() {
-    if (this.writer) this.authService.writerLogout();
-    else this.authService.travelerLogout();
+    if (this.writer) {
+      console.log('call logout');
+      this.authService.writerLogout();
+    } else this.authService.travelerLogout();
   }
   private subcribeTraveler() {
     this.travelerService.loadFormLocal();

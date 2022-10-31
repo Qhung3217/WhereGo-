@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Traveler } from 'src/app/core/models/traveler.model';
@@ -10,7 +10,7 @@ import { ConfirmPasswordValidator } from 'src/app/core/utils/validators/confirm-
   templateUrl: './profile-change-password.component.html',
   styleUrls: ['./profile-change-password.component.scss'],
 })
-export class ProfileChangePasswordComponent implements OnInit {
+export class ProfileChangePasswordComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   traveler?: Traveler;
   travelerSub!: Subscription;
@@ -23,6 +23,9 @@ export class ProfileChangePasswordComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.subcribeTraveler();
+  }
+  ngOnDestroy(): void {
+    if (this.travelerSub) this.travelerSub.unsubscribe();
   }
   handleSubmit() {
     console.log(this.form.value);

@@ -1,22 +1,15 @@
-import { AuthService } from '../services/auth.service';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
   Router,
   RouterStateSnapshot,
-  UrlTree,
 } from '@angular/router';
-import { map, Observable, take } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
 export class TravelerAuthenticateGuard implements CanActivate {
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private cookieService: CookieService
-  ) {}
+  constructor(private router: Router, private cookieService: CookieService) {}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const isAuth = !!this.cookieService.get('traveler');
     console.log('Guard: ', isAuth, state, route.url[0]);

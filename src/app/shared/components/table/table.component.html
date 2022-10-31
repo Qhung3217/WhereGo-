@@ -1,35 +1,71 @@
 <div class="table__tools">
+  <div class="tool">
+    <a
+      routerLink="/writer/article/new"
+      class="btn btn--primary btn--radius-small"
+      >Write new article</a
+    >
+  </div>
   <div class="tool__search">
     <app-search-icon class="search__icon"></app-search-icon>
     <input type="text" placeholder="Search name" [(ngModel)]="fieldSearch" />
   </div>
 </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th *ngFor="let th of ths">{{ th }}</th>
-      <th *ngIf="showAction" class="th__action">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-      *ngFor="
-        let data of dataSource
-          | filter: fieldSearch
-          | paginate: { itemsPerPage: 5, currentPage: page }
-      "
-    >
-      <td *ngFor="let dataValue of getValues(data)">
-        <div [innerHTML]="dataValue"></div>
-      </td>
-      <td class="action" *ngIf="showAction">
-        <app-edit-icon class="action__icon"></app-edit-icon>
-        <app-trash-icon class="action__icon"></app-trash-icon>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<section class="section-table">
+  <table class="table">
+    <thead>
+      <tr>
+        <th *ngFor="let th of ths">{{ th }}</th>
+        <th *ngIf="showArticle" class="th__action">Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!showArticle">
+      <tr
+        *ngFor="
+          let data of dataSource
+            | filter: fieldSearch
+            | paginate: { itemsPerPage: 5, currentPage: page }
+        "
+      >
+        <td *ngFor="let dataValue of getValues(data)">
+          <div [innerHTML]="dataValue"></div>
+        </td>
+        <td class="action" *ngIf="showArticle">
+          <app-edit-icon
+            class="action__icon"
+            [routerLink]="['/writer/article', idOfObjectAction, 'edit']"
+          ></app-edit-icon>
+          <app-trash-icon class="action__icon"></app-trash-icon>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="showArticle">
+      <tr
+        *ngFor="
+          let data of dataSource
+            | filter: fieldSearch
+            | paginate: { itemsPerPage: 5, currentPage: page }
+        "
+      >
+        <td
+          *ngFor="let dataValue of getValues(data); let i = index"
+          class="pointer"
+          (click)="goToArticle(i)"
+        >
+          <div [innerHTML]="dataValue"></div>
+        </td>
+        <td class="action" *ngIf="showArticle">
+          <app-edit-icon
+            class="action__icon"
+            [routerLink]="['/writer/article', idOfObjectAction, 'edit']"
+          ></app-edit-icon>
+          <app-trash-icon class="action__icon"></app-trash-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
 <div class="table-paginator">
   <span
     >1 - {{ dataSource.length > 5 ? 5 : dataSource.length }} of

@@ -29,7 +29,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   }
 
   private subcribeTraveler() {
-    this.route.params.subscribe((params) => {
+    this.travelerSub = this.route.params.subscribe((params) => {
       const username = params['username'];
       if (username) {
         this.isFetching = true;
