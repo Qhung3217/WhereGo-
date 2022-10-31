@@ -14,6 +14,7 @@ import { FetchFailModule } from 'src/app/shared/components/fetch-fail/fetch-fail
 import { SafeUrlPipeModule } from 'src/app/shared/pipes/safe-url-pipe/safe-url-pipe.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WriterAuthenticateGuard } from 'src/app/core/guards/writer-authenticate.guard';
+import { NgxSummernoteModule } from 'ngx-summernote';
 
 const routes: Routes = [
   {
@@ -55,6 +56,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
 
     NgbDatepickerModule,
+    NgxSummernoteModule,
 
     TableModule,
     LoadingSpinnerModule,

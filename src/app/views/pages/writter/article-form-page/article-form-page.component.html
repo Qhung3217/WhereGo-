@@ -1,1 +1,34 @@
-<p>article-form-page works!</p>
+<section class="section-article-new">
+  <form (ngSubmit)="handleSubmit()" class="article__form">
+    <div class="article__group article__container">
+      <input
+        type="text"
+        id="title"
+        class="article__control article__control--title"
+        placeholder="Title"
+      />
+    </div>
+    <div class="article__group article__container">
+      <textarea
+        cols="0"
+        rows="0"
+        placeholder="Short description"
+        class="article__control article__control--short"
+      ></textarea>
+    </div>
+    <div class="article__group image-container">
+      <img [src]="thumbnailPreview" class="image-preview" />
+      <label for="thumb" class="image-icon">
+        <app-image-icon></app-image-icon
+      ></label>
+      <input type="file" id="thumb" style="display: none" />
+    </div>
+    <div class="article__group article__container">
+      <div [ngxSummernote]="summernoteConfig" class="article__content"></div>
+    </div>
+    <div class="article__bottom article__container">
+      <button class="btn btn--secondary">Reset</button>
+      <button class="btn btn--primary">Publish</button>
+    </div>
+  </form>
+</section>
