@@ -32,6 +32,7 @@ import {
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OnlyNumberDirectiveModule } from 'src/app/shared/directives/only-number-directive/only-number-directive.module';
+import { ScrollToReviewDirectiveModule } from 'src/app/shared/directives/scroll-to-review-directive/scroll-to-review-directive.module';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { OnlyNumberDirectiveModule } from 'src/app/shared/directives/only-number
 
     RefreshDirectiveModule,
     OnlyNumberDirectiveModule,
+    ScrollToReviewDirectiveModule,
 
     PencilIconModule,
     HeartIconModule,

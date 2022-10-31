@@ -22,7 +22,7 @@ export class TravelerAuthenticateGuard implements CanActivate {
     console.log('Guard: ', isAuth, state, route.url[0]);
     if (isAuth) return true;
     return this.router.createUrlTree(['/auth/traveler/login'], {
-      queryParams: { redirectUrl: state.url },
+      queryParams: { redirectUrl: encodeURIComponent(state.url) },
     });
   }
 }
