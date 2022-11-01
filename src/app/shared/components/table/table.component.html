@@ -31,36 +31,27 @@
         <td *ngFor="let dataValue of getValues(data)">
           <div [innerHTML]="dataValue"></div>
         </td>
-        <td class="action" *ngIf="showArticle">
-          <app-edit-icon
-            class="action__icon"
-            [routerLink]="['/writer/article', idOfObjectAction, 'edit']"
-          ></app-edit-icon>
-          <app-trash-icon class="action__icon"></app-trash-icon>
-        </td>
       </tr>
     </tbody>
+
     <tbody *ngIf="showArticle">
       <tr
         *ngFor="
           let data of dataSource
             | filter: fieldSearch
-            | paginate: { itemsPerPage: 5, currentPage: page }
+            | paginate: { itemsPerPage: 5, currentPage: page };
+          let i = index
         "
       >
-        <td
-          *ngFor="let dataValue of getValues(data); let i = index"
-          class="pointer"
-          (click)="goToArticle(i)"
-        >
+        <td *ngFor="let dataValue of getValues(data)">
           <div [innerHTML]="dataValue"></div>
         </td>
-        <td class="action" *ngIf="showArticle">
+        <td class="action">
           <app-edit-icon
             class="action__icon"
-            [routerLink]="['/writer/article', idOfObjectAction, 'edit']"
+            [routerLink]="['/writer/article', articleIds[i], 'edit']"
           ></app-edit-icon>
-          <app-trash-icon class="action__icon"></app-trash-icon>
+          <!-- <app-trash-icon class="action__icon"></app-trash-icon> -->
         </td>
       </tr>
     </tbody>
@@ -68,7 +59,8 @@
 </section>
 <div class="table-paginator">
   <span
-    >1 - {{ dataSource.length > 5 ? 5 : dataSource.length }} of
+    >{{ page * 5 - 5 + 1 }} -
+    {{ dataSource.length > page * 5 ? page * 5 : dataSource.length }} of
     {{ dataSource.length }}</span
   >
 

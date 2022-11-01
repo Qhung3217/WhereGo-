@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { ArticleService } from 'src/app/core/services/article.service';
+import { ImageService } from 'src/app/core/services/image.service';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { WriterService } from 'src/app/core/services/writer.service';
 
@@ -12,20 +13,21 @@ import { WriterService } from 'src/app/core/services/writer.service';
   styleUrls: ['./article-form-page.component.scss'],
 })
 export class ArticleFormPageComponent implements OnInit {
-  thumbnailPreview = 'assets/images/article-default.jpg';
+  thumbnailPreview = this.imageService.default;
   articleForm!: FormGroup;
   isEdit = false;
   article: any;
   articleId: number = -1;
   isFetching = false;
-  username: string | null = null;
+
   constructor(
     private writerService: WriterService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private articleService: ArticleService,
-    private toast: ToastService
+    private toast: ToastService,
+    private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
@@ -38,14 +40,63 @@ export class ArticleFormPageComponent implements OnInit {
           this.fetchArticle();
         } else this.initForm();
       });
-    this.route.queryParamMap
-      .pipe(map((params) => params.get('username')))
-      .subscribe((username) => (this.username = username));
   }
 
   handleSubmit() {
     console.log(this.articleForm.value);
     this.isFetching = true;
+    if (this.isEdit) this.updateArticle();
+    else this.createArticle();
+  }
+  test(event: any) {
+    console.log(event);
+  }
+  handleChangeImage(image: any) {
+    console.log(image);
+    URL.revokeObjectURL(this.thumbnailPreview);
+    this.articleForm.get('image')?.setValue(image.target.files[0]);
+    this.thumbnailPreview = URL.createObjectURL(image.target.files[0]);
+    this.storeDraftInLocal();
+  }
+  async storeDraftInLocal() {
+    const draft = {
+      title: this.getValue('title'),
+      image: this.getValue('image'),
+      shortDesc: this.getValue('shortDesc'),
+      content: this.getValue('content'),
+      imagePreview: this.thumbnailPreview,
+    };
+    localStorage.setItem('draft', JSON.stringify(draft));
+  }
+  retrieveDraftFormLocal() {
+    const draft = localStorage.getItem('draft');
+    if (draft) return JSON.parse(draft);
+    return null;
+  }
+  getValue(field: string) {
+    return this.articleForm.get(field)?.value;
+  }
+  private updateArticle() {
+    this.writerService
+      .updateArticle(
+        this.articleId,
+        this.getValue('title'),
+        this.getValue('image'),
+        this.getValue('shortDesc'),
+        this.getValue('content')
+      )
+      .subscribe({
+        next: () => {
+          this.isFetching = false;
+          this.toast.showSuccess('Update article successfull', '');
+          localStorage.removeItem('draft');
+        },
+        error: () => {
+          this.isFetching = false;
+        },
+      });
+  }
+  private createArticle() {
     this.writerService
       .createArticle(
         this.getValue('title'),
@@ -61,66 +112,40 @@ export class ArticleFormPageComponent implements OnInit {
             'Thanks for contribute new article!'
           );
           localStorage.removeItem('draft');
-          setTimeout(
-            () => this.router.navigate(['writer', this.username, 'articles']),
-            1000
-          );
         },
         error: () => {
           this.isFetching = false;
         },
       });
   }
-  test(event: any) {
-    console.log(event);
-  }
-  handleChangeImage(image: any) {
-    console.log(image);
-    URL.revokeObjectURL(this.thumbnailPreview);
-    this.articleForm.get('image')?.setValue(image.target.files[0]);
-    this.thumbnailPreview = URL.createObjectURL(image.target.files[0]);
-  }
-  storeDraftInLocal() {
-    const draft = {
-      title: this.getValue('title'),
-      image: this.getValue('image'),
-      shortDesc: this.getValue('shortDesc'),
-      content: this.getValue('content'),
-      imagePreview: this.thumbnailPreview,
-    };
-    localStorage.setItem('draft', JSON.stringify(draft));
-  }
-  retrieveDraftFormLocal() {
-    const draft = localStorage.getItem('draft');
-    if (draft) return JSON.parse(draft);
-    return null;
-  }
   private initForm() {
     let title = null;
     let image = null;
     let shortDesc = null;
     let content = null;
+    const draft = this.retrieveDraftFormLocal();
+
     if (this.isEdit) {
-      const draft = this.retrieveDraftFormLocal();
-      if (draft) {
-        title = draft.title;
-        this.thumbnailPreview = draft.imagePreview;
-        shortDesc = draft.shortDesc;
-        content = draft.content;
-        image = draft.image;
-      } else {
-        title = this.article.title;
-        this.thumbnailPreview = this.article.image;
-        shortDesc = this.article.shortDescription;
-        content = this.article.content;
-      }
+      title = this.article.title;
+      shortDesc = this.article.shortDesc;
+      content = this.article.content;
+    } else if (draft) {
+      title = draft.title;
+      this.thumbnailPreview = this.imageService.render(draft.imagePreview);
+      shortDesc = draft.shortDesc;
+      content = draft.content;
+      image = draft.image;
     }
+
     this.articleForm = this.fb.group({
       title: [title, [Validators.required]],
       image: [image, [Validators.required]],
       shortDesc: [shortDesc, [Validators.required]],
       content: [content, [Validators.required]],
     });
+    if (this.isEdit) {
+      this.storeDraftInLocal();
+    }
   }
   private fetchArticle() {
     this.isFetching = true;
@@ -130,12 +155,12 @@ export class ArticleFormPageComponent implements OnInit {
       this.initForm();
     });
   }
-  private getValue(field: string) {
-    return this.articleForm.get(field)?.value;
-  }
+
   summernoteConfig = {
+    stripTags: true,
+    spellCheck: false,
     placeholder: 'Article content',
-    height: 400,
+
     toolbar: [
       ['misc', ['undo', 'redo']],
       [

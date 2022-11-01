@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, lastValueFrom, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { WriterInfor } from '../interfaces/writer-infor.interface';
 import { Writer } from '../models/writer.model';
 
 @Injectable({ providedIn: 'root' })
@@ -15,7 +16,15 @@ export class WriterService {
     const local = localStorage.getItem('writer');
     if (local) {
       this.writer = JSON.parse(local) as Writer;
-      this.writerEvent.next({ ...this.writer });
+      const writerSimple: WriterInfor = {
+        email: this.writer.email,
+        username: this.writer.username,
+        name: this.writer.name,
+        tel: this.writer.tel,
+        avatar: this.writer.avatar,
+        dob: this.writer.dob,
+      };
+      this.writerEvent.next({ ...writerSimple });
     }
   }
   async getDetail(username: string, token: string) {
@@ -76,14 +85,49 @@ export class WriterService {
   ) {
     const token = this.cookie.get('writer');
     const payload = new FormData();
-    payload.append('title', title);
+    payload.append('title', JSON.stringify(title));
     payload.append('image', image);
-    payload.append('shortDesc', shortDesc);
+    payload.append('shortDesc', JSON.stringify(shortDesc));
     payload.append('content', content);
+
+    // console.log(payload);  thi
+
     return this.http.post(
       environment.apiURL + 'articles?writer=' + this.writer?.username,
       payload,
-      this.permitsion(token)
+
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Bearer ' + token)
+          .set('Content-Transfer-Encoding', 'utf-8'),
+      }
+    );
+  }
+  updateArticle(
+    id: number,
+    title: string,
+    image: File,
+    shortDesc: string,
+    content: string
+  ) {
+    const token = this.cookie.get('writer');
+    const payload = new FormData();
+    payload.append('title', title);
+    payload.append('shortDesc', shortDesc);
+    payload.append('content', content);
+    if (image == null) payload.append('image', '');
+    else payload.append('image', image);
+    // console.log(payload);
+
+    return this.http.put(
+      environment.apiURL + 'articles/' + id,
+      payload,
+
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Bearer ' + token)
+          .set('Content-Transfer-Encoding', 'utf-8'),
+      }
     );
   }
   remove() {
@@ -92,8 +136,19 @@ export class WriterService {
     this.writerEvent.next(undefined);
   }
   private saved(writer: Writer) {
+    const writerSimple: WriterInfor = {
+      email: writer.email,
+
+      username: writer.username,
+      name: writer.name,
+      tel: writer.tel,
+      avatar: writer.avatar,
+      dob: writer.dob,
+    };
+
     this.writer = { ...writer };
-    localStorage.setItem('writer', JSON.stringify(writer));
+
+    localStorage.setItem('writer', JSON.stringify(writerSimple));
   }
   private permitsion(token: string) {
     return {

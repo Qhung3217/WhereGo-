@@ -1,5 +1,7 @@
 .note-editable {
   font-size: 20px;
+  min-height: 400px;
+  height: fit-content;
 }
 .note-editor.note-frame {
   border: none;

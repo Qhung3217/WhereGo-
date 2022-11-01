@@ -49,6 +49,9 @@
     display: block;
     border: none;
     outline: none;
+    word-break: break-word;
+    resize: none;
+    overflow-y: hidden;
   }
   .article__control--title {
     font-size: 5.4rem;

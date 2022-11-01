@@ -15,6 +15,7 @@ import { SafeUrlPipeModule } from 'src/app/shared/pipes/safe-url-pipe/safe-url-p
 import { ReactiveFormsModule } from '@angular/forms';
 import { WriterAuthenticateGuard } from 'src/app/core/guards/writer-authenticate.guard';
 import { NgxSummernoteModule } from 'ngx-summernote';
+import { AutoResizeTextareaDirectiveModule } from 'src/app/shared/directives/auto-resize-textarea-directive/auto-resize-textarea-directive.module';
 
 const routes: Routes = [
   {
@@ -63,6 +64,7 @@ const routes: Routes = [
     FetchFailModule,
 
     SafeUrlPipeModule,
+    AutoResizeTextareaDirectiveModule,
 
     ImageIconModule,
   ],

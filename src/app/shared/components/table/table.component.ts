@@ -11,7 +11,6 @@ export class TableComponent {
   // article's properties
   @Input() showArticle = false;
   @Input() articleIds: any[] = [];
-  @Input() idOfObjectAction = -1;
   // end  article's properties
   @Input() ths: string[] = ['Col 1', 'Col 2', 'Col 3'];
   @Input() dataSource: {}[] = [
