@@ -11,10 +11,9 @@ import { ConfirmPasswordValidator } from 'src/app/core/utils/validators/confirm-
   templateUrl: './profile-change-password.component.html',
   styleUrls: ['./profile-change-password.component.scss'],
 })
-export class ProfileChangePasswordComponent implements OnInit, OnDestroy {
+export class ProfileChangePasswordComponent implements OnInit {
   form!: FormGroup;
-  writer?: Writer;
-  writerSub!: Subscription;
+
   isFetching = false;
   constructor(
     private fb: FormBuilder,
@@ -23,18 +22,14 @@ export class ProfileChangePasswordComponent implements OnInit, OnDestroy {
   ) {}
   ngOnInit() {
     this.initForm();
-    this.subcribeWriter();
   }
-  ngOnDestroy(): void {
-    if (this.writerSub) this.writerSub.unsubscribe();
-  }
+
   handleSubmit() {
     console.log(this.form.value);
-    if (this.writer?.email) {
+    if (this.form.valid) {
       this.isFetching = true;
       this.writerService
         .changePassword(
-          this.writer?.email,
           this.form.get('oldPassword')?.value,
           this.form.get('newPassword')?.value
         )
@@ -69,13 +64,5 @@ export class ProfileChangePasswordComponent implements OnInit, OnDestroy {
       },
       { validators: ConfirmPasswordValidator }
     );
-  }
-  private subcribeWriter() {
-    if (this.writerService.writer)
-      this.writer = { ...this.writerService.writer };
-    this.writerSub = this.writerService.writerEvent.subscribe((writer) => {
-      if (writer) this.writer = { ...writer };
-      else this.writer = writer;
-    });
   }
 }

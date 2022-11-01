@@ -10,7 +10,6 @@ export class TableComponent {
   /* ---------------- Table body ---------------- */
   // article's properties
   @Input() showArticle = false;
-  @Input() articleIds: any[] = [];
   // end  article's properties
   @Input() ths: string[] = ['Col 1', 'Col 2', 'Col 3'];
   @Input() dataSource: {}[] = [
@@ -38,9 +37,6 @@ export class TableComponent {
     }
 
     return [];
-  }
-  goToArticle(index: number) {
-    this.router.navigate(['/travel-articles', this.articleIds[index]]);
   }
 
   /* -------------- End table body -------------- */

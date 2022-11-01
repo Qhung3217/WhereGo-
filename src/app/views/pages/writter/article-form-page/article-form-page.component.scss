@@ -1,5 +1,31 @@
+@import "settings/variables/color";
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
 .section-article-new {
   padding-bottom: 6.4rem;
+  max-width: 1136px;
+  width: 100%;
+  margin: 0 auto;
+  .article__navigate-back {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    text-decoration: underline;
+    color: $text-color-secondary;
+    display: flex;
+    align-items: center;
+  }
+  .navigate-back__icon ::ng-deep {
+    margin-right: 0.8rem;
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+  .article__form {
+    padding-top: 4rem;
+  }
   .article__container {
     max-width: 720px;
     width: 100%;
@@ -76,5 +102,18 @@
   }
   .article__bottom .btn--secondary {
     margin-right: 2rem;
+  }
+}
+@include maxWidth($screen-md) {
+  .section-article-new {
+    .article__control--title {
+      font-size: 3.2rem;
+      letter-spacing: 0.64px;
+      line-height: 4rem;
+    }
+    .article__control--short {
+      font-size: 2.4rem;
+      line-height: 3.2rem;
+    }
   }
 }

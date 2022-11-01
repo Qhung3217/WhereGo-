@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, tap } from 'rxjs';
 import { Traveler } from 'src/app/core/models/traveler.model';
@@ -10,12 +16,13 @@ import { TravelerService } from 'src/app/core/services/traveler.service';
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.scss'],
 })
-export class ProfilePageComponent implements OnInit {
+export class ProfilePageComponent implements OnInit, AfterViewInit {
   traveler?: Traveler;
-  isFetching = false;
+  isFetching = true;
   travelerSub!: Subscription;
   constructor(
     private travelerService: TravelerService,
+    private cd: ChangeDetectorRef,
     public imageService: ImageService
   ) {}
   ngOnInit() {
@@ -28,5 +35,9 @@ export class ProfilePageComponent implements OnInit {
         else this.traveler = traveler;
       }
     );
+  }
+  ngAfterViewInit(): void {
+    this.isFetching = false;
+    this.cd.detectChanges();
   }
 }

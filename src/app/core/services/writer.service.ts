@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, lastValueFrom, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { WriterInfor } from '../interfaces/writer-infor.interface';
+import { WriterLocal } from '../interfaces/writer-local.interface';
 import { Writer } from '../models/writer.model';
 
 @Injectable({ providedIn: 'root' })
@@ -15,9 +15,17 @@ export class WriterService {
   loadFormLocal() {
     const local = localStorage.getItem('writer');
     if (local) {
-      this.writer = JSON.parse(local) as Writer;
-
-      this.writerEvent.next({ ...this.writer });
+      const writer = JSON.parse(local);
+      const token = this.cookie.get('writer');
+      this.getDetail(writer.username, token).then((writer) => {
+        if (writer) {
+          this.writer = { ...writer };
+          this.writerEvent.next({ ...writer });
+        } else {
+          this.writer = undefined;
+          this.writerEvent.next(undefined);
+        }
+      });
     }
   }
   async getDetail(username: string, token: string) {
@@ -36,13 +44,7 @@ export class WriterService {
       { defaultValue: null }
     );
   }
-  update(
-    username: string,
-    name: string,
-    tel: string,
-    dob: string,
-    avatar: null | File = null
-  ) {
+  update(name: string, tel: string, dob: string, avatar: null | File = null) {
     const token = this.cookie.get('writer');
 
     const payload = new FormData();
@@ -53,17 +55,17 @@ export class WriterService {
     else payload.append('avatar', avatar);
 
     return this.http.put<{ statusCode: string; message: string }>(
-      environment.apiURL + 'writers/' + username,
+      environment.apiURL + 'writers/' + this.writer?.username,
       payload,
       this.permitsion(token)
     );
   }
-  changePassword(email: string, oldPassword: string, newPassword: string) {
+  changePassword(oldPassword: string, newPassword: string) {
     const token = this.cookie.get('writer');
     return this.http.put(
       environment.apiURL + 'writers/change-password',
       {
-        email,
+        email: this.writer?.email,
         oldPassword,
         newPassword,
       },
@@ -78,9 +80,9 @@ export class WriterService {
   ) {
     const token = this.cookie.get('writer');
     const payload = new FormData();
-    payload.append('title', JSON.stringify(title));
+    payload.append('title', title);
     payload.append('image', image);
-    payload.append('shortDesc', JSON.stringify(shortDesc));
+    payload.append('shortDesc', shortDesc);
     payload.append('content', content);
 
     // console.log(payload);  thi
@@ -112,16 +114,11 @@ export class WriterService {
     else payload.append('image', image);
     // console.log(payload);
 
-    return this.http.put(
-      environment.apiURL + 'articles/' + id,
-      payload,
-
-      {
-        headers: new HttpHeaders()
-          .set('Authorization', 'Bearer ' + token)
-          .set('Content-Transfer-Encoding', 'utf-8'),
-      }
-    );
+    return this.http.put(environment.apiURL + 'articles/' + id, payload, {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Bearer ' + token)
+        .set('Content-Transfer-Encoding', 'utf-8'),
+    });
   }
   remove() {
     localStorage.removeItem('writer');
@@ -129,14 +126,8 @@ export class WriterService {
     this.writerEvent.next(undefined);
   }
   private saved(writer: Writer) {
-    const writerSimple: WriterInfor = {
-      email: writer.email,
-
+    const writerSimple: WriterLocal = {
       username: writer.username,
-      name: writer.name,
-      tel: writer.tel,
-      avatar: writer.avatar,
-      dob: writer.dob,
     };
 
     this.writer = { ...writer };

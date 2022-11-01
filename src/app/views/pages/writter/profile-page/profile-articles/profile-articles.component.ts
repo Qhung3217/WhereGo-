@@ -39,6 +39,7 @@ export class ProfileArticlesComponent implements OnInit, OnDestroy {
     return articles.map((article) => {
       this.ids.push(article.id);
       return {
+        id: article.id,
         title: article.title,
         image: `<img src="${this.imageService.render(article.image)}"/>`,
         about: article.shortDesc,

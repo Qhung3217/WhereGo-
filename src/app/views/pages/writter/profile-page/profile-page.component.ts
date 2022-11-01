@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
@@ -11,35 +17,27 @@ import { WriterService } from 'src/app/core/services/writer.service';
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.scss'],
 })
-export class ProfilePageComponent implements OnInit, OnDestroy {
+export class ProfilePageComponent implements OnInit, AfterViewInit {
   writer?: Writer;
   writerSub!: Subscription;
-  isFetching = false;
+  isFetching = true;
   constructor(
     private writerService: WriterService,
-    private route: ActivatedRoute,
-    private cookieService: CookieService,
+    private cd: ChangeDetectorRef,
     public imageService: ImageService
   ) {}
 
   ngOnInit(): void {
-    this.subcribeWriter();
-  }
-  ngOnDestroy(): void {
-    if (this.writerSub) this.writerSub.unsubscribe();
-  }
-  private subcribeWriter() {
-    this.writerSub = this.route.params.subscribe((params) => {
-      const username = params['username'];
-      if (username) {
-        this.isFetching = true;
-        this.writerService
-          .getDetail(username, this.cookieService.get('writer'))
-          .then((writer) => {
-            if (writer) this.writer = { ...writer };
-            this.isFetching = false;
-          });
-      }
+    this.writer = this.writerService.writer
+      ? { ...this.writerService.writer }
+      : this.writerService.writer;
+    this.writerSub = this.writerService.writerEvent.subscribe((writer) => {
+      if (writer) this.writer = { ...writer };
+      else this.writer = writer;
     });
+  }
+  ngAfterViewInit(): void {
+    this.isFetching = false;
+    this.cd.detectChanges();
   }
 }

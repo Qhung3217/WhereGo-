@@ -1,5 +1,13 @@
 <section class="section-article-new relative">
   <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
+
+  <a routerLink="/writer/articles" class="article__navigate-back">
+    <app-chevron-right-icon
+      class="navigate-back__icon"
+    ></app-chevron-right-icon>
+    <span>All articles</span>
+  </a>
+
   <form
     (ngSubmit)="handleSubmit()"
     [formGroup]="articleForm"
@@ -12,7 +20,6 @@
         class="article__control article__control--title"
         placeholder="Title"
         formControlName="title"
-        (change)="storeDraftInLocal()"
         appAutoResizeTextarea
       ></textarea>
     </div>
@@ -22,7 +29,6 @@
         rows="0"
         placeholder="Short description"
         formControlName="shortDesc"
-        (change)="storeDraftInLocal()"
         class="article__control article__control--short"
         appAutoResizeTextarea
       ></textarea>
@@ -44,11 +50,9 @@
         [ngxSummernote]="summernoteConfig"
         formControlName="content"
         class="article__content"
-        (blur)="storeDraftInLocal()"
       ></div>
     </div>
     <div class="article__bottom article__container">
-      <button class="btn btn--secondary">Reset</button>
       <button
         type="submit"
         class="btn btn--primary"

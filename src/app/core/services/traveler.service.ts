@@ -46,20 +46,7 @@ export class TravelerService {
       { defaultValue: null }
     );
   }
-  getDetailObservable() {
-    const token = this.cookie.get('traveler');
-    return this.http
-      .get<Traveler>(
-        environment.apiURL + 'travelers/' + this.traveler?.username,
-        this.permitsion(token)
-      )
-      .pipe(
-        tap((traveler) => {
-          this.saved(traveler);
-          this.travelerEvent.next({ ...traveler });
-        })
-      );
-  }
+
   update(name: string, tel: string, dob: string, avatar: null | File = null) {
     const token = this.cookie.get('traveler');
 

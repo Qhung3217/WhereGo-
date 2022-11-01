@@ -33,7 +33,7 @@
         </td>
       </tr>
     </tbody>
-
+    <!-- ---------------- ARTICLE ---------------- -->
     <tbody *ngIf="showArticle">
       <tr
         *ngFor="
@@ -42,14 +42,26 @@
             | paginate: { itemsPerPage: 5, currentPage: page };
           let i = index
         "
+        style="cursor: pointer"
+        [routerLink]="['/travel-articles', data.id]"
       >
-        <td *ngFor="let dataValue of getValues(data)">
-          <div [innerHTML]="dataValue"></div>
+        <td>
+          {{ data.title }}
         </td>
+        <td>
+          <div [innerHTML]="data.image"></div>
+        </td>
+        <td>
+          {{ data.about }}
+        </td>
+        <td>
+          {{ data.createDate }}
+        </td>
+
         <td class="action">
           <app-edit-icon
             class="action__icon"
-            [routerLink]="['/writer/article', articleIds[i], 'edit']"
+            [routerLink]="['/writer/article', data.id, 'edit']"
           ></app-edit-icon>
           <!-- <app-trash-icon class="action__icon"></app-trash-icon> -->
         </td>

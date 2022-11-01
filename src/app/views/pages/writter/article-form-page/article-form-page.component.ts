@@ -56,23 +56,8 @@ export class ArticleFormPageComponent implements OnInit {
     URL.revokeObjectURL(this.thumbnailPreview);
     this.articleForm.get('image')?.setValue(image.target.files[0]);
     this.thumbnailPreview = URL.createObjectURL(image.target.files[0]);
-    this.storeDraftInLocal();
   }
-  async storeDraftInLocal() {
-    const draft = {
-      title: this.getValue('title'),
-      image: this.getValue('image'),
-      shortDesc: this.getValue('shortDesc'),
-      content: this.getValue('content'),
-      imagePreview: this.thumbnailPreview,
-    };
-    localStorage.setItem('draft', JSON.stringify(draft));
-  }
-  retrieveDraftFormLocal() {
-    const draft = localStorage.getItem('draft');
-    if (draft) return JSON.parse(draft);
-    return null;
-  }
+
   getValue(field: string) {
     return this.articleForm.get(field)?.value;
   }
@@ -90,6 +75,7 @@ export class ArticleFormPageComponent implements OnInit {
           this.isFetching = false;
           this.toast.showSuccess('Update article successfull', '');
           localStorage.removeItem('draft');
+          this.router.navigate(['writer']);
         },
         error: () => {
           this.isFetching = false;
@@ -123,18 +109,11 @@ export class ArticleFormPageComponent implements OnInit {
     let image = null;
     let shortDesc = null;
     let content = null;
-    const draft = this.retrieveDraftFormLocal();
 
     if (this.isEdit) {
       title = this.article.title;
       shortDesc = this.article.shortDesc;
       content = this.article.content;
-    } else if (draft) {
-      title = draft.title;
-      this.thumbnailPreview = this.imageService.render(draft.imagePreview);
-      shortDesc = draft.shortDesc;
-      content = draft.content;
-      image = draft.image;
     }
 
     this.articleForm = this.fb.group({
@@ -143,9 +122,6 @@ export class ArticleFormPageComponent implements OnInit {
       shortDesc: [shortDesc, [Validators.required]],
       content: [content, [Validators.required]],
     });
-    if (this.isEdit) {
-      this.storeDraftInLocal();
-    }
   }
   private fetchArticle() {
     this.isFetching = true;
