@@ -68,6 +68,24 @@ export class WriterService {
       this.permitsion(token)
     );
   }
+  createArticle(
+    title: string,
+    image: File,
+    shortDesc: string,
+    content: string
+  ) {
+    const token = this.cookie.get('writer');
+    const payload = new FormData();
+    payload.append('title', title);
+    payload.append('image', image);
+    payload.append('shortDesc', shortDesc);
+    payload.append('content', content);
+    return this.http.post(
+      environment.apiURL + 'articles?writer=' + this.writer?.username,
+      payload,
+      this.permitsion(token)
+    );
+  }
   remove() {
     localStorage.removeItem('writer');
     this.writer = undefined;
