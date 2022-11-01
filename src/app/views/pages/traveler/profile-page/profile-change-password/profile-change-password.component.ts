@@ -38,11 +38,11 @@ export class ProfileChangePasswordComponent implements OnInit {
               'Password has been updated.'
             );
             this.isFetching = false;
-            this.initForm();
+            this.form.reset();
           },
           error: () => {
             this.isFetching = false;
-            this.initForm();
+            this.form.reset();
           },
         });
     }

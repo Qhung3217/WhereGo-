@@ -20,12 +20,7 @@ import { FetchFailModule } from 'src/app/shared/components/fetch-fail/fetch-fail
 
 const routes: Routes = [
   {
-    path: 'check-out/:hotelId',
-    canActivate: [TravelerAuthenticateGuard],
-    component: CheckOutPageComponent,
-  },
-  {
-    path: ':username',
+    path: '',
     canActivate: [TravelerAuthenticateGuard],
     component: ProfilePageComponent,
     children: [
@@ -34,6 +29,11 @@ const routes: Routes = [
       { path: 'change-password', component: ProfileChangePasswordComponent },
       { path: '', redirectTo: 'edit', pathMatch: 'full' },
     ],
+  },
+  {
+    path: 'check-out/:hotelId',
+    canActivate: [TravelerAuthenticateGuard],
+    component: CheckOutPageComponent,
   },
 ];
 

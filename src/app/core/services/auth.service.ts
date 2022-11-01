@@ -132,7 +132,7 @@ export class AuthService {
         queryParamsHandling: 'merge',
       });
     else
-      this.router.navigate(['/traveler', username], {
+      this.router.navigate(['/traveler'], {
         queryParamsHandling: 'merge',
       });
   }

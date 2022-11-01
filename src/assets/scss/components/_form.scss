@@ -9,7 +9,7 @@
   .form__hint {
     color: $primary-danger;
   }
-  .ng-invalid {
+  .ng-touched.ng-invalid {
     border: 2px solid $primary-danger !important;
   }
 }

@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, lastValueFrom, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { TravelerInfor } from '../interfaces/traveler-infor.interface';
+import { TravelerLocal } from '../interfaces/traveler-local.interface';
 import { Traveler } from '../models/traveler.model';
 
 @Injectable({ providedIn: 'root' })
@@ -16,9 +16,17 @@ export class TravelerService {
     // console.log(local);
     if (local) {
       // console.log('2', local);
-
-      this.traveler = JSON.parse(local) as Traveler;
-      this.travelerEvent.next({ ...this.traveler });
+      const traveler = JSON.parse(local);
+      const token = this.cookie.get('traveler');
+      this.getDetail(traveler.username, token).then((traveler) => {
+        if (traveler) {
+          this.traveler = { ...traveler };
+          this.travelerEvent.next({ ...traveler });
+        } else {
+          this.traveler = undefined;
+          this.travelerEvent.next(undefined);
+        }
+      });
     }
   }
 
@@ -111,13 +119,8 @@ export class TravelerService {
   }
   private saved(traveler: Traveler) {
     console.log('saved', traveler);
-    const travelerSimple: TravelerInfor = {
-      email: traveler.email,
+    const travelerSimple: TravelerLocal = {
       username: traveler.username,
-      name: traveler.name,
-      tel: traveler.tel,
-      avatar: traveler.avatar,
-      dob: traveler.dob,
     };
     this.traveler = { ...traveler };
     localStorage.setItem('traveler', JSON.stringify(travelerSimple));
