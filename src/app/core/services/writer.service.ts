@@ -16,15 +16,8 @@ export class WriterService {
     const local = localStorage.getItem('writer');
     if (local) {
       this.writer = JSON.parse(local) as Writer;
-      const writerSimple: WriterInfor = {
-        email: this.writer.email,
-        username: this.writer.username,
-        name: this.writer.name,
-        tel: this.writer.tel,
-        avatar: this.writer.avatar,
-        dob: this.writer.dob,
-      };
-      this.writerEvent.next({ ...writerSimple });
+
+      this.writerEvent.next({ ...this.writer });
     }
   }
   async getDetail(username: string, token: string) {

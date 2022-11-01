@@ -29,7 +29,6 @@ export class CheckOutPageComponent implements OnInit, OnDestroy {
   email: string | null = null;
   /* --------------------- x -------------------- */
   tel: string | null = null;
-  username: string | null = null;
   constructor(
     private travelerService: TravelerService,
     private fb: FormBuilder,
@@ -54,7 +53,6 @@ export class CheckOutPageComponent implements OnInit, OnDestroy {
     this.isFetching = true;
     this.travelerService
       .checkOut(
-        this.checkOutForm.get('email')!.value,
         this.checkOutForm.get('hotelId')!.value,
         this.checkOutForm.get('bookingDate')!.value,
         this.checkOutForm.get('numberOfPeople')!.value,
@@ -100,7 +98,6 @@ export class CheckOutPageComponent implements OnInit, OnDestroy {
         if (traveler) {
           this.email = traveler.email;
           this.tel = traveler.tel;
-          this.username = traveler.username;
         }
         this.initForm();
       }
@@ -108,7 +105,7 @@ export class CheckOutPageComponent implements OnInit, OnDestroy {
   }
 
   private prepareForBooking() {
-    this.route.queryParamMap.subscribe((params) => {
+    this.inforBookingsSub = this.route.queryParamMap.subscribe((params) => {
       console.log(params);
       this.checkIn = this.jsonParse(params.get('checkIn'));
       this.checkOut = this.jsonParse(params.get('checkOut'));
@@ -119,7 +116,6 @@ export class CheckOutPageComponent implements OnInit, OnDestroy {
 
   private initForm() {
     this.checkOutForm = this.fb.group({
-      email: [this.email, [Validators.required]],
       hotelId: [this.hotelId, [Validators.required]],
       bookingDate: [new Date(), [Validators.required]],
       numberOfPeople: [this.people, [Validators.required]],

@@ -10,10 +10,8 @@ import { ConfirmPasswordValidator } from 'src/app/core/utils/validators/confirm-
   templateUrl: './profile-change-password.component.html',
   styleUrls: ['./profile-change-password.component.scss'],
 })
-export class ProfileChangePasswordComponent implements OnInit, OnDestroy {
+export class ProfileChangePasswordComponent implements OnInit {
   form!: FormGroup;
-  traveler?: Traveler;
-  travelerSub!: Subscription;
   isFetching = false;
   constructor(
     private fb: FormBuilder,
@@ -22,18 +20,14 @@ export class ProfileChangePasswordComponent implements OnInit, OnDestroy {
   ) {}
   ngOnInit() {
     this.initForm();
-    this.subcribeTraveler();
   }
-  ngOnDestroy(): void {
-    if (this.travelerSub) this.travelerSub.unsubscribe();
-  }
+
   handleSubmit() {
     console.log(this.form.value);
-    if (this.traveler?.email) {
+    if (this.form.valid) {
       this.isFetching = true;
       this.travelerService
         .changePassword(
-          this.traveler?.email,
           this.form.get('oldPassword')?.value,
           this.form.get('newPassword')?.value
         )
@@ -44,11 +38,11 @@ export class ProfileChangePasswordComponent implements OnInit, OnDestroy {
               'Password has been updated.'
             );
             this.isFetching = false;
-            this.form.reset();
+            this.initForm();
           },
           error: () => {
             this.isFetching = false;
-            this.form.reset();
+            this.initForm();
           },
         });
     }
@@ -67,16 +61,6 @@ export class ProfileChangePasswordComponent implements OnInit, OnDestroy {
         confirmPassword: [null, [Validators.required]],
       },
       { validators: ConfirmPasswordValidator }
-    );
-  }
-  private subcribeTraveler() {
-    if (this.travelerService.traveler)
-      this.traveler = { ...this.travelerService.traveler };
-    this.travelerSub = this.travelerService.travelerEvent.subscribe(
-      (traveler) => {
-        if (traveler) this.traveler = { ...traveler };
-        else this.traveler = traveler;
-      }
     );
   }
 }
