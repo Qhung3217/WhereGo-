@@ -107,18 +107,24 @@ export class WriterService {
   ) {
     const token = this.cookie.get('writer');
     const payload = new FormData();
+    // payload.append('title', encodeURIComponent(title));
     payload.append('title', title);
     payload.append('shortDesc', shortDesc);
     payload.append('content', content);
     if (image == null) payload.append('image', '');
     else payload.append('image', image);
-    // console.log(payload);
 
-    return this.http.put(environment.apiURL + 'articles/' + id, payload, {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Bearer ' + token)
-        .set('Content-Transfer-Encoding', 'utf-8'),
-    });
+    return this.http.put(
+      environment.apiURL + 'articles/' + id,
+
+      payload,
+
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Bearer ' + token)
+          .set('Content-Transfer-Encoding', 'utf-8'),
+      }
+    );
   }
   remove() {
     localStorage.removeItem('writer');

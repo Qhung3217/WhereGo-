@@ -104,6 +104,7 @@
     margin-right: 2rem;
   }
 }
+
 @include maxWidth($screen-md) {
   .section-article-new {
     .article__control--title {

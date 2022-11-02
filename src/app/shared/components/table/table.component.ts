@@ -38,6 +38,9 @@ export class TableComponent {
 
     return [];
   }
+  decode(value: any) {
+    return decodeURIComponent(value);
+  }
 
   /* -------------- End table body -------------- */
 

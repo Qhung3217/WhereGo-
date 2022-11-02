@@ -75,7 +75,8 @@ export class ArticleFormPageComponent implements OnInit {
           this.isFetching = false;
           this.toast.showSuccess('Update article successfull', '');
           localStorage.removeItem('draft');
-          this.router.navigate(['writer']);
+          this.writerService.loadFormLocal();
+          this.router.navigate(['/writer/details']);
         },
         error: () => {
           this.isFetching = false;
@@ -98,6 +99,8 @@ export class ArticleFormPageComponent implements OnInit {
             'Thanks for contribute new article!'
           );
           localStorage.removeItem('draft');
+          this.writerService.loadFormLocal();
+          this.router.navigate(['/writer/articles']);
         },
         error: () => {
           this.isFetching = false;
