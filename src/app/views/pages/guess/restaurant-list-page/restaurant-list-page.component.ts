@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { FilterObject } from 'src/app/core/interfaces/filter-object.interface';
 import { RestaurantFilterInfor } from 'src/app/core/interfaces/restaurant-filter-infor.interface';
 import { Restaurant } from 'src/app/core/models/restaurant.model';
@@ -27,14 +28,18 @@ export class RestaurantListPageComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private route: ActivatedRoute,
     private restaurantService: RestaurantService,
-    private filterService: FilterService
+    private filterService: FilterService,
+    private title: Title
   ) {}
 
   ngOnInit(): void {
+    this.title.setTitle('Restaurant search');
     this.restaurantSub = this.route.queryParams.subscribe((params: Params) => {
       this.keyword = params['keyword'];
       console.log('list: ', this.keyword);
+
       if (this.keyword) {
+        this.title.setTitle('Restaurant search: ' + this.keyword);
         this.isFetching = true;
         this.fetchData(this.keyword);
         this.fetchFilterData();

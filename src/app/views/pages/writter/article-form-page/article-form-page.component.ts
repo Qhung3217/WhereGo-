@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { map, switchMap } from 'rxjs';
+import { map } from 'rxjs';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { ImageService } from 'src/app/core/services/image.service';
 import { ToastService } from 'src/app/core/services/toast.service';
@@ -27,16 +28,20 @@ export class ArticleFormPageComponent implements OnInit {
     private router: Router,
     private articleService: ArticleService,
     private toast: ToastService,
+    private title: Title,
     private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
+    this.title.setTitle('Writer new aritcle');
+
     this.route.params
       .pipe(map((params: Params) => params['articleId']))
       .subscribe((articleId) => {
         this.articleId = articleId;
         if (articleId) {
           this.isEdit = true;
+          this.title.setTitle('Edit your aritcle');
           this.fetchArticle();
         } else this.initForm();
       });

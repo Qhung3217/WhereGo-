@@ -14,7 +14,7 @@ export class WriterService {
   constructor(private http: HttpClient, private cookie: CookieService) {}
   loadFormLocal() {
     const local = localStorage.getItem('writer');
-    if (local) {
+    if (local && this.cookie.check('writer')) {
       const writer = JSON.parse(local);
       const token = this.cookie.get('writer');
       this.getDetail(writer.username, token).then((writer) => {

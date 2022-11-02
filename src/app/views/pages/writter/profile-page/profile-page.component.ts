@@ -2,11 +2,9 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  OnDestroy,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { Writer } from 'src/app/core/models/writer.model';
 import { ImageService } from 'src/app/core/services/image.service';
@@ -24,10 +22,12 @@ export class ProfilePageComponent implements OnInit, AfterViewInit {
   constructor(
     private writerService: WriterService,
     private cd: ChangeDetectorRef,
+    private title: Title,
     public imageService: ImageService
   ) {}
 
   ngOnInit(): void {
+    this.title.setTitle('My profile');
     this.writer = this.writerService.writer
       ? { ...this.writerService.writer }
       : this.writerService.writer;

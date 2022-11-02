@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, tap } from 'rxjs';
 import { Traveler } from 'src/app/core/models/traveler.model';
@@ -23,9 +24,11 @@ export class ProfilePageComponent implements OnInit, AfterViewInit {
   constructor(
     private travelerService: TravelerService,
     private cd: ChangeDetectorRef,
+    private title: Title,
     public imageService: ImageService
   ) {}
   ngOnInit() {
+    this.title.setTitle('My profile');
     this.traveler = this.travelerService.traveler
       ? { ...this.travelerService.traveler }
       : this.travelerService.traveler;

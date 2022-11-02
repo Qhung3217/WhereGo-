@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  NgForm,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
@@ -19,7 +14,7 @@ import { phoneValidator } from 'src/app/core/utils/validators/phone-validator';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   // Date of birth
   minDate: NgbDateStruct | any;
   maxDate: NgbDateStruct | any;
@@ -31,12 +26,15 @@ export class RegisterComponent {
     private authService: AuthService,
     private fb: FormBuilder,
     private toast: ToastService,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) {
     this.initialForm();
     this.setMinAndMaxDate();
   }
-
+  ngOnInit() {
+    this.title.setTitle('Traveler register');
+  }
   handleSubmit() {
     const dob =
       this.registerForm.get('dob')?.value?.year +

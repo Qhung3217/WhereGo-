@@ -1,12 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HotelLocalStorage } from 'src/app/core/interfaces/hotel-local-storage.interface';
 import { PlaceLocalStorage } from 'src/app/core/interfaces/place-local-storage.interface';
 import { RestaurantLocalStorage } from 'src/app/core/interfaces/restaurant-local-storage.interface';

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HotelDetail } from 'src/app/core/models/hotel-detail.model';
@@ -36,6 +37,8 @@ export class CheckOutPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private toast: ToastService,
     private hotelService: HotelService,
+    private title: Title,
+
     public imageService: ImageService
   ) {}
   ngOnInit(): void {
@@ -82,6 +85,7 @@ export class CheckOutPageComponent implements OnInit, OnDestroy {
         this.isFetching = true;
         this.hotelService.getDetail(this.hotelId).subscribe((hotel) => {
           this.hotel = { ...hotel };
+          this.title.setTitle('Bookings: ' + this.hotel.name);
           this.price = this.hotel.price;
           this.isFetching = false;
           this.initForm();

@@ -14,7 +14,7 @@ export class TravelerService {
   loadFormLocal() {
     const local = localStorage.getItem('traveler');
     // console.log(local);
-    if (local) {
+    if (local && this.cookie.check('traveler')) {
       // console.log('2', local);
       const traveler = JSON.parse(local);
       const token = this.cookie.get('traveler');

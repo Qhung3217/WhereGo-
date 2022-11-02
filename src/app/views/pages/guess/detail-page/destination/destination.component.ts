@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PlaceDetail } from 'src/app/core/models/place-detail.model';
 import { Place } from 'src/app/core/models/place.model';
@@ -30,6 +31,8 @@ export class DestinationComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private placeService: PlaceService,
+    private title: Title,
+
     public imageService: ImageService
   ) {}
 
@@ -66,6 +69,7 @@ export class DestinationComponent implements OnInit {
 
   private assignDestination(item: PlaceDetail) {
     this.destination = { ...item };
+    this.title.setTitle(this.destination.name);
     this.isFetching.destination = false;
   }
 

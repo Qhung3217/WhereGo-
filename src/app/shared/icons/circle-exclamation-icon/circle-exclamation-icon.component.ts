@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-circle-exclamation-icon',
   templateUrl: './circle-exclamation-icon.component.html',
-  styleUrls: ['./circle-exclamation-icon.component.scss']
+  styleUrls: ['./circle-exclamation-icon.component.scss'],
 })
-export class CircleExclamationIconComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class CircleExclamationIconComponent {
+  constructor() {}
 }

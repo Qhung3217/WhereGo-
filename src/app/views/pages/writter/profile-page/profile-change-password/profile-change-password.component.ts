@@ -1,7 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { Writer } from 'src/app/core/models/writer.model';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { WriterService } from 'src/app/core/services/writer.service';
 import { ConfirmPasswordValidator } from 'src/app/core/utils/validators/confirm-password-math-validator';

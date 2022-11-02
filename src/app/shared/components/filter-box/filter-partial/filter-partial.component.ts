@@ -1,16 +1,11 @@
 import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewChecked,
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FilterService } from 'src/app/core/services/filter.service';
 

@@ -5,7 +5,6 @@ import { DestinationCardComponent } from './destination-card/destination-card.co
 import { BreadcrumbModule } from 'src/app/shared/components/breadcrumb/breadcrumb.module';
 import { FilterBoxModule } from 'src/app/shared/components/filter-box/filter-box.module';
 
-import { PaginationModule } from 'src/app/shared/components/pagination/pagination.module';
 import { RatingDecimarModule } from 'src/app/shared/components/rating-decimar/rating-decimar.module';
 import { DropdownDirectiveModule } from 'src/app/shared/directives/dropdown-directive/dropdown-directive.module';
 import { SlidersIconModule } from 'src/app/shared/icons/sliders-icon/sliders-icon.module';
@@ -36,7 +35,6 @@ import {
     SidebarNavModule,
     FilterBoxModule,
     RatingDecimarModule,
-    PaginationModule,
     LoadingSpinnerModule,
 
     DropdownDirectiveModule,

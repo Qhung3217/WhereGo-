@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FilterObject } from 'src/app/core/interfaces/filter-object.interface';
@@ -6,7 +7,6 @@ import { HotelFilterInfor } from 'src/app/core/interfaces/hotel-filter-infor.int
 import { Hotel } from 'src/app/core/models/hotel.model';
 import { FilterService } from 'src/app/core/services/filter.service';
 import { HotelService } from 'src/app/core/services/hotel.service';
-import { ImageService } from 'src/app/core/services/image.service';
 import { SearchService } from 'src/app/core/services/search.service';
 
 @Component({
@@ -27,13 +27,18 @@ export class HotelListPageComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private route: ActivatedRoute,
     private filterService: FilterService,
-    private hotelService: HotelService
+    private hotelService: HotelService,
+    private title: Title
   ) {}
   ngOnInit(): void {
+    this.title.setTitle('Hotel search');
+
     this.hotelSub = this.route.queryParams.subscribe((params: Params) => {
       this.keyword = params['keyword'];
       console.log('list: ', this.keyword);
+
       if (this.keyword) {
+        this.title.setTitle('Hotel search: ' + this.keyword);
         this.isFetching = true;
         this.fetchData(this.keyword);
         this.fetchFilterData();

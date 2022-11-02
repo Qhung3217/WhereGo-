@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RestaurantDetail } from 'src/app/core/models/restaurant-detail-model';
 import { Restaurant } from 'src/app/core/models/restaurant.model';
@@ -33,6 +34,8 @@ export class RestaurantComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private restaurantService: RestaurantService,
+    private title: Title,
+
     public imageService: ImageService
   ) {}
 
@@ -71,6 +74,7 @@ export class RestaurantComponent implements OnInit {
 
   private assignRestaurant(item: RestaurantDetail) {
     this.restaurant = { ...item };
+    this.title.setTitle(this.restaurant.name);
     this.isFetching.restaurant = false;
   }
 

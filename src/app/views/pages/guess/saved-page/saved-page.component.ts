@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { HotelService } from 'src/app/core/services/hotel.service';
 import { PlaceService } from 'src/app/core/services/place.service';
 import { RestaurantService } from 'src/app/core/services/restaurant.service';
@@ -14,9 +15,11 @@ export class SavedPageComponent implements OnInit {
   constructor(
     private hotelService: HotelService,
     private restaurantService: RestaurantService,
-    private placeService: PlaceService
+    private placeService: PlaceService,
+    private title: Title
   ) {}
   ngOnInit(): void {
+    this.title.setTitle('My saved');
     this.loadData();
   }
   handleClick(tab: 'hotel' | 'restaurant' | 'destination' | 'all') {

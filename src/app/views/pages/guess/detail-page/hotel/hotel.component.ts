@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HotelDetail } from 'src/app/core/models/hotel-detail.model';
 import { Hotel } from 'src/app/core/models/hotel.model';
@@ -31,6 +32,8 @@ export class HotelComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private hotelService: HotelService,
+    private title: Title,
+
     public imageService: ImageService
   ) {}
   ngOnInit(): void {
@@ -111,6 +114,7 @@ export class HotelComponent implements OnInit {
 
   private assignHotel(item: HotelDetail) {
     this.hotel = { ...item };
+    this.title.setTitle(this.hotel.name);
     this.isFetching.hotel = false;
   }
 
