@@ -14,8 +14,22 @@ import { FetchFailModule } from 'src/app/shared/components/fetch-fail/fetch-fail
 import { SafeUrlPipeModule } from 'src/app/shared/pipes/safe-url-pipe/safe-url-pipe.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WriterAuthenticateGuard } from 'src/app/core/guards/writer-authenticate.guard';
+import { NgxSummernoteModule } from 'ngx-summernote';
+import { AutoResizeTextareaDirectiveModule } from 'src/app/shared/directives/auto-resize-textarea-directive/auto-resize-textarea-directive.module';
+import { ChevronRightIconModule } from 'src/app/shared/icons/chevron-right-icon/chevron-right-icon.module';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: ProfilePageComponent,
+    canActivate: [WriterAuthenticateGuard],
+    children: [
+      { path: 'edit', component: ProfileEditComponent },
+      { path: 'articles', component: ProfileArticlesComponent },
+      { path: 'change-password', component: ProfileChangePasswordComponent },
+      { path: '', redirectTo: 'edit', pathMatch: 'full' },
+    ],
+  },
   {
     path: 'article/new',
     canActivate: [WriterAuthenticateGuard],
@@ -27,17 +41,6 @@ const routes: Routes = [
     canActivate: [WriterAuthenticateGuard],
 
     component: ArticleFormPageComponent,
-  },
-  {
-    path: ':username',
-    component: ProfilePageComponent,
-    canActivate: [WriterAuthenticateGuard],
-    children: [
-      { path: 'edit', component: ProfileEditComponent },
-      { path: 'articles', component: ProfileArticlesComponent },
-      { path: 'change-password', component: ProfileChangePasswordComponent },
-      { path: '', redirectTo: 'edit', pathMatch: 'full' },
-    ],
   },
 ];
 
@@ -55,14 +58,17 @@ const routes: Routes = [
     RouterModule.forChild(routes),
 
     NgbDatepickerModule,
+    NgxSummernoteModule,
 
     TableModule,
     LoadingSpinnerModule,
     FetchFailModule,
 
     SafeUrlPipeModule,
+    AutoResizeTextareaDirectiveModule,
 
     ImageIconModule,
+    ChevronRightIconModule,
   ],
 })
 export class WritterModule {}

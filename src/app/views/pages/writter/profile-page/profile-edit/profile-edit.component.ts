@@ -50,7 +50,6 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     this.isFetching = true;
     this.writerService
       .update(
-        this.writer!.username,
         this.profileForm.get('name')?.value,
         this.profileForm.get('phone')?.value,
         dob,

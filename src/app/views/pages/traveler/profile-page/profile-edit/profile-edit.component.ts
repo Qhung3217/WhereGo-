@@ -51,7 +51,6 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     this.isFetching = true;
     this.travelerService
       .update(
-        this.traveler!.username,
         this.profileForm.get('name')?.value,
         this.profileForm.get('phone')?.value,
         dob,

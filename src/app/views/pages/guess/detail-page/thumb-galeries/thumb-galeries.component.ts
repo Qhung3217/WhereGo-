@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ImageService } from 'src/app/core/services/image.service';
 import SwiperCore, { FreeMode, Navigation, Thumbs } from 'swiper';
 

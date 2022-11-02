@@ -128,11 +128,11 @@ export class AuthService {
     if (nextUrl) {
       this.router.navigateByUrl(decodeURIComponent(nextUrl));
     } else if (isWriter)
-      this.router.navigate(['/writer', username], {
+      this.router.navigate(['/writer'], {
         queryParamsHandling: 'merge',
       });
     else
-      this.router.navigate(['/traveler', username], {
+      this.router.navigate(['/traveler'], {
         queryParamsHandling: 'merge',
       });
   }

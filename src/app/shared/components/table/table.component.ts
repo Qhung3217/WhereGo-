@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,8 +10,6 @@ export class TableComponent {
   /* ---------------- Table body ---------------- */
   // article's properties
   @Input() showArticle = false;
-  @Input() articleIds: any[] = [];
-  @Input() idOfObjectAction = -1;
   // end  article's properties
   @Input() ths: string[] = ['Col 1', 'Col 2', 'Col 3'];
   @Input() dataSource: {}[] = [
@@ -40,8 +38,8 @@ export class TableComponent {
 
     return [];
   }
-  goToArticle(index: number) {
-    this.router.navigate(['/travel-articles', this.articleIds[index]]);
+  decode(value: any) {
+    return decodeURIComponent(value);
   }
 
   /* -------------- End table body -------------- */

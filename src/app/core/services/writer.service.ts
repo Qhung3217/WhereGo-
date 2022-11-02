@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, lastValueFrom, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { WriterLocal } from '../interfaces/writer-local.interface';
 import { Writer } from '../models/writer.model';
 
 @Injectable({ providedIn: 'root' })
@@ -13,9 +14,18 @@ export class WriterService {
   constructor(private http: HttpClient, private cookie: CookieService) {}
   loadFormLocal() {
     const local = localStorage.getItem('writer');
-    if (local) {
-      this.writer = JSON.parse(local) as Writer;
-      this.writerEvent.next({ ...this.writer });
+    if (local && this.cookie.check('writer')) {
+      const writer = JSON.parse(local);
+      const token = this.cookie.get('writer');
+      this.getDetail(writer.username, token).then((writer) => {
+        if (writer) {
+          this.writer = { ...writer };
+          this.writerEvent.next({ ...writer });
+        } else {
+          this.writer = undefined;
+          this.writerEvent.next(undefined);
+        }
+      });
     }
   }
   async getDetail(username: string, token: string) {
@@ -34,13 +44,7 @@ export class WriterService {
       { defaultValue: null }
     );
   }
-  update(
-    username: string,
-    name: string,
-    tel: string,
-    dob: string,
-    avatar: null | File = null
-  ) {
+  update(name: string, tel: string, dob: string, avatar: null | File = null) {
     const token = this.cookie.get('writer');
 
     const payload = new FormData();
@@ -51,21 +55,75 @@ export class WriterService {
     else payload.append('avatar', avatar);
 
     return this.http.put<{ statusCode: string; message: string }>(
-      environment.apiURL + 'writers/' + username,
+      environment.apiURL + 'writers/' + this.writer?.username,
       payload,
       this.permitsion(token)
     );
   }
-  changePassword(email: string, oldPassword: string, newPassword: string) {
+  changePassword(oldPassword: string, newPassword: string) {
     const token = this.cookie.get('writer');
     return this.http.put(
       environment.apiURL + 'writers/change-password',
       {
-        email,
+        email: this.writer?.email,
         oldPassword,
         newPassword,
       },
       this.permitsion(token)
+    );
+  }
+  createArticle(
+    title: string,
+    image: File,
+    shortDesc: string,
+    content: string
+  ) {
+    const token = this.cookie.get('writer');
+    const payload = new FormData();
+    payload.append('title', title);
+    payload.append('image', image);
+    payload.append('shortDesc', shortDesc);
+    payload.append('content', content);
+
+    // console.log(payload);  thi
+
+    return this.http.post(
+      environment.apiURL + 'articles?writer=' + this.writer?.username,
+      payload,
+
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Bearer ' + token)
+          .set('Content-Transfer-Encoding', 'utf-8'),
+      }
+    );
+  }
+  updateArticle(
+    id: number,
+    title: string,
+    image: File,
+    shortDesc: string,
+    content: string
+  ) {
+    const token = this.cookie.get('writer');
+    const payload = new FormData();
+    // payload.append('title', encodeURIComponent(title));
+    payload.append('title', title);
+    payload.append('shortDesc', shortDesc);
+    payload.append('content', content);
+    if (image == null) payload.append('image', '');
+    else payload.append('image', image);
+
+    return this.http.put(
+      environment.apiURL + 'articles/' + id,
+
+      payload,
+
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Bearer ' + token)
+          .set('Content-Transfer-Encoding', 'utf-8'),
+      }
     );
   }
   remove() {
@@ -74,8 +132,13 @@ export class WriterService {
     this.writerEvent.next(undefined);
   }
   private saved(writer: Writer) {
+    const writerSimple: WriterLocal = {
+      username: writer.username,
+    };
+
     this.writer = { ...writer };
-    localStorage.setItem('writer', JSON.stringify(writer));
+
+    localStorage.setItem('writer', JSON.stringify(writerSimple));
   }
   private permitsion(token: string) {
     return {

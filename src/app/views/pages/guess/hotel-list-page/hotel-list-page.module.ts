@@ -7,7 +7,6 @@ import { FilterBoxModule } from 'src/app/shared/components/filter-box/filter-box
 import { XIconModule } from 'src/app/shared/icons/x-icon/x-icon.module';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
 import { RatingDecimarModule } from 'src/app/shared/components/rating-decimar/rating-decimar.module';
-import { PaginationModule } from 'src/app/shared/components/pagination/pagination.module';
 import { SlidersIconModule } from 'src/app/shared/icons/sliders-icon/sliders-icon.module';
 import { DropdownDirectiveModule } from 'src/app/shared/directives/dropdown-directive/dropdown-directive.module';
 
@@ -35,7 +34,6 @@ import {
     SidebarNavModule,
     FilterBoxModule,
     RatingDecimarModule,
-    PaginationModule,
     LoadingSpinnerModule,
 
     SavedActionDirectiveModule,

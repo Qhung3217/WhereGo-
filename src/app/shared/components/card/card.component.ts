@@ -1,6 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { HotelLocalStorage } from 'src/app/core/interfaces/hotel-local-storage.interface';
-import { RestaurantLocalStorage } from 'src/app/core/interfaces/restaurant-local-storage.interface';
+import { Component, Input } from '@angular/core';
 import { HotelService } from 'src/app/core/services/hotel.service';
 import { ImageService } from 'src/app/core/services/image.service';
 import { RestaurantService } from 'src/app/core/services/restaurant.service';

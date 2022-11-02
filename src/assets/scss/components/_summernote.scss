@@ -1,0 +1,18 @@
+.note-editable {
+  font-size: 20px;
+  min-height: 400px;
+  height: fit-content;
+}
+.note-editor.note-frame {
+  border: none;
+}
+.note-placeholder {
+  font-size: 2rem;
+}
+.note-frame {
+  font-family: $family;
+}
+.note-toolbar {
+  background-color: transparent;
+  border-color: #e0e0e0;
+}

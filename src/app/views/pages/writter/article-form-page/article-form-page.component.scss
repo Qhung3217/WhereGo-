@@ -1,0 +1,120 @@
+@import "settings/variables/color";
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
+.section-article-new {
+  padding-bottom: 6.4rem;
+  max-width: 1136px;
+  width: 100%;
+  margin: 0 auto;
+  .article__navigate-back {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    text-decoration: underline;
+    color: $text-color-secondary;
+    display: flex;
+    align-items: center;
+  }
+  .navigate-back__icon ::ng-deep {
+    margin-right: 0.8rem;
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+  .article__form {
+    padding-top: 4rem;
+  }
+  .article__container {
+    max-width: 720px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+  }
+  .article__group {
+    position: relative;
+  }
+  .image-container {
+    max-width: 1136px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 4.8rem;
+    margin-bottom: 3.2rem;
+  }
+  .image-preview {
+    width: 100%;
+    display: block;
+    max-height: 675px;
+    object-fit: cover;
+    aspect-ratio: 2/1;
+    object-position: center;
+  }
+  .image-icon {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+  }
+  .article__control {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    word-break: break-word;
+    resize: none;
+    overflow-y: hidden;
+  }
+  .article__control--title {
+    font-size: 5.4rem;
+    font-weight: 800;
+    letter-spacing: 1.08px;
+    line-height: 6.5rem;
+    margin-top: 3.2rem;
+    margin-bottom: 2.4rem;
+  }
+  .article__control--short {
+    font-size: 2.8rem;
+    line-height: 3.4rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+  .article__bottom {
+    padding-top: 4.2rem;
+    text-align: right;
+  }
+  .article__bottom .btn--primary {
+    width: 20rem;
+  }
+  .article__bottom .btn--secondary {
+    margin-right: 2rem;
+  }
+}
+
+@include maxWidth($screen-md) {
+  .section-article-new {
+    .article__control--title {
+      font-size: 3.2rem;
+      letter-spacing: 0.64px;
+      line-height: 4rem;
+    }
+    .article__control--short {
+      font-size: 2.4rem;
+      line-height: 3.2rem;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -8,11 +8,13 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './writter-login.component.html',
   styleUrls: ['./writter-login.component.scss'],
 })
-export class WritterLoginComponent {
+export class WritterLoginComponent implements OnInit {
   isFetching = false;
   @ViewChild('emailInput', { static: true }) emailInput!: ElementRef;
-  constructor(private authService: AuthService, private router: Router) {}
-
+  constructor(private authService: AuthService, private title: Title) {}
+  ngOnInit() {
+    this.title.setTitle('Writer login');
+  }
   handleSubmit(loginForm: NgForm) {
     this.isFetching = true;
     this.authService

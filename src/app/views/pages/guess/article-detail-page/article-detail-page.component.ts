@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleDetail } from 'src/app/core/models/article-detail.model';
 import { ArticleService } from 'src/app/core/services/article.service';
@@ -15,6 +16,8 @@ export class ArticleDetailPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private articleService: ArticleService,
+    private title: Title,
+
     public imageService: ImageService
   ) {}
   ngOnInit() {
@@ -28,6 +31,7 @@ export class ArticleDetailPageComponent implements OnInit {
     this.articleService.getDetail(id).subscribe({
       next: (article) => {
         this.article = { ...article };
+        this.title.setTitle(this.article.title);
         this.isFetching = false;
       },
       error: () => {

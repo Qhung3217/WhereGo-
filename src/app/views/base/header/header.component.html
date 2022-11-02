@@ -21,11 +21,7 @@
           <!-- only show when login -->
           <li *ngIf="writer || traveler">
             <a
-              [routerLink]="
-                writer
-                  ? ['writer', writer.username]
-                  : ['traveler', traveler?.username]
-              "
+              [routerLink]="writer ? ['writer'] : ['traveler']"
               class="header__item cta header__item--mobile no-shadow"
             >
               View profile</a
@@ -34,9 +30,7 @@
           <li *ngIf="writer || traveler">
             <a
               [routerLink]="
-                writer
-                  ? ['writer', writer.username, 'articles']
-                  : ['traveler', traveler?.username, 'bookings']
+                writer ? ['writer/articles'] : ['traveler/bookings']
               "
               class="header__item cta header__item--mobile no-shadow"
             >
@@ -89,11 +83,7 @@
                 <ul class="user__list">
                   <li>
                     <a
-                      [routerLink]="
-                        writer
-                          ? ['writer', writer.username!]
-                          : ['traveler', traveler?.username!]
-                      "
+                      [routerLink]="writer ? ['writer'] : ['traveler']"
                       class="user__item"
                       >View profile</a
                     >
@@ -101,9 +91,7 @@
                   <li>
                     <a
                       [routerLink]="
-                        writer
-                          ? ['writer', writer.username!, 'articles']
-                          : ['traveler', traveler?.username!, 'bookings']
+                        writer ? ['writer/articles'] : ['traveler/bookings']
                       "
                       class="user__item"
                     >

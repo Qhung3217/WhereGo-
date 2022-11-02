@@ -11,10 +11,15 @@
       />
     </figure>
     <div class="saved-item__infor">
-      <h3 class="saved-item__sub-title" *ngIf="item?.cuisine">
+      <h3 class="saved-item__sub-title" *ngIf="item?.cuisines">
         {{ item.cuisines.join(", ") }}
       </h3>
-      <a href="" class="saved-item__name">{{ item?.name }}</a>
+      <a
+        href=""
+        class="saved-item__name"
+        [ngStyle]="{ 'margin-top': item?.cuisines && 0 }"
+        >{{ item?.name }}</a
+      >
       <div class="saved-item__rating">
         <app-rating-decimar [rate]="item?.averageRating"></app-rating-decimar>
         <div class="saved-item__review-count">

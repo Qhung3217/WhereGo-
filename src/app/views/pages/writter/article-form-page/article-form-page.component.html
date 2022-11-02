@@ -1,1 +1,65 @@
-<p>article-form-page works!</p>
+<section class="section-article-new relative">
+  <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
+
+  <a routerLink="/writer/articles" class="article__navigate-back">
+    <app-chevron-right-icon
+      class="navigate-back__icon"
+    ></app-chevron-right-icon>
+    <span>All articles</span>
+  </a>
+
+  <form
+    (ngSubmit)="handleSubmit()"
+    [formGroup]="articleForm"
+    class="article__form"
+    *ngIf="articleForm"
+  >
+    <div class="article__group article__container">
+      <textarea
+        id="title"
+        class="article__control article__control--title"
+        placeholder="Title"
+        formControlName="title"
+        appAutoResizeTextarea
+      ></textarea>
+    </div>
+    <div class="article__group article__container">
+      <textarea
+        cols="0"
+        rows="0"
+        placeholder="Short description"
+        formControlName="shortDesc"
+        class="article__control article__control--short"
+        appAutoResizeTextarea
+      ></textarea>
+    </div>
+    <div class="article__group image-container">
+      <img [src]="thumbnailPreview | safeUrl" class="image-preview" />
+      <label for="thumb" class="image-icon">
+        <app-image-icon></app-image-icon
+      ></label>
+      <input
+        type="file"
+        id="thumb"
+        style="display: none"
+        (change)="handleChangeImage($event)"
+      />
+    </div>
+    <div class="article__group article__container">
+      <div
+        [ngxSummernote]="summernoteConfig"
+        formControlName="content"
+        class="article__content"
+      ></div>
+    </div>
+    <div class="article__bottom article__container">
+      <button
+        type="submit"
+        class="btn btn--primary"
+        [disabled]="!articleForm.valid"
+      >
+        Publish
+      </button>
+    </div>
+  </form>
+</section>

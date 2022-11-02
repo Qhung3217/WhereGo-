@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Article } from 'src/app/core/models/article.model';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { ImageService } from 'src/app/core/services/image.service';
@@ -14,10 +15,13 @@ export class TravelArticlesPageComponent implements OnInit {
   isFetching = false;
   constructor(
     private articleService: ArticleService,
-    public imageService: ImageService
+    public imageService: ImageService,
+    private title: Title
   ) {}
 
   ngOnInit(): void {
+    this.title.setTitle('Travel articles');
+
     this.isFetching = true;
     this.articleService.getAll().subscribe((articles) => {
       this.isFetching = false;

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FilterObject } from 'src/app/core/interfaces/filter-object.interface';
@@ -27,13 +28,17 @@ export class DestinationListPageComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private route: ActivatedRoute,
     private filterService: FilterService,
-    private placeService: PlaceService
+    private placeService: PlaceService,
+    private title: Title
   ) {}
   ngOnInit(): void {
+    this.title.setTitle('Destination search');
+
     this.destinationSub = this.route.queryParams.subscribe((params: Params) => {
       this.keyword = params['keyword'];
       console.log('list: ', this.keyword);
       if (this.keyword) {
+        this.title.setTitle('Destination search: ' + this.keyword);
         this.isFetching = true;
         this.fetchData(this.keyword);
         this.fetchFilterData();

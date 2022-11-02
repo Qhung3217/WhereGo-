@@ -3,6 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, lastValueFrom, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { TravelerLocal } from '../interfaces/traveler-local.interface';
 import { Traveler } from '../models/traveler.model';
 
 @Injectable({ providedIn: 'root' })
@@ -13,11 +14,19 @@ export class TravelerService {
   loadFormLocal() {
     const local = localStorage.getItem('traveler');
     // console.log(local);
-    if (local) {
+    if (local && this.cookie.check('traveler')) {
       // console.log('2', local);
-
-      this.traveler = JSON.parse(local);
-      this.travelerEvent.next({ ...this.traveler! });
+      const traveler = JSON.parse(local);
+      const token = this.cookie.get('traveler');
+      this.getDetail(traveler.username, token).then((traveler) => {
+        if (traveler) {
+          this.traveler = { ...traveler };
+          this.travelerEvent.next({ ...traveler });
+        } else {
+          this.traveler = undefined;
+          this.travelerEvent.next(undefined);
+        }
+      });
     }
   }
 
@@ -38,13 +47,7 @@ export class TravelerService {
     );
   }
 
-  update(
-    username: string,
-    name: string,
-    tel: string,
-    dob: string,
-    avatar: null | File = null
-  ) {
+  update(name: string, tel: string, dob: string, avatar: null | File = null) {
     const token = this.cookie.get('traveler');
 
     const payload = new FormData();
@@ -55,17 +58,17 @@ export class TravelerService {
     else payload.append('avatar', avatar);
 
     return this.http.put<{ statusCode: string; message: string }>(
-      environment.apiURL + 'travelers/' + username,
+      environment.apiURL + 'travelers/' + this.traveler?.username,
       payload,
       this.permitsion(token)
     );
   }
-  changePassword(email: string, oldPassword: string, newPassword: string) {
+  changePassword(oldPassword: string, newPassword: string) {
     const token = this.cookie.get('traveler');
     return this.http.put(
       environment.apiURL + 'travelers/change-password',
       {
-        email,
+        email: this.traveler?.email,
         oldPassword,
         newPassword,
       },
@@ -78,7 +81,6 @@ export class TravelerService {
     this.travelerEvent.next(undefined);
   }
   checkOut(
-    email: string,
     hotelId: number,
     bookingDate: string,
     numberOfPeople: number,
@@ -91,7 +93,7 @@ export class TravelerService {
     return this.http.post(
       environment.apiURL + 'bookings',
       {
-        travelerEmail: email,
+        travelerEmail: this.traveler?.email,
         hotelId: hotelId,
         bookingDate: bookingDate,
         numberOfPeople: numberOfPeople,
@@ -104,8 +106,11 @@ export class TravelerService {
   }
   private saved(traveler: Traveler) {
     console.log('saved', traveler);
+    const travelerSimple: TravelerLocal = {
+      username: traveler.username,
+    };
     this.traveler = { ...traveler };
-    localStorage.setItem('traveler', JSON.stringify(traveler));
+    localStorage.setItem('traveler', JSON.stringify(travelerSimple));
   }
   private permitsion(token: string) {
     return {

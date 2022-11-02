@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-newspaper-icon',
   templateUrl: './newspaper-icon.component.html',
-  styleUrls: ['./newspaper-icon.component.scss']
+  styleUrls: ['./newspaper-icon.component.scss'],
 })
-export class NewspaperIconComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class NewspaperIconComponent {
+  constructor() {}
 }

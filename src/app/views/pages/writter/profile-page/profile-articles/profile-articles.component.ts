@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Article } from 'src/app/core/models/article.model';
 import { SimpleArticle } from 'src/app/core/models/simple-article.mode';
 import { ImageService } from 'src/app/core/services/image.service';
 import { WriterService } from 'src/app/core/services/writer.service';
@@ -39,6 +38,7 @@ export class ProfileArticlesComponent implements OnInit, OnDestroy {
     return articles.map((article) => {
       this.ids.push(article.id);
       return {
+        id: article.id,
         title: article.title,
         image: `<img src="${this.imageService.render(article.image)}"/>`,
         about: article.shortDesc,
