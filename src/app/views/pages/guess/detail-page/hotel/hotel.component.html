@@ -26,7 +26,7 @@
       <div class="hotel__infor">
         <div class="panel hotel__book-infor relative">
           <div class="book-infor__overlay" *ngIf="isWriter">
-            <h1>Login traveler to booking</h1>
+            <h1>Login traveler to bookings</h1>
           </div>
           <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
             <div class="book__date-group">
@@ -137,7 +137,7 @@
               class="btn btn--primary"
               [disabled]="bookForm.submitted && !bookForm.valid"
             >
-              Book
+              Bookings
             </button>
           </form>
         </div>
