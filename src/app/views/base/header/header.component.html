@@ -44,7 +44,7 @@
               Travel articles
             </a>
           </li>
-          <li>
+          <li *ngIf="!writer">
             <a routerLink="/saved" class="header__item cta no-shadow">
               <app-heart-icon class="header__icon"></app-heart-icon>
               My saved</a

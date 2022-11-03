@@ -4,9 +4,17 @@
     'section-detail--background': propertySelected !== '/destination'
   }"
 >
-  <app-hotel *ngIf="propertySelected === '/hotel'"></app-hotel>
-  <app-restaurant *ngIf="propertySelected === '/restaurant'"> </app-restaurant>
+  <app-hotel
+    *ngIf="propertySelected === '/hotel'"
+    [isWriter]="isWriter"
+  ></app-hotel>
+  <app-restaurant
+    *ngIf="propertySelected === '/restaurant'"
+    [isWriter]="isWriter"
+  >
+  </app-restaurant>
   <app-destination
     *ngIf="propertySelected === '/destination'"
+    [isWriter]="isWriter"
   ></app-destination>
 </div>

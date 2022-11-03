@@ -11,6 +11,9 @@
     <hr />
     <div class="review__content relative">
       <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
+      <div class="content__overlay" *ngIf="isWriter">
+        <h1>Login travler to review & rating</h1>
+      </div>
       <form
         class="review__form"
         [formGroup]="reviewForm"

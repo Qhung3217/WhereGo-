@@ -18,6 +18,7 @@
     [reviewNumber]="reviewNumber"
     [item]="destination"
     category="destination"
+    [isWriter]="isWriter"
   ></app-detail-header>
   <div class="property__body" *ngIf="destination">
     <div class="property__wrap">
@@ -88,6 +89,7 @@
         (reviewSuccess)="handleReviewChange()"
         [id]="destination.id"
         category="destination"
+        [isWriter]="isWriter"
       ></app-review>
     </div>
   </div>

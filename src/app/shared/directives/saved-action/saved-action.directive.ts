@@ -5,6 +5,8 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { CookieService } from 'ngx-cookie-service';
 import { HotelLocalStorage } from 'src/app/core/interfaces/hotel-local-storage.interface';
 import { PlaceLocalStorage } from 'src/app/core/interfaces/place-local-storage.interface';
 import { RestaurantLocalStorage } from 'src/app/core/interfaces/restaurant-local-storage.interface';
@@ -20,20 +22,28 @@ export class SavedActionDirective implements OnInit {
     'hotel';
   @Input() item: any;
   @HostBinding('class.heart--active') isHeartActive = false;
+  @HostBinding('style') style?: SafeStyle;
   @HostListener('click')
   handleHeartClick() {
+    if (this.checkWriter) return;
     this.isHeartActive = !this.isHeartActive;
     if (this.isHeartActive) this.storeSavedItem();
     else this.removeSavedItem();
   }
+  checkWriter = false;
 
   constructor(
     private hotelService: HotelService,
     private restaurantService: RestaurantService,
-    private placeService: PlaceService
+    private placeService: PlaceService,
+    private sanitizer: DomSanitizer,
+    private cookieService: CookieService
   ) {}
   ngOnInit(): void {
-    this.isSaved();
+    this.checkWriter = this.cookieService.check('writer');
+    if (this.checkWriter)
+      this.style = this.sanitizer.bypassSecurityTrustStyle('display:none');
+    else this.isSaved();
   }
   private isSaved() {
     switch (this.category) {

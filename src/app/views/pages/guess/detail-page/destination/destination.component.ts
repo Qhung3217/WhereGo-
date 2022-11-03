@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PlaceDetail } from 'src/app/core/models/place-detail.model';
@@ -12,6 +12,7 @@ import { PlaceService } from 'src/app/core/services/place.service';
   styleUrls: ['./destination.component.scss'],
 })
 export class DestinationComponent implements OnInit {
+  @Input() isWriter = false;
   isFetching: {
     destination: boolean;
     destinationSuggestion: boolean;

@@ -22,6 +22,7 @@ import { RestaurantService } from 'src/app/core/services/restaurant.service';
   styleUrls: ['./detail-header.component.scss'],
 })
 export class DetailHeaderComponent implements OnInit {
+  @Input() isWriter = false;
   @Input() headerTitle: string = 'Title';
   @Input() reviewNumber: number = 0;
   @Input() averageRating: number = 0;
