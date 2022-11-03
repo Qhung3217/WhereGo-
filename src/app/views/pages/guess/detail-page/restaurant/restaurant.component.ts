@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RestaurantDetail } from 'src/app/core/models/restaurant-detail-model';
@@ -12,6 +12,7 @@ import { RestaurantService } from 'src/app/core/services/restaurant.service';
   styleUrls: ['./restaurant.component.scss'],
 })
 export class RestaurantComponent implements OnInit {
+  @Input() isWriter = false;
   isFetching: {
     restaurant: boolean;
     restaurantSuggestion: boolean;

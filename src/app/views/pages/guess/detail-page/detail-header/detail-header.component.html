@@ -3,13 +3,13 @@
     <app-breadcrumb [childLevels]="[{ level: headerTitle }]"></app-breadcrumb>
     <div class="header__title-group">
       <h1>{{ headerTitle }}</h1>
-      <div class="title-group__actions">
+      <div class="title-group__actions" *ngIf="!isWriter">
         <a class="action" appScrollToReview>
           <app-pencil-icon></app-pencil-icon>
 
           <span>Review</span>
         </a>
-        <div class="action" (click)="handleSavedAction()">
+        <div class="action" *ngIf="!isWriter" (click)="handleSavedAction()">
           <app-heart-icon *ngIf="!isSaved"></app-heart-icon>
           <app-heart-solid-icon *ngIf="isSaved"></app-heart-solid-icon>
           <span *ngIf="!isSaved">Save</span>

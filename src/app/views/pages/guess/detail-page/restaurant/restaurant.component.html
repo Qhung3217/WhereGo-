@@ -19,6 +19,7 @@
     [reviewNumber]="reviewNumber"
     [item]="restaurant"
     category="restaurant"
+    [isWriter]="isWriter"
   ></app-detail-header>
   <div class="property__body" *ngIf="restaurant">
     <div class="property__wrap">
@@ -110,6 +111,7 @@
         (reviewSuccess)="handleReviewChange()"
         [id]="restaurant.id"
         category="restaurant"
+        [isWriter]="isWriter"
       ></app-review>
     </div>
   </div>

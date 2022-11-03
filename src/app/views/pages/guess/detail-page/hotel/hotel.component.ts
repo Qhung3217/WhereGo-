@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { HotelDetail } from 'src/app/core/models/hotel-detail.model';
 import { Hotel } from 'src/app/core/models/hotel.model';
 import { HotelService } from 'src/app/core/services/hotel.service';
@@ -13,6 +14,8 @@ import { ImageService } from 'src/app/core/services/image.service';
   styleUrls: ['./hotel.component.scss'],
 })
 export class HotelComponent implements OnInit {
+  @Input() isWriter = false;
+
   isFetching: {
     hotel: boolean;
     hotelSuggestion: boolean;
@@ -47,7 +50,7 @@ export class HotelComponent implements OnInit {
 
   onSubmit(bookForm: NgForm) {
     console.log(bookForm.value);
-    if (bookForm.valid) {
+    if (bookForm.valid && !this.isWriter) {
       const people = bookForm.value['people'];
 
       let ngbDateBucket = bookForm.value['checkIn'];

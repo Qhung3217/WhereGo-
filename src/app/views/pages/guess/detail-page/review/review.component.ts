@@ -28,6 +28,7 @@ import { ToastService } from 'src/app/core/services/toast.service';
   styleUrls: ['./review.component.scss'],
 })
 export class ReviewComponent implements OnInit {
+  @Input() isWriter = false;
   @Input() rounded: boolean = false;
   @Input() reviews: Review[] = [];
   @Input() category: 'hotel' | 'restaurant' | 'destination' = 'hotel';
@@ -64,7 +65,7 @@ export class ReviewComponent implements OnInit {
   onSubmit() {
     this.isSubmitted = true;
     console.log(this.reviewForm);
-    if (this.reviewForm.valid) {
+    if (this.reviewForm.valid && !this.isWriter) {
       const rating = this.reviewForm.get('rating')!.value;
       const comment = this.reviewForm.get('comment')!.value;
       localStorage.setItem('review', JSON.stringify({ rating, comment }));

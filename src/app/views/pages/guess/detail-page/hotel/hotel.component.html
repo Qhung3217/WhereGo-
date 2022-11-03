@@ -19,11 +19,15 @@
     [averageRating]="averageRating"
     [reviewNumber]="reviewNumber"
     [item]="hotel"
+    [isWriter]="isWriter"
   ></app-detail-header>
   <div class="property__body" *ngIf="hotel">
     <div class="property__wrap">
       <div class="hotel__infor">
-        <div class="panel hotel__book-infor">
+        <div class="panel hotel__book-infor relative">
+          <div class="book-infor__overlay" *ngIf="isWriter">
+            <h1>Login traveler to booking</h1>
+          </div>
           <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
             <div class="book__date-group">
               <div class="book__control-group">
@@ -243,6 +247,7 @@
         [reviews]="hotel.reviews"
         (reviewSuccess)="handleReviewChange()"
         [id]="hotel.id"
+        [isWriter]="isWriter"
       ></app-review>
     </div>
   </div>
