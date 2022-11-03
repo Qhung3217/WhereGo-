@@ -41,7 +41,7 @@ export class ProfileBookingsComponent implements OnInit, OnDestroy {
   private transformBookings(bookings: Booking[]) {
     return bookings.map((booking) => {
       return {
-        Hotel: booking.id,
+        Hotel: booking.hotelName,
         Bookdate: new Date(booking.bookingDate).toDateString(),
         People: booking.numberOfPeople,
         Price: booking.price,
