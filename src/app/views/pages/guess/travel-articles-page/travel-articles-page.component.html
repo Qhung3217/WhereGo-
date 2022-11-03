@@ -2,7 +2,9 @@
   <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
   <app-fetch-fail *ngIf="articles.length === 0 && !isFetching"></app-fetch-fail>
   <div *ngIf="articles.length > 0 && !isFetching">
-    <h1 class="title">All Travel Articles</h1>
+    <h1 class="title">
+      {{ keyword ? "Travel Article Search" : "All Travel Articles" }}
+    </h1>
     <ul class="travel-articles__list">
       <li
         class="travel-articles__item"
