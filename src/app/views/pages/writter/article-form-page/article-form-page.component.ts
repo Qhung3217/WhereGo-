@@ -81,7 +81,7 @@ export class ArticleFormPageComponent implements OnInit {
           this.toast.showSuccess('Update article successfull', '');
           localStorage.removeItem('draft');
           this.writerService.loadFormLocal();
-          this.router.navigate(['/writer/details']);
+          this.router.navigate(['/writer/articles']);
         },
         error: () => {
           this.isFetching = false;

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject, lastValueFrom, Subject, tap } from 'rxjs';
+import { BehaviorSubject, lastValueFrom, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { WriterLocal } from '../interfaces/writer-local.interface';
 import { Writer } from '../models/writer.model';

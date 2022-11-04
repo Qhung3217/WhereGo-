@@ -1,3 +1,5 @@
+@import "settings/variables/breakpoint";
+@import "settings/mixin";
 :host {
   position: fixed;
   top: 0;
@@ -57,5 +59,11 @@
 @keyframes fadeOut {
   to {
     opacity: 0;
+  }
+}
+@include maxWidth($screen-sm) {
+  .toast {
+    max-width: 20rem;
+    min-width: 15rem;
   }
 }

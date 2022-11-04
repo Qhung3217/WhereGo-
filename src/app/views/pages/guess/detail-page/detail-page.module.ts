@@ -32,6 +32,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OnlyNumberDirectiveModule } from 'src/app/shared/directives/only-number-directive/only-number-directive.module';
 import { ScrollToReviewDirectiveModule } from 'src/app/shared/directives/scroll-to-review-directive/scroll-to-review-directive.module';
+import { FetchFailModule } from 'src/app/shared/components/fetch-fail/fetch-fail.module';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ScrollToReviewDirectiveModule } from 'src/app/shared/directives/scroll-
     BreadcrumbModule,
     RatingDecimarModule,
     LoadingSpinnerModule,
+    FetchFailModule,
 
     RefreshDirectiveModule,
     OnlyNumberDirectiveModule,

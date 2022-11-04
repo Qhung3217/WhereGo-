@@ -9,7 +9,7 @@
       class="breadcrumb__level"
       *ngFor="let child of childLevels; let i = index"
     >
-      <a [routerLink]="child?.link">{{ child.level }}</a>
+      <a [routerLink]="child?.link">{{ child.level | shorten: 20 }}</a>
       <app-chevron-right-icon
         class="breadcrumb__icon"
         [style]="{ display: i === childLevels.length - 1 ? 'none' : 'block' }"
