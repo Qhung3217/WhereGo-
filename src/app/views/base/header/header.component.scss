@@ -230,6 +230,10 @@
     }
     &__item-sign-out {
       display: block;
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
     }
     &__item-btn {
       order: 0 !important ;

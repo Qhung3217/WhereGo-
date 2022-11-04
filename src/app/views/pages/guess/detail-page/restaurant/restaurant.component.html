@@ -3,14 +3,9 @@
     *ngIf="isFetching.restaurant"
     style="display: block; width: 100%; height: 40rem"
   ></app-loading-spinner>
-  <div class="property__error" *ngIf="!restaurant && !isFetching.restaurant">
-    <app-circle-exclamation-icon
-      class="error__icon"
-    ></app-circle-exclamation-icon>
-    <h1>Oops! Something went wrong.</h1>
-    <aside>Try refeshing the page or try again later.</aside>
-    <button class="btn btn--primary" appRefresh>Refresh Page</button>
-  </div>
+  <app-fetch-fail
+    *ngIf="!restaurant && !isFetching.restaurant"
+  ></app-fetch-fail>
   <app-detail-header
     [headerTitle]="restaurant.name"
     [address]="restaurant.address"

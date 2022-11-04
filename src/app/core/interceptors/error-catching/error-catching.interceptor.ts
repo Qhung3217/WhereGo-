@@ -9,17 +9,12 @@ import {
 import { catchError, Observable, throwError } from 'rxjs';
 
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../services/toast.service';
 import { ErrorResponse } from '../../interfaces/error-response.interface';
 
 @Injectable()
 export class ErrorCatchingInterceptor implements HttpInterceptor {
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private toastService: ToastService
-  ) {}
+  constructor(private router: Router, private toastService: ToastService) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -28,7 +23,6 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((errorResponse) => {
         console.log(errorResponse);
-
         const errorMessage: ErrorResponse = this.handleError(errorResponse);
         this.toastService.showError('Error', errorMessage.message);
         return throwError(() => errorMessage);

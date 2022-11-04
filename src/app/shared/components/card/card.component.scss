@@ -19,6 +19,12 @@
   &__thumb,
   &__title {
     transition: all 200ms ease-in-out;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
   }
   &__title:hover {
     text-decoration: underline;

@@ -1,7 +1,7 @@
 <section class="checkout">
   <app-loading-spinner *ngIf="isFetching"></app-loading-spinner>
   <app-fetch-fail
-    *ngIf="(!isFetching && !hotel) || !checkOutForm.valid"
+    *ngIf="!isFetching && !hotel && !checkOutForm.valid"
   ></app-fetch-fail>
   <h1 class="checkout__title" *ngIf="hotel && checkOutForm.valid">
     Your bookings information

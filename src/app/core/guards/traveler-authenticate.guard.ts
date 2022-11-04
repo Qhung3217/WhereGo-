@@ -19,15 +19,3 @@ export class TravelerAuthenticateGuard implements CanActivate {
     });
   }
 }
-
-// return this.authService.travelerCredential.pipe(
-//   take(1),
-//   map((auth) => {
-//     console.log(auth);
-//     const isAuth = !!auth;
-//     if (isAuth) return true;
-//     return this.router.createUrlTree(['/auth/traveler/login'], {
-//       queryParams: { redirectUrl: state.url },
-//     });
-//   })
-// );
